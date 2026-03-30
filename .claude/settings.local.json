@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:drive.google.com)",
+      "WebFetch(domain:api.alquran.cloud)",
+      "WebFetch(domain:www.mp3quran.net)",
+      "Bash(where python3:*)",
+      "Bash(where python:*)",
+      "Bash(where node:*)",
+      "Bash(where pwsh:*)",
+      "Bash(where powershell:*)",
+      "Bash(powershell -Command \":*)",
+      "Bash(Sort-Object)",
+      "Bash(powershell -Command \"[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; $content = Get-Content ''C:/Users/DELL/AppData/Local/Temp/reciters_ar.json'' -Raw -Encoding UTF8; $data = $content | ConvertFrom-Json; $reciters = $data.reciters; foreach \\($r in $reciters\\) { Write-Host \\($r.id.ToString\\(\\).PadLeft\\(6\\)\\) $r.name }\")",
+      "Bash(powershell -Command \"[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; $content = Get-Content ''C:/Users/DELL/AppData/Local/Temp/reciters_ar.json'' -Raw -Encoding UTF8; $data = $content | ConvertFrom-Json; $reciters = $data.reciters; $keywords = @\\(''شريف'',''مصطفى'',''عبيدة'',''معافق'',''الحميداني'',''حميداني''\\); foreach \\($r in $reciters\\) { foreach \\($kw in $keywords\\) { if \\($r.name -match $kw\\) { Write-Host ''=== ID:'' $r.id ''Name:'' $r.name; $r | ConvertTo-Json -Depth 10; break } } }\")",
+      "Bash(powershell -Command \"[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; $content = Get-Content ''C:/Users/DELL/AppData/Local/Temp/reciters_fr.json'' -Raw -Encoding UTF8; $data = $content | ConvertFrom-Json; $reciters = $data.reciters; $keywords = @\\(''matrood'',''matrod'',''sherif'',''mostafa'',''obaida'',''muafaq'',''hamidani'',''hamdani'',''mostafa'',''مطرود'',''الحميداني'',''معافق'',''شريف'',''عبيدة''\\); foreach \\($r in $reciters\\) { $name = $r.name; foreach \\($kw in $keywords\\) { if \\($name -match $kw\\) { Write-Host ''=== ID:'' $r.id ''Name:'' $r.name; $r | ConvertTo-Json -Depth 10; break } } }\")",
+      "Bash(powershell -Command \"[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; $content = Get-Content ''C:/Users/DELL/AppData/Local/Temp/reciters_fr.json'' -Raw -Encoding UTF8; $data = $content | ConvertFrom-Json; $reciters = $data.reciters; Write-Host ''Total:'' $reciters.Count; foreach \\($r in $reciters\\) { Write-Host $r.id $r.name }\")",
+      "Bash(powershell -Command \"[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; $response = Invoke-WebRequest -Uri ''https://www.mp3quran.net/api/v3/reciters?language=en'' -UseBasicParsing; $data = $response.Content | ConvertFrom-Json; $reciters = $data.reciters; Write-Host ''Total EN:'' $reciters.Count; $keywords = @\\(''matrood'',''matrod'',''sherif'',''mostafa'',''obaida'',''muafaq'',''hamidani'',''hamdani''\\); foreach \\($r in $reciters\\) { $name = $r.name.ToLower\\(\\); foreach \\($kw in $keywords\\) { if \\($name -match $kw\\) { Write-Host ''=== ID:'' $r.id ''Name:'' $r.name; $r | ConvertTo-Json -Depth 10; break } } }\")",
+      "Bash(powershell -Command \"[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; $response = Invoke-WebRequest -Uri ''https://www.mp3quran.net/api/v3/reciters?language=en'' -UseBasicParsing; $data = $response.Content | ConvertFrom-Json; $reciters = $data.reciters; foreach \\($r in $reciters\\) { Write-Host $r.id $r.name }\")",
+      "Bash(powershell -Command \"[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; $response = Invoke-WebRequest -Uri ''https://www.mp3quran.net/api/v3/reciters?language=en'' -UseBasicParsing; $data = $response.Content | ConvertFrom-Json; $r = $data.reciters | Where-Object { $_.id -eq 59 }; $r | ConvertTo-Json -Depth 10\")",
+      "Bash(ls \"C:\\\\Users\\\\DELL\\\\OneDrive - Université Cheikh Anta DIOP de DAKAR\\\\Al-Huda\\\\pages\\\\prayers\"\" 2>/dev/null && ls \"C:UsersDELLOneDrive - Université Cheikh Anta DIOP de DAKARAl-Hudaassetscss\"\")",
+      "Bash(dir \"C:\\\\Users\\\\DELL\\\\OneDrive - Université Cheikh Anta DIOP de DAKAR\\\\Al-Huda\\\\pages\\\\prayers\"\")",
+      "WebFetch(domain:cdn.islamic.network)",
+      "WebFetch(domain:server.mp3quran.net)"
+    ]
+  }
+}

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Al-Huda — Lisez les 114 sourates du Coran en arabe avec traduction française." />
+  <title>Coran — Al-Huda | الهُدى</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231B6B3A'/><text y='.9em' font-size='70' font-family='serif' x='50%' text-anchor='middle' fill='%23C9A84C'>ه</text></svg>" />
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('al-huda-theme') || 'light');</script>
+  <link rel="manifest" href="../../manifest.json" />
+  <meta name="theme-color" content="#1B6B3A" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Al-Huda" />
+  <link rel="apple-touch-icon" href="../../assets/icons/icon-192.png" />
+  <link rel="stylesheet" href="../../assets/css/main.css" />
+  <link rel="stylesheet" href="../../assets/css/quran.css" />
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar scrolled" id="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="../../index.html" class="logo">
+        <div class="logo-icon">ه</div>
+        <div class="logo-text">
+          <div class="name">Al-Huda</div>
+          <div class="tagline">الهُدى • Le Guide</div>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Accueil</a></li>
+        <li><a href="index.html" class="active">Coran</a></li>
+        <li><a href="../azkars/index.html">Azkars</a></li>
+        <li><a href="../prayers/index.html">Prières</a></li>
+        <li><a href="../hadiths/index.html">Hadiths</a></li>
+        <li><a href="../articles/index.html">Articles</a></li>
+      </ul>
+      <div class="nav-cta">
+        <div class="nav-prayer-time">
+          <span class="dot"></span>
+          <span id="next-prayer-nav">Prochaine prière</span>
+        </div>
+      </div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../../index.html">🏠 Accueil</a>
+  <a href="index.html">📖 Coran</a>
+  <a href="../azkars/index.html">🤲 Azkars</a>
+  <a href="../prayers/index.html">🕌 Prières</a>
+  <a href="../hadiths/index.html">📜 Hadiths</a>
+  <a href="../articles/index.html">📰 Articles</a>
+</div>
+
+<!-- HERO CORAN -->
+<section class="quran-hero">
+  <div class="quran-hero-pattern"></div>
+  <div class="container">
+    <div class="quran-hero-inner">
+      <div class="quran-hero-text animate-fadeInUp">
+        <span class="badge badge-gold">القرآن الكريم</span>
+        <h1>Le Saint Coran</h1>
+        <p>114 sourates • 6236 versets • Texte arabe intégral avec traduction française</p>
+      </div>
+      <div class="quran-hero-bismillah animate-fadeInUp delay-200">
+        بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BARRE DE RECHERCHE + FILTRES -->
+<section class="quran-controls">
+  <div class="container">
+    <div class="quran-controls-inner">
+
+      <!-- Recherche -->
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Rechercher une sourate (nom, numéro, signification...)"
+          autocomplete="off"
+        />
+        <button class="search-clear" id="search-clear" style="display:none;">✕</button>
+      </div>
+
+      <!-- Filtres -->
+      <div class="quran-filters">
+        <button class="filter-btn active" data-filter="all">Toutes</button>
+        <button class="filter-btn" data-filter="mecquoise">Mecquoises</button>
+        <button class="filter-btn" data-filter="médinoise">Médinoises</button>
+        <button class="filter-btn" data-filter="juz30">Juz 30</button>
+      </div>
+
+      <!-- Vues -->
+      <div class="view-toggle">
+        <button class="view-btn active" id="view-grid" title="Vue grille">⊞</button>
+        <button class="view-btn" id="view-list" title="Vue liste">☰</button>
+      </div>
+    </div>
+
+    <!-- Compteur résultats -->
+    <div class="results-count" id="results-count">
+      <span id="count-num">114</span> sourates
+    </div>
+  </div>
+</section>
+
+<!-- SOURATES POPULAIRES -->
+<section class="quran-popular">
+  <div class="container">
+    <h3 class="popular-title">⭐ Sourates populaires</h3>
+    <div class="popular-grid">
+      <a href="surah.html?s=1"  class="popular-chip"><span>الفاتحة</span> Al-Fatiha</a>
+      <a href="surah.html?s=2"  class="popular-chip"><span>البقرة</span> Al-Baqara</a>
+      <a href="surah.html?s=18" class="popular-chip"><span>الكهف</span> Al-Kahf</a>
+      <a href="surah.html?s=36" class="popular-chip"><span>يس</span> Ya-Sin</a>
+      <a href="surah.html?s=55" class="popular-chip"><span>الرحمن</span> Ar-Rahman</a>
+      <a href="surah.html?s=67" class="popular-chip"><span>الملك</span> Al-Mulk</a>
+      <a href="surah.html?s=112" class="popular-chip"><span>الإخلاص</span> Al-Ikhlas</a>
+      <a href="surah.html?s=113" class="popular-chip"><span>الفلق</span> Al-Falaq</a>
+      <a href="surah.html?s=114" class="popular-chip"><span>الناس</span> An-Nas</a>
+    </div>
+  </div>
+</section>
+
+<!-- GRILLE DES SOURATES -->
+<section class="surahs-section">
+  <div class="container">
+    <div class="surahs-grid" id="surahs-grid">
+      <!-- Rempli par JS -->
+      <div class="loading-surahs">
+        <div class="spinner"></div>
+        <p>Chargement des sourates...</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../../index.html" class="logo">
+          <div class="logo-icon">ه</div>
+          <div class="logo-text"><div class="name">Al-Huda</div><div class="tagline">الهُدى • Le Guide</div></div>
+        </a>
+        <p style="margin-top:1rem;">Votre compagnon islamique numérique.</p>
+        <div class="arabic-motto">وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا</div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">📖 Coran</a></li>
+          <li><a href="../azkars/index.html">🤲 Azkars</a></li>
+          <li><a href="../prayers/index.html">🕌 Prières</a></li>
+          <li><a href="../hadiths/index.html">📜 Hadiths</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Sourates</h4>
+        <ul>
+          <li><a href="surah.html?s=1">Al-Fatiha</a></li>
+          <li><a href="surah.html?s=36">Ya-Sin</a></li>
+          <li><a href="surah.html?s=55">Ar-Rahman</a></li>
+          <li><a href="surah.html?s=67">Al-Mulk</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Al-Huda</h4>
+        <ul>
+          <li><a href="../../index.html">Accueil</a></li>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Al-Huda — الهُدى. Fait avec <span class="love">♥</span> pour la communauté musulmane.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/js/surahs-data.js"></script>
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/quran.js"></script>
+</body>
+</html>

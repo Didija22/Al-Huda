@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Al-Huda — Horaires des prières selon votre position, direction de la Qibla, calendrier hebdomadaire." />
+  <title>Prières — Al-Huda | الهُدى</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231B6B3A'/><text y='.9em' font-size='70' font-family='serif' x='50%' text-anchor='middle' fill='%23C9A84C'>ه</text></svg>" />
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('al-huda-theme') || 'light');</script>
+  <link rel="manifest" href="../../manifest.json" />
+  <meta name="theme-color" content="#1B6B3A" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Al-Huda" />
+  <link rel="apple-touch-icon" href="../../assets/icons/icon-192.png" />
+  <link rel="stylesheet" href="../../assets/css/main.css" />
+  <link rel="stylesheet" href="../../assets/css/prayers.css" />
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar scrolled" id="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="../../index.html" class="logo">
+        <div class="logo-icon">ه</div>
+        <div class="logo-text">
+          <div class="name">Al-Huda</div>
+          <div class="tagline">الهُدى • Le Guide</div>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Accueil</a></li>
+        <li><a href="../quran/index.html">Coran</a></li>
+        <li><a href="../azkars/index.html">Azkars</a></li>
+        <li><a href="index.html" class="active">Prières</a></li>
+        <li><a href="../hadiths/index.html">Hadiths</a></li>
+        <li><a href="../articles/index.html">Articles</a></li>
+      </ul>
+      <div class="nav-cta">
+        <div class="nav-prayer-time">
+          <span class="dot"></span>
+          <span id="next-prayer-nav">Prochaine prière</span>
+        </div>
+      </div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../../index.html">🏠 Accueil</a>
+  <a href="../quran/index.html">📖 Coran</a>
+  <a href="../azkars/index.html">🤲 Azkars</a>
+  <a href="index.html">🕌 Prières</a>
+  <a href="../hadiths/index.html">📜 Hadiths</a>
+</div>
+
+<!-- HERO -->
+<section class="prayers-hero">
+  <div class="prayers-hero-pattern"></div>
+  <div class="container">
+    <div class="prayers-hero-inner">
+      <div class="hero-label">🕌 Horaires des Prières</div>
+      <h1>Salat — الصلاة</h1>
+      <div class="hero-arabic">أَقِيمُوا الصَّلَاةَ</div>
+      <p>Horaires précis selon votre localisation, partout dans le monde</p>
+
+      <!-- Barre localisation + horloge -->
+      <div class="location-bar">
+        <div class="location-left">
+          <div class="location-icon">🌍</div>
+          <div class="location-info">
+            <div class="city" id="hero-city">📍 Détection en cours…</div>
+            <div class="date" id="hero-date">—</div>
+          </div>
+        </div>
+        <div class="location-right">
+          <div id="hero-clock">00:00:00</div>
+          <button class="btn-detect" id="btn-detect">📍 Détecter</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION PRINCIPALE -->
+<section class="prayers-main">
+  <div class="container">
+
+    <!-- Recherche de ville -->
+    <div class="city-search-section reveal">
+      <form class="city-search-form" id="city-search-form-page">
+        <input
+          type="text"
+          id="city-input"
+          placeholder="🔍  Rechercher une ville : Paris, Dubai, Le Caire, Dakar…"
+          autocomplete="off"
+        />
+        <button type="submit">Chercher</button>
+      </form>
+    </div>
+
+    <!-- Grille principale -->
+    <div class="prayers-grid reveal">
+
+      <!-- COLONNE GAUCHE : Prières du jour -->
+      <div class="todays-prayers-card">
+        <div class="card-header">
+          <div>
+            <h2>Prières du jour</h2>
+            <div class="header-date" id="today-date">—</div>
+          </div>
+          <div class="card-header-right">
+            <div class="hijri-date" id="hijri-date">— H</div>
+          </div>
+        </div>
+
+        <!-- État de chargement -->
+        <div id="prayers-loading" style="display:flex;align-items:center;justify-content:center;gap:0.75rem;padding:2rem;color:var(--text-light)">
+          <div class="spinner" style="width:28px;height:28px;border-width:3px;margin:0;"></div>
+          Chargement…
+        </div>
+
+        <!-- Liste des prières -->
+        <div class="prayers-list">
+
+          <!-- Fajr -->
+          <div class="prayer-row" id="row-fajr">
+            <div class="prayer-icon fajr">🌙</div>
+            <div class="prayer-info">
+              <div class="prayer-name">Fajr</div>
+              <div class="prayer-name-ar">الفجر</div>
+            </div>
+            <div class="prayer-time-val" id="time-fajr">--:--</div>
+          </div>
+
+          <!-- Chourouk -->
+          <div class="prayer-row" id="row-sunrise">
+            <div class="prayer-icon sunrise">🌅</div>
+            <div class="prayer-info">
+              <div class="prayer-name">Chourouk</div>
+              <div class="prayer-name-ar">الشروق</div>
+            </div>
+            <div class="prayer-time-val" id="time-sunrise">--:--</div>
+          </div>
+
+          <!-- Dhuhr -->
+          <div class="prayer-row" id="row-dhuhr">
+            <div class="prayer-icon dhuhr">☀️</div>
+            <div class="prayer-info">
+              <div class="prayer-name">Dhuhr</div>
+              <div class="prayer-name-ar">الظهر</div>
+            </div>
+            <div class="prayer-time-val" id="time-dhuhr">--:--</div>
+          </div>
+
+          <!-- Asr -->
+          <div class="prayer-row" id="row-asr">
+            <div class="prayer-icon asr">🌤️</div>
+            <div class="prayer-info">
+              <div class="prayer-name">Asr</div>
+              <div class="prayer-name-ar">العصر</div>
+            </div>
+            <div class="prayer-time-val" id="time-asr">--:--</div>
+          </div>
+
+          <!-- Maghrib -->
+          <div class="prayer-row" id="row-maghrib">
+            <div class="prayer-icon maghrib">🌇</div>
+            <div class="prayer-info">
+              <div class="prayer-name">Maghrib</div>
+              <div class="prayer-name-ar">المغرب</div>
+            </div>
+            <div class="prayer-time-val" id="time-maghrib">--:--</div>
+          </div>
+
+          <!-- Isha -->
+          <div class="prayer-row" id="row-isha">
+            <div class="prayer-icon isha">🌃</div>
+            <div class="prayer-info">
+              <div class="prayer-name">Isha</div>
+              <div class="prayer-name-ar">العشاء</div>
+            </div>
+            <div class="prayer-time-val" id="time-isha">--:--</div>
+          </div>
+
+        </div><!-- /prayers-list -->
+      </div><!-- /todays-prayers-card -->
+
+      <!-- COLONNE DROITE : sidebar -->
+      <div class="prayers-sidebar">
+
+        <!-- Prochaine prière + Countdown -->
+        <div class="next-prayer-card">
+          <div class="next-prayer-label">PROCHAINE PRIÈRE</div>
+          <div class="next-prayer-name" id="next-prayer-name">—</div>
+          <div class="next-prayer-name-ar" id="next-prayer-name-ar">—</div>
+          <div class="countdown-display" id="countdown-display">00:00:00</div>
+          <div class="countdown-label">restant avant l'appel à la prière</div>
+        </div>
+
+        <!-- Méthode de calcul -->
+        <div class="method-card">
+          <h3>⚙️ Méthode de calcul</h3>
+          <select class="method-select" id="method-select"></select>
+          <div class="method-info">
+            La méthode de calcul influe sur les heures de Fajr et Isha. Choisissez celle recommandée dans votre pays.
+          </div>
+        </div>
+
+        <!-- Direction de la Qibla -->
+        <div class="qibla-card">
+          <h3>🕋 Direction de la Qibla</h3>
+
+          <div id="qibla-result" style="display:none;">
+            <div class="qibla-compass">
+              <div class="qibla-compass-ring">
+                <div class="compass-directions">
+                  <span class="cn">N</span>
+                  <span class="cs">S</span>
+                  <span class="ce">E</span>
+                  <span class="cw">O</span>
+                </div>
+                <div class="qibla-needle" id="qibla-needle">
+                  <div class="qibla-needle-top"></div>
+                  <div class="qibla-needle-bottom"></div>
+                </div>
+                <div class="qibla-center-dot"></div>
+              </div>
+            </div>
+            <div class="qibla-degree" id="qibla-degree">—</div>
+            <div class="qibla-desc" id="qibla-desc">—</div>
+          </div>
+
+          <div class="qibla-error" id="qibla-error" style="display:none;"></div>
+
+          <button class="btn-qibla" id="btn-qibla">🕋 Calculer la Qibla</button>
+        </div>
+
+      </div><!-- /sidebar -->
+    </div><!-- /prayers-grid -->
+  </div>
+</section>
+
+<!-- CALENDRIER HEBDOMADAIRE -->
+<section class="weekly-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">📅 Calendrier</div>
+      <h2>Horaires de la semaine</h2>
+    </div>
+
+    <div class="weekly-table-wrap reveal">
+      <table class="weekly-table">
+        <thead>
+          <tr>
+            <th>Jour</th>
+            <th>🌙 Fajr</th>
+            <th>🌅 Chourouk</th>
+            <th>☀️ Dhuhr</th>
+            <th>🌤️ Asr</th>
+            <th>🌇 Maghrib</th>
+            <th>🌃 Isha</th>
+          </tr>
+        </thead>
+        <tbody id="weekly-tbody">
+          <tr>
+            <td colspan="7" style="text-align:center;padding:2rem;color:var(--text-light)">
+              Les horaires s'afficheront après la détection de votre position.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- DU'A AVANT LA PRIÈRE -->
+<section class="duaa-section">
+  <div class="container">
+    <div class="duaa-card reveal">
+      <div class="duaa-title">🤲 Du'a — Rappel</div>
+      <div class="duaa-arabic">
+        اللَّهُمَّ اجْعَلْنِي مِنَ الْمُتَطَهِّرِينَ، وَاجْعَلْنِي مِنَ عِبَادِكَ الصَّالِحِينَ
+      </div>
+      <div class="duaa-french">
+        « Ô Allah, fais de moi quelqu'un qui se purifie,
+        et fais de moi parmi Tes serviteurs vertueux. »
+      </div>
+      <div class="duaa-source">Invocation lors des ablutions</div>
+    </div>
+  </div>
+</section>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/prayers.js"></script>
+</body>
+</html>

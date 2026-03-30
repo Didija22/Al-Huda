@@ -1,0 +1,405 @@
+/* ============================================================
+   AL-HUDA — Styles Azkars
+   ============================================================ */
+
+/* ---------- Hero ---------- */
+.azkars-hero {
+  background: linear-gradient(160deg, var(--green-dark) 0%, var(--green) 60%, var(--green-mid) 100%);
+  padding: 120px 0 60px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.azkars-hero-pattern {
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M30 0l8.66 5v10L30 20l-8.66-5V5L30 0z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.azkars-hero-inner { position: relative; }
+.azkars-hero h1 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  color: var(--white);
+  margin: 0.75rem 0;
+}
+.azkars-hero p { color: rgba(255,255,255,0.75); font-size: 1.05rem; margin-bottom: 2rem; }
+
+.hero-cats {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.hero-cat {
+  padding: 0.45rem 1.1rem;
+  border-radius: 50px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.9);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+.hero-cat:hover {
+  background: rgba(255,255,255,0.2);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+/* ---------- Bannière moment ---------- */
+.azkar-moment-banner {
+  background: var(--gold-pale);
+  border-bottom: 1px solid rgba(201,168,76,0.2);
+  padding: 0.85rem 0;
+}
+.moment-inner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.moment-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--green-dark);
+  flex-shrink: 0;
+}
+.moment-text {
+  flex: 1;
+  font-size: 0.85rem;
+  color: var(--text-mid);
+}
+
+/* ---------- Catégories ---------- */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.25rem;
+}
+.cat-card {
+  display: block;
+  background: var(--white);
+  border: 2px solid transparent;
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+  text-decoration: none;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+.cat-card:hover {
+  border-color: var(--green-light);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+.cat-card .cat-emoji-lg { font-size: 2.5rem; margin-bottom: 0.75rem; }
+.cat-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--green-dark); margin-bottom: 0.2rem; }
+.cat-card .cat-ar { font-family: 'Amiri', serif; font-size: 1rem; color: var(--gold); direction: rtl; margin-bottom: 0.4rem; }
+.cat-card p { font-size: 0.75rem; color: var(--text-light); line-height: 1.5; }
+
+/* ---------- Section azkars ---------- */
+.azkars-list-section { padding: 70px 0; }
+
+.azkars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.25rem;
+}
+
+/* ---------- Carte azkar ---------- */
+.azkar-card {
+  background: var(--white);
+  border: 1px solid rgba(27,107,58,0.1);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: var(--transition);
+  position: relative;
+}
+.azkar-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--green-light);
+  transform: translateY(-3px);
+}
+.azkar-card-header {
+  background: linear-gradient(135deg, var(--green-dark), var(--green));
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.azkar-num {
+  width: 26px; height: 26px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--white);
+}
+.azkar-source {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.1);
+  padding: 0.2rem 0.6rem;
+  border-radius: 50px;
+}
+.azkar-card-body { padding: 1.25rem; }
+.azkar-arabic-text {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1.25rem;
+  color: var(--text-dark);
+  direction: rtl;
+  line-height: 2;
+  text-align: right;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--green-pale);
+  border-radius: var(--radius-sm);
+  border-right: 3px solid var(--green);
+}
+.azkar-transliteration {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  font-style: italic;
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+  display: none; /* masqué par défaut, toggle possible */
+}
+.azkar-translation {
+  font-size: 0.88rem;
+  color: var(--text-mid);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+.azkar-benefit {
+  font-size: 0.78rem;
+  color: var(--green-dark);
+  background: var(--gold-pale);
+  border-left: 3px solid var(--gold);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin-bottom: 1rem;
+  line-height: 1.55;
+}
+.azkar-benefit::before { content: '✨ '; }
+
+.azkar-card-footer {
+  padding: 0.75rem 1.25rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.rep-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  color: var(--text-mid);
+  font-weight: 500;
+}
+.rep-badge .rep-num {
+  background: var(--green-pale);
+  color: var(--green);
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+}
+
+/* Compteur intégré */
+.inline-counter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.ic-count {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  min-width: 2rem;
+  text-align: center;
+}
+.ic-btn {
+  width: 32px; height: 32px;
+  background: var(--green);
+  border: none;
+  border-radius: 50%;
+  color: var(--white);
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--transition);
+}
+.ic-btn:hover { background: var(--green-dark); transform: scale(1.1); }
+.ic-btn.done { background: var(--gold); }
+.ic-reset {
+  background: none;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 50%;
+  width: 24px; height: 24px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  color: var(--text-light);
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--transition);
+}
+.ic-reset:hover { border-color: var(--green); color: var(--green); }
+
+/* Actions carte */
+.azkar-card-actions {
+  display: flex;
+  gap: 0.3rem;
+}
+.azkar-action {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: transparent;
+  color: var(--text-light);
+  font-size: 0.8rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--transition);
+}
+.azkar-action:hover { background: var(--green-pale); color: var(--green); }
+
+/* Progress bar sur la carte */
+.azkar-progress {
+  height: 3px;
+  background: rgba(0,0,0,0.06);
+  border-radius: 2px;
+  margin: 0.5rem 0;
+  overflow: hidden;
+}
+.azkar-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--green), var(--gold));
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+/* ============================================================
+   TASBIH SECTION
+   ============================================================ */
+.tasbih-section {
+  background: linear-gradient(135deg, var(--green-dark), var(--green));
+  padding: 70px 0;
+}
+.tasbih-widget {
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+}
+.tasbih-header { margin-bottom: 2rem; }
+.tasbih-header h3 { font-size: 1.5rem; font-weight: 700; color: var(--white); margin-bottom: 0.4rem; }
+.tasbih-header p { color: rgba(255,255,255,0.7); font-size: 0.9rem; }
+
+.tasbih-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+.tsb-select {
+  padding: 0.45rem 1rem;
+  border-radius: 50px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.8);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: 'Poppins', sans-serif;
+}
+.tsb-select:hover { background: rgba(255,255,255,0.15); }
+.tsb-select.active { background: var(--gold); color: var(--green-dark); border-color: var(--gold); font-weight: 700; }
+
+.tasbih-display { margin-bottom: 2rem; }
+.tasbih-arabic {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: var(--gold-light);
+  direction: rtl;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+.tasbih-count-display {
+  font-size: clamp(4rem, 10vw, 7rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 0.25rem;
+  transition: transform 0.1s ease;
+}
+.tasbih-count-display.bump { transform: scale(1.08); }
+.tasbih-max { font-size: 1rem; color: rgba(255,255,255,0.5); margin-bottom: 1.25rem; }
+
+.tasbih-progress {
+  max-width: 300px;
+  height: 6px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 3px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.tasbih-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  border-radius: 3px;
+  transition: width 0.2s ease;
+}
+
+.tasbih-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+.tsb-main-btn {
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  border: none;
+  color: var(--green-dark);
+  font-family: 'Amiri', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 25px rgba(201,168,76,0.5);
+  transition: var(--transition);
+}
+.tsb-main-btn:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(201,168,76,0.6); }
+.tsb-main-btn:active { transform: scale(0.96); }
+.tsb-reset-btn {
+  align-self: center;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50px;
+  color: rgba(255,255,255,0.7);
+  padding: 0.5rem 1.1rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: 'Poppins', sans-serif;
+}
+.tsb-reset-btn:hover { background: rgba(255,255,255,0.2); color: var(--white); }
+.tasbih-total { font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+.tasbih-total strong { color: var(--gold-light); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+  .azkars-grid { grid-template-columns: 1fr; }
+  .categories-grid { grid-template-columns: repeat(2, 1fr); }
+  .moment-inner { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+}
+@media (max-width: 480px) {
+  .categories-grid { grid-template-columns: repeat(2, 1fr); }
+  .tsb-main-btn { width: 75px; height: 75px; }
+}

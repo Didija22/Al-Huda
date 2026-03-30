@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Al-Huda — Lecture d'une sourate du Coran en arabe avec traduction française." />
+  <title>Sourate — Al-Huda | الهُدى</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231B6B3A'/><text y='.9em' font-size='70' font-family='serif' x='50%' text-anchor='middle' fill='%23C9A84C'>ه</text></svg>" />
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('al-huda-theme') || 'light');</script>
+  <link rel="manifest" href="../../manifest.json" />
+  <meta name="theme-color" content="#1B6B3A" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Al-Huda" />
+  <link rel="apple-touch-icon" href="../../assets/icons/icon-192.png" />
+  <link rel="stylesheet" href="../../assets/css/main.css" />
+  <link rel="stylesheet" href="../../assets/css/quran.css" />
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar scrolled" id="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="../../index.html" class="logo">
+        <div class="logo-icon">ه</div>
+        <div class="logo-text">
+          <div class="name">Al-Huda</div>
+          <div class="tagline">الهُدى • Le Guide</div>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Accueil</a></li>
+        <li><a href="index.html" class="active">Coran</a></li>
+        <li><a href="../azkars/index.html">Azkars</a></li>
+        <li><a href="../prayers/index.html">Prières</a></li>
+        <li><a href="../hadiths/index.html">Hadiths</a></li>
+        <li><a href="../articles/index.html">Articles</a></li>
+      </ul>
+      <div class="nav-cta">
+        <div class="nav-prayer-time">
+          <span class="dot"></span>
+          <span id="next-prayer-nav">Prochaine prière</span>
+        </div>
+      </div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../../index.html">🏠 Accueil</a>
+  <a href="index.html">📖 Coran</a>
+  <a href="../azkars/index.html">🤲 Azkars</a>
+  <a href="../prayers/index.html">🕌 Prières</a>
+  <a href="../hadiths/index.html">📜 Hadiths</a>
+</div>
+
+<!-- HEADER SOURATE -->
+<section class="surah-hero" id="surah-hero">
+  <div class="container">
+    <div class="surah-hero-inner">
+      <!-- Breadcrumb -->
+      <div class="breadcrumb">
+        <a href="../../index.html">Accueil</a>
+        <span>›</span>
+        <a href="index.html">Coran</a>
+        <span>›</span>
+        <span id="breadcrumb-name">Sourate</span>
+      </div>
+
+      <div class="surah-hero-card">
+        <!-- Infos sourate -->
+        <div class="surah-info">
+          <div class="surah-number-badge" id="surah-number-badge">1</div>
+          <div class="surah-details">
+            <h1 id="surah-name-fr">Al-Fatiha</h1>
+            <p id="surah-meaning">L'Ouverture</p>
+            <div class="surah-meta-tags">
+              <span class="tag-pill" id="surah-type">Mecquoise</span>
+              <span class="tag-pill tag-gold" id="surah-verses">7 versets</span>
+              <span class="tag-pill" id="surah-juz">Juz 1</span>
+            </div>
+          </div>
+          <div class="surah-name-ar" id="surah-name-ar">الفاتحة</div>
+        </div>
+
+        <!-- Contrôles -->
+        <div class="surah-controls">
+          <!-- Navigation -->
+          <div class="surah-nav-btns">
+            <a href="#" id="prev-surah" class="surah-nav-btn" title="Sourate précédente">‹ Précédente</a>
+            <a href="index.html" class="surah-nav-btn surah-nav-btn-mid" title="Toutes les sourates">☰ Liste</a>
+            <a href="#" id="next-surah" class="surah-nav-btn" title="Sourate suivante">Suivante ›</a>
+          </div>
+
+          <!-- Options lecture -->
+          <div class="reading-options">
+            <button class="option-btn active" id="opt-both" title="Arabe + Traduction">AR + FR</button>
+            <button class="option-btn" id="opt-arabic" title="Arabe uniquement">AR</button>
+            <button class="option-btn" id="opt-french" title="Traduction uniquement">FR</button>
+          </div>
+
+          <!-- Taille police -->
+          <div class="font-size-control">
+            <button class="fs-btn" id="fs-down" title="Réduire">A-</button>
+            <span class="fs-label" id="fs-label">Taille</span>
+            <button class="fs-btn" id="fs-up" title="Agrandir">A+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ZONE DE LECTURE -->
+<section class="reading-section">
+  <div class="reading-container">
+
+    <!-- Panneau latéral (sourates) -->
+    <aside class="surah-sidebar" id="surah-sidebar">
+      <div class="sidebar-header">
+        <h3>Sourates</h3>
+        <button class="sidebar-close" id="sidebar-close">✕</button>
+      </div>
+      <input type="text" class="sidebar-search" id="sidebar-search" placeholder="Rechercher..." />
+      <div class="sidebar-list" id="sidebar-list">
+        <!-- Rempli par JS -->
+      </div>
+    </aside>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Contenu principal -->
+    <main class="reading-main">
+
+      <!-- Barre d'outils flottante -->
+      <div class="reading-toolbar">
+        <button class="toolbar-btn" id="open-sidebar" title="Liste des sourates">📚 Sourates</button>
+        <div class="toolbar-separator"></div>
+        <button class="toolbar-btn" id="btn-bookmark" title="Marquer comme favori">🔖 Signet</button>
+        <button class="toolbar-btn" id="btn-audio" title="Écouter la récitation">🔊 Audio</button>
+        <div class="toolbar-separator"></div>
+        <button class="toolbar-btn" id="btn-copy" title="Copier le texte">📋 Copier</button>
+      </div>
+
+      <!-- Lecteur audio -->
+      <div class="audio-player" id="audio-player" style="display:none;">
+        <div class="audio-info">
+          <span>🎙️ Récitation — <strong id="reciter-name">Sheikh Mishary Rashid</strong></span>
+          <select id="reciter-select" class="reciter-select">
+            <option value="ar.alafasy">Mishary Rashid Al-Afasy</option>
+            <option value="mp3q:server12.mp3quran.net/maher">Maher Al-Muaiqly</option>
+          </select>
+        </div>
+        <audio id="audio-element" controls style="width:100%;margin-top:0.5rem;"></audio>
+      </div>
+
+      <!-- Contenu versets -->
+      <div class="verses-container" id="verses-container">
+        <div class="loading-verses">
+          <div class="spinner"></div>
+          <p>Chargement de la sourate...</p>
+        </div>
+      </div>
+
+      <!-- Navigation bas de page -->
+      <div class="bottom-nav">
+        <a href="#" id="prev-bottom" class="btn btn-outline" style="font-size:0.85rem;">‹ Sourate précédente</a>
+        <a href="index.html" class="btn btn-primary" style="font-size:0.85rem;">☰ Toutes les sourates</a>
+        <a href="#" id="next-bottom" class="btn btn-outline" style="font-size:0.85rem;">Sourate suivante ›</a>
+      </div>
+    </main>
+  </div>
+</section>
+
+<!-- TOAST notification -->
+<div class="toast" id="toast"></div>
+
+<script src="../../assets/js/surahs-data.js"></script>
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/quran.js"></script>
+</body>
+</html>

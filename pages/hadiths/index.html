@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Al-Huda — Collection de hadiths authentiques du Prophète ﷺ en français, classés par thème et collection." />
+  <title>Hadiths — Al-Huda | الهُدى</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231B6B3A'/><text y='.9em' font-size='70' font-family='serif' x='50%' text-anchor='middle' fill='%23C9A84C'>ه</text></svg>" />
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('al-huda-theme') || 'light');</script>
+  <link rel="manifest" href="../../manifest.json" />
+  <meta name="theme-color" content="#1B6B3A" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Al-Huda" />
+  <link rel="apple-touch-icon" href="../../assets/icons/icon-192.png" />
+  <link rel="stylesheet" href="../../assets/css/main.css" />
+  <link rel="stylesheet" href="../../assets/css/hadiths.css" />
+</head>
+<body>
+
+<nav class="navbar scrolled" id="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="../../index.html" class="logo">
+        <div class="logo-icon">ه</div>
+        <div class="logo-text"><div class="name">Al-Huda</div><div class="tagline">الهُدى • Le Guide</div></div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Accueil</a></li>
+        <li><a href="../quran/index.html">Coran</a></li>
+        <li><a href="../azkars/index.html">Azkars</a></li>
+        <li><a href="../prayers/index.html">Prières</a></li>
+        <li><a href="index.html" class="active">Hadiths</a></li>
+        <li><a href="../articles/index.html">Bibliothèque</a></li>
+      </ul>
+      <div class="nav-cta">
+        <div class="nav-prayer-time"><span class="dot"></span><span id="next-prayer-nav">Prochaine prière</span></div>
+      </div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../../index.html">🏠 Accueil</a>
+  <a href="../quran/index.html">📖 Coran</a>
+  <a href="../azkars/index.html">🤲 Azkars</a>
+  <a href="../prayers/index.html">🕌 Prières</a>
+  <a href="index.html">📜 Hadiths</a>
+  <a href="../articles/index.html">📚 Bibliothèque</a>
+</div>
+
+<!-- HERO -->
+<section class="hadith-hero">
+  <div class="hadith-hero-pattern"></div>
+  <div class="container">
+    <div class="hadith-hero-inner animate-fadeInUp">
+      <span class="badge badge-gold">السنة النبوية</span>
+      <h1>Hadiths du Prophète ﷺ</h1>
+      <p>Paroles et enseignements authentiques du Messager d'Allah — classés par thème et collection</p>
+      <div class="hero-stats-row">
+        <div class="hstat"><span id="total-hadiths">30</span><small>Hadiths</small></div>
+        <div class="hstat-sep">•</div>
+        <div class="hstat"><span>6</span><small>Collections</small></div>
+        <div class="hstat-sep">•</div>
+        <div class="hstat"><span>12</span><small>Thèmes</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTROLES -->
+<section class="hadith-controls">
+  <div class="container">
+    <div class="hadith-controls-inner">
+      <!-- Recherche -->
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="hadith-search" placeholder="Rechercher un hadith..." autocomplete="off" />
+        <button class="search-clear" id="hadith-search-clear" style="display:none;">✕</button>
+      </div>
+
+      <!-- Filtre thème -->
+      <div class="filter-row" id="theme-filters">
+        <button class="hfilter active" data-theme="all">Tous</button>
+      </div>
+    </div>
+
+    <!-- Filtre collection -->
+    <div class="collection-filters" id="collection-filters">
+      <button class="cfilter active" data-col="all">Toutes les collections</button>
+    </div>
+
+    <div class="results-count" id="hadith-count"><span id="count-num">30</span> hadiths</div>
+  </div>
+</section>
+
+<!-- COLLECTIONS HEADER -->
+<section class="collections-section">
+  <div class="container">
+    <div class="collections-grid" id="collections-grid">
+      <!-- Rempli par JS -->
+    </div>
+  </div>
+</section>
+
+<!-- LISTE HADITHS -->
+<section class="hadiths-list-section section-padding">
+  <div class="container">
+    <div class="hadiths-grid" id="hadiths-grid">
+      <div class="loading-hadiths">
+        <div class="spinner"></div>
+        <p>Chargement des hadiths...</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HADITH DU JOUR -->
+<section class="hadith-du-jour bg-green-pale">
+  <div class="container">
+    <div class="hdj-inner reveal">
+      <div class="hdj-label">
+        <span class="badge badge-green">Hadith du jour</span>
+      </div>
+      <div class="hdj-arabic arabic arabic-lg" id="hdj-arabic"></div>
+      <div class="hdj-french" id="hdj-french"></div>
+      <div class="hdj-meta">
+        <span id="hdj-narrator"></span> — <span id="hdj-ref" class="hdj-ref"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../../index.html" class="logo">
+          <div class="logo-icon">ه</div>
+          <div class="logo-text"><div class="name">Al-Huda</div><div class="tagline">الهُدى • Le Guide</div></div>
+        </a>
+        <p style="margin-top:1rem;">Votre compagnon islamique numérique.</p>
+        <div class="arabic-motto">وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا</div>
+      </div>
+      <div class="footer-col"><h4>Navigation</h4><ul>
+        <li><a href="../quran/index.html">📖 Coran</a></li>
+        <li><a href="../azkars/index.html">🤲 Azkars</a></li>
+        <li><a href="../prayers/index.html">🕌 Prières</a></li>
+        <li><a href="../articles/index.html">📚 Bibliothèque</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Collections</h4><ul>
+        <li><a href="#" onclick="filterCollection('bukhari')">Sahih Al-Bukhari</a></li>
+        <li><a href="#" onclick="filterCollection('muslim')">Sahih Muslim</a></li>
+        <li><a href="#" onclick="filterCollection('tirmidhi')">Sunan At-Tirmidhi</a></li>
+        <li><a href="#" onclick="filterCollection('abudawud')">Sunan Abu Dawud</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Al-Huda</h4><ul>
+        <li><a href="../../index.html">Accueil</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Al-Huda — الهُدى. Fait avec <span class="love">♥</span> pour la communauté musulmane.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="../../assets/js/hadiths-data.js"></script>
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/hadiths.js"></script>
+</body>
+</html>

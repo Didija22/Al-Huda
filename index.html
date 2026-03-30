@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Al-Huda — Votre guide islamique complet : Coran en arabe et français, Azkars, horaires de prières, hadiths et articles." />
+  <title>Al-Huda | الهُدى — Guide Islamique Complet</title>
+
+  <!-- Favicon SVG inline -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231B6B3A'/><text y='.9em' font-size='70' font-family='serif' x='50%' text-anchor='middle' fill='%23C9A84C'>ه</text></svg>" />
+
+  <!-- Thème (anti-flash) -->
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('al-huda-theme') || 'light');</script>
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/main.css" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#1B6B3A" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Al-Huda" />
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
+</head>
+<body>
+
+<!-- ============================================================
+     NAVBAR
+     ============================================================ -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="logo">
+        <div class="logo-icon">ه</div>
+        <div class="logo-text">
+          <div class="name">Al-Huda</div>
+          <div class="tagline">الهُدى • Le Guide</div>
+        </div>
+      </a>
+
+      <!-- Liens nav -->
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Accueil</a></li>
+        <li><a href="pages/quran/index.html">Coran</a></li>
+        <li><a href="pages/azkars/index.html">Azkars</a></li>
+        <li><a href="pages/prayers/index.html">Prières</a></li>
+        <li><a href="pages/hadiths/index.html">Hadiths</a></li>
+        <li><a href="pages/articles/index.html">Articles</a></li>
+      </ul>
+
+      <!-- CTA -->
+      <div class="nav-cta">
+        <div class="nav-prayer-time">
+          <span class="dot"></span>
+          <span id="next-prayer-nav">Asr • 16:24</span>
+        </div>
+        <a href="pages/prayers/index.html" class="btn btn-gold" style="padding:0.45rem 1.1rem;font-size:0.82rem;">
+          ⏰ Horaires
+        </a>
+      </div>
+
+      <!-- Hamburger mobile -->
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Menu mobile -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">🏠 Accueil</a>
+  <a href="pages/quran/index.html">📖 Coran</a>
+  <a href="pages/azkars/index.html">🤲 Azkars</a>
+  <a href="pages/prayers/index.html">🕌 Prières</a>
+  <a href="pages/hadiths/index.html">📜 Hadiths</a>
+  <a href="pages/articles/index.html">📰 Articles</a>
+</div>
+
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero" id="home">
+  <div class="hero-pattern"></div>
+
+  <div class="hero-content">
+    <!-- Texte gauche -->
+    <div class="hero-text animate-fadeInUp">
+      <span class="badge badge-gold">بسم الله الرحمن الرحيم</span>
+      <h1>
+        Votre guide vers
+        <span class="highlight">la lumière</span>
+        de l'Islam
+      </h1>
+      <p>
+        Explorez le Coran en arabe et français, accédez aux azkars complets,
+        consultez vos horaires de prières et enrichissez votre foi au quotidien.
+      </p>
+      <div class="hero-buttons">
+        <a href="pages/quran/index.html" class="btn btn-gold">
+          📖 Lire le Coran
+        </a>
+        <a href="pages/azkars/index.html" class="btn btn-outline-white">
+          🤲 Azkars du jour
+        </a>
+      </div>
+    </div>
+
+    <!-- Carte versets -->
+    <div class="hero-card float animate-fadeInUp delay-200">
+      <div class="ayah-label">Verset du jour</div>
+      <div class="ayah-arabic arabic arabic-xl">
+        إِنَّ هَٰذَا الْقُرْآنَ يَهْدِي لِلَّتِي هِيَ أَقْوَمُ
+      </div>
+      <p class="ayah-translation">
+        "En vérité, ce Coran guide vers ce qui est le plus droit
+        et annonce aux croyants qui font de bonnes œuvres qu'ils auront une grande récompense."
+      </p>
+      <div class="ayah-ref">Sourate Al-Isra (17) — Verset 9</div>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="hero-stats container">
+    <div class="stat-item">
+      <div class="num">114</div>
+      <div class="label">Sourates</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">6236</div>
+      <div class="label">Versets</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">200+</div>
+      <div class="label">Azkars</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FONCTIONNALITÉS PRINCIPALES
+     ============================================================ -->
+<section class="features section-padding" id="features">
+  <div class="container">
+    <div class="section-header text-center reveal">
+      <span class="badge badge-green">Fonctionnalités</span>
+      <h2>Tout ce dont vous avez besoin</h2>
+      <div class="divider-gold"></div>
+      <p>Une plateforme complète pour accompagner votre pratique islamique au quotidien.</p>
+    </div>
+
+    <div class="features-grid">
+
+      <!-- Coran -->
+      <div class="feature-card reveal delay-100">
+        <div class="feature-icon icon-green">📖</div>
+        <h3>Coran Complet</h3>
+        <p>Texte arabe intégral avec traduction française, translittération et audio de récitation.</p>
+        <a href="pages/quran/index.html" class="feature-link">Explorer →</a>
+      </div>
+
+      <!-- Azkars -->
+      <div class="feature-card reveal delay-200">
+        <div class="feature-icon icon-gold">🤲</div>
+        <h3>Azkars & Doua'as</h3>
+        <p>Invocations du matin, du soir, après la prière, pour toutes les occasions de la vie.</p>
+        <a href="pages/azkars/index.html" class="feature-link">Découvrir →</a>
+      </div>
+
+      <!-- Prières -->
+      <div class="feature-card reveal delay-300">
+        <div class="feature-icon icon-green">🕌</div>
+        <h3>Horaires de Prières</h3>
+        <p>Calcul automatique selon votre position, avec direction de la Qibla et rappels.</p>
+        <a href="pages/prayers/index.html" class="feature-link">Voir les horaires →</a>
+      </div>
+
+      <!-- Hadiths -->
+      <div class="feature-card reveal delay-100">
+        <div class="feature-icon icon-gold">📜</div>
+        <h3>Hadiths Authentiques</h3>
+        <p>Collection de hadiths classifiés par thème, avec grade de chaque narration.</p>
+        <a href="pages/hadiths/index.html" class="feature-link">Consulter →</a>
+      </div>
+
+      <!-- Tasbih -->
+      <div class="feature-card reveal delay-200">
+        <div class="feature-icon icon-green">📿</div>
+        <h3>Tasbih Digital</h3>
+        <p>Compteur de dhikr intégré dans chaque azkar avec vibration et son facultatif.</p>
+        <a href="pages/azkars/index.html" class="feature-link">Utiliser →</a>
+      </div>
+
+      <!-- Articles -->
+      <div class="feature-card reveal delay-300">
+        <div class="feature-icon icon-gold">📰</div>
+        <h3>Articles & Ressources</h3>
+        <p>Lectures spirituelles, explications de fiqh, histoire islamique et conseils pratiques.</p>
+        <a href="pages/articles/index.html" class="feature-link">Lire →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     APERÇU CORAN
+     ============================================================ -->
+<section class="quran-preview" id="quran">
+  <div class="container">
+    <div class="quran-grid">
+
+      <!-- Texte gauche -->
+      <div class="reveal">
+        <div class="section-header">
+          <span class="badge badge-green">Coran</span>
+          <h2>Le Livre de guidance</h2>
+          <div class="divider-gold"></div>
+          <p>Accédez aux 114 sourates avec texte arabe harakat, traduction française précise et audio.</p>
+        </div>
+
+        <div class="quran-features-list">
+          <div class="quran-feature-item">
+            <div class="fi-icon">🔤</div>
+            <div>
+              <h4>Texte arabe avec Tashkil</h4>
+              <p>Harakat complètes pour une récitation correcte</p>
+            </div>
+          </div>
+          <div class="quran-feature-item">
+            <div class="fi-icon">🇫🇷</div>
+            <div>
+              <h4>Traduction française</h4>
+              <p>Traduction fidèle du sens des versets</p>
+            </div>
+          </div>
+          <div class="quran-feature-item">
+            <div class="fi-icon">🔊</div>
+            <div>
+              <h4>Récitation audio</h4>
+              <p>Plusieurs récitateurs disponibles</p>
+            </div>
+          </div>
+          <div class="quran-feature-item">
+            <div class="fi-icon">🔖</div>
+            <div>
+              <h4>Signets & Favoris</h4>
+              <p>Sauvegardez vos versets préférés</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="pages/quran/index.html" class="btn btn-primary" style="margin-top:1.5rem;">
+          📖 Ouvrir le Coran
+        </a>
+      </div>
+
+      <!-- Carte aperçu sourate -->
+      <div class="reveal delay-200">
+        <div class="surah-preview-card">
+          <div class="surah-preview-header">
+            <div>
+              <div class="surah-name">
+                <h3>Al-Fatiha</h3>
+                <span>La Liminaire • 7 versets</span>
+              </div>
+            </div>
+            <div class="surah-number">1</div>
+          </div>
+
+          <div class="surah-preview-body">
+            <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+
+            <div class="verse-item">
+              <div class="verse-content">
+                <div class="verse-arabic">الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ</div>
+                <div class="verse-french">Louange à Allah, Seigneur des mondes.</div>
+              </div>
+              <div class="verse-num">1</div>
+            </div>
+
+            <div class="verse-item">
+              <div class="verse-content">
+                <div class="verse-arabic">الرَّحْمَٰنِ الرَّحِيمِ</div>
+                <div class="verse-french">Le Tout Miséricordieux, le Très Miséricordieux.</div>
+              </div>
+              <div class="verse-num">2</div>
+            </div>
+
+            <div class="verse-item">
+              <div class="verse-content">
+                <div class="verse-arabic">مَالِكِ يَوْمِ الدِّينِ</div>
+                <div class="verse-french">Maître du Jour de la rétribution.</div>
+              </div>
+              <div class="verse-num">3</div>
+            </div>
+
+            <div style="text-align:center;padding-top:0.5rem;">
+              <a href="pages/quran/index.html" class="btn btn-outline" style="font-size:0.82rem;padding:0.5rem 1.2rem;">
+                Lire la suite →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     HORAIRES PRIÈRES
+     ============================================================ -->
+<section class="prayers-section" id="prayers">
+  <div class="container">
+    <div class="section-header text-center reveal">
+      <span class="badge badge-green">Salat</span>
+      <h2>Horaires de Prières</h2>
+      <div class="divider-gold"></div>
+      <p>Calculés automatiquement selon votre ville. Ne manquez plus aucune prière.</p>
+    </div>
+
+    <div class="prayers-widget reveal delay-100">
+      <div class="prayers-widget-header">
+        <h3>🕌 Prières du jour</h3>
+        <div class="location">
+          <span>📍</span>
+          <span id="city-name">Dakar, Sénégal</span>
+        </div>
+      </div>
+
+      <div class="prayers-list">
+        <div class="prayer-item" id="fajr-item">
+          <span class="prayer-name">Fajr</span>
+          <span class="prayer-name-ar">الفجر</span>
+          <span class="prayer-time" id="fajr-time">--:--</span>
+          <span class="prayer-indicator"></span>
+        </div>
+        <div class="prayer-item" id="chourouk-item">
+          <span class="prayer-name">Chourouk</span>
+          <span class="prayer-name-ar">الشروق</span>
+          <span class="prayer-time" id="chourouk-time">--:--</span>
+          <span class="prayer-indicator"></span>
+        </div>
+        <div class="prayer-item" id="dhuhr-item">
+          <span class="prayer-name">Dhuhr</span>
+          <span class="prayer-name-ar">الظهر</span>
+          <span class="prayer-time" id="dhuhr-time">--:--</span>
+          <span class="prayer-indicator"></span>
+        </div>
+        <div class="prayer-item" id="asr-item">
+          <span class="prayer-name">Asr</span>
+          <span class="prayer-name-ar">العصر</span>
+          <span class="prayer-time" id="asr-time">--:--</span>
+          <span class="prayer-indicator"></span>
+        </div>
+        <div class="prayer-item" id="maghrib-item">
+          <span class="prayer-name">Maghrib</span>
+          <span class="prayer-name-ar">المغرب</span>
+          <span class="prayer-time" id="maghrib-time">--:--</span>
+          <span class="prayer-indicator"></span>
+        </div>
+        <div class="prayer-item" id="isha-item">
+          <span class="prayer-name">Isha</span>
+          <span class="prayer-name-ar">العشاء</span>
+          <span class="prayer-time" id="isha-time">--:--</span>
+          <span class="prayer-indicator"></span>
+        </div>
+      </div>
+
+      <div class="prayers-widget-footer">
+        <div class="next-prayer">
+          Prochaine : <strong>Maghrib</strong> dans
+          <span class="countdown" id="countdown">02:54:07</span>
+        </div>
+        <a href="pages/prayers/index.html" class="btn btn-primary" style="font-size:0.82rem;padding:0.45rem 1.1rem;">
+          Voir tout
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     AZKARS APERÇU
+     ============================================================ -->
+<section class="azkars-preview" id="azkars">
+  <div class="container">
+    <div class="section-header text-center reveal">
+      <span class="badge badge-gold">Dhikr</span>
+      <h2>Azkars & Invocations</h2>
+      <div class="divider-gold"></div>
+      <p>Fortifiez votre cœur avec les invocations prophétiques, catégorisées pour chaque moment de la journée.</p>
+    </div>
+
+    <!-- Catégories -->
+    <div class="azkars-categories reveal">
+      <a href="pages/azkars/matin.html" class="azkar-cat-card">
+        <div class="cat-emoji">🌅</div>
+        <h4>Matin</h4>
+        <span>18 azkars</span>
+      </a>
+      <a href="pages/azkars/soir.html" class="azkar-cat-card">
+        <div class="cat-emoji">🌙</div>
+        <h4>Soir</h4>
+        <span>18 azkars</span>
+      </a>
+      <a href="pages/azkars/salat.html" class="azkar-cat-card">
+        <div class="cat-emoji">🕌</div>
+        <h4>Après la prière</h4>
+        <span>12 azkars</span>
+      </a>
+      <a href="pages/azkars/index.html" class="azkar-cat-card">
+        <div class="cat-emoji">🛌</div>
+        <h4>Coucher</h4>
+        <span>10 azkars</span>
+      </a>
+      <a href="pages/azkars/index.html" class="azkar-cat-card">
+        <div class="cat-emoji">🍽️</div>
+        <h4>Repas</h4>
+        <span>8 azkars</span>
+      </a>
+      <a href="pages/azkars/index.html" class="azkar-cat-card">
+        <div class="cat-emoji">✈️</div>
+        <h4>Voyage</h4>
+        <span>14 azkars</span>
+      </a>
+    </div>
+
+    <!-- Exemple azkar avec compteur -->
+    <div class="azkar-example reveal delay-100">
+      <div class="tag">🌅 Azkar du matin</div>
+      <div class="azkar-arabic">
+        سُبْحَانَ اللَّهِ وَبِحَمْدِهِ
+      </div>
+      <p class="azkar-translation">
+        "Gloire à Allah et Sa louange. Celui qui dit cette invocation 100 fois au matin et au soir, aucun ne viendra le Jour de la Résurrection avec mieux que lui, sauf celui qui dit la même chose ou davantage."
+        <br><small style="color:rgba(255,255,255,0.5);font-size:0.75rem;">— Hadith Sahih Muslim</small>
+      </p>
+      <div class="azkar-meta">
+        <span class="repetitions">🔁 100 fois</span>
+        <div class="tasbih-counter">
+          <span class="count" id="tasbih-count">0</span>
+          <button class="tasbih-btn" id="tasbih-btn" onclick="incrementTasbih()">+</button>
+          <button class="tasbih-reset" onclick="resetTasbih()">↺</button>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:2.5rem;" class="reveal">
+      <a href="pages/azkars/index.html" class="btn btn-primary">
+        🤲 Voir tous les Azkars
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     HADITHS
+     ============================================================ -->
+<section class="hadiths-section" id="hadiths">
+  <div class="container">
+    <div class="section-header text-center reveal">
+      <span class="badge badge-green">Sunnah</span>
+      <h2>Hadiths du Prophète ﷺ</h2>
+      <div class="divider-gold"></div>
+      <p>Paroles et enseignements authentiques du Messager d'Allah, que la paix et la bénédiction soient sur lui.</p>
+    </div>
+
+    <div class="hadiths-grid">
+
+      <div class="hadith-card reveal delay-100">
+        <div class="hadith-arabic">
+          إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ
+        </div>
+        <p class="hadith-text">
+          "Les actes ne valent que par les intentions, et chaque homme n'obtient que ce qu'il a eu l'intention de faire."
+        </p>
+        <div class="hadith-source">
+          <div>
+            <span>Narré par <strong>Omar ibn Al-Khattab (رضي الله عنه)</strong></span>
+          </div>
+          <span class="badge badge-green">Sahih Bukhari • 1</span>
+        </div>
+      </div>
+
+      <div class="hadith-card reveal delay-200">
+        <div class="hadith-arabic">
+          الطَّهُورُ شَطْرُ الإِيمَانِ
+        </div>
+        <p class="hadith-text">
+          "La pureté est la moitié de la foi. Le Alhamdulillah remplit la balance. Le SubhanAllah et le Alhamdulillah remplissent ensemble — ou l'un ou l'autre remplit — l'espace entre les cieux et la terre."
+        </p>
+        <div class="hadith-source">
+          <div>
+            <span>Narré par <strong>Abu Malik Al-Ash'ari (رضي الله عنه)</strong></span>
+          </div>
+          <span class="badge badge-green">Sahih Muslim • 223</span>
+        </div>
+      </div>
+
+      <div class="hadith-card reveal delay-300">
+        <div class="hadith-arabic">
+          مَنْ صَامَ رَمَضَانَ إِيمَانًا وَاحْتِسَابًا غُفِرَ لَهُ مَا تَقَدَّمَ مِنْ ذَنْبِهِ
+        </div>
+        <p class="hadith-text">
+          "Quiconque jeûne le Ramadan par foi et en espérant la récompense d'Allah, ses péchés passés lui seront pardonnés."
+        </p>
+        <div class="hadith-source">
+          <div>
+            <span>Narré par <strong>Abu Hurayra (رضي الله عنه)</strong></span>
+          </div>
+          <span class="badge badge-green">Sahih Bukhari • 38</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:2.5rem;" class="reveal">
+      <a href="pages/hadiths/index.html" class="btn btn-outline" style="border-color:var(--green);color:var(--green);">
+        📜 Voir tous les Hadiths
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     CTA FINAL
+     ============================================================ -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner reveal">
+      <span class="badge badge-gold" style="margin-bottom:1.25rem;">Al-Huda</span>
+      <h2>Commencez votre voyage spirituel</h2>
+      <p>
+        Explorez le Coran, lisez vos azkars quotidiens et consultez vos horaires de prières — tout en un seul endroit.
+      </p>
+      <div class="cta-buttons">
+        <a href="pages/quran/index.html" class="btn btn-gold">📖 Ouvrir le Coran</a>
+        <a href="pages/azkars/index.html" class="btn btn-outline-white">🤲 Azkars du matin</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- Brand -->
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <div class="logo-icon">ه</div>
+          <div class="logo-text">
+            <div class="name">Al-Huda</div>
+            <div class="tagline">الهُدى • Le Guide</div>
+          </div>
+        </a>
+        <p style="margin-top:1rem;">
+          Votre compagnon islamique numérique — Coran, Azkars, prières et ressources spirituelles en français.
+        </p>
+        <div class="arabic-motto">وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا</div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="pages/quran/index.html">📖 Coran</a></li>
+          <li><a href="pages/azkars/index.html">🤲 Azkars</a></li>
+          <li><a href="pages/prayers/index.html">🕌 Horaires prières</a></li>
+          <li><a href="pages/hadiths/index.html">📜 Hadiths</a></li>
+          <li><a href="pages/articles/index.html">📰 Articles</a></li>
+        </ul>
+      </div>
+
+      <!-- Azkars -->
+      <div class="footer-col">
+        <h4>Azkars</h4>
+        <ul>
+          <li><a href="pages/azkars/matin.html">🌅 Matin</a></li>
+          <li><a href="pages/azkars/soir.html">🌙 Soir</a></li>
+          <li><a href="pages/azkars/salat.html">🕌 Après la prière</a></li>
+          <li><a href="pages/azkars/index.html">🛌 Coucher</a></li>
+          <li><a href="pages/azkars/index.html">📿 Tasbih</a></li>
+        </ul>
+      </div>
+
+      <!-- Coran -->
+      <div class="footer-col">
+        <h4>Coran</h4>
+        <ul>
+          <li><a href="pages/quran/index.html">Al-Fatiha</a></li>
+          <li><a href="pages/quran/index.html">Al-Baqara</a></li>
+          <li><a href="pages/quran/index.html">Al-Mulk</a></li>
+          <li><a href="pages/quran/index.html">Yasin</a></li>
+          <li><a href="pages/quran/index.html">Toutes les sourates →</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Al-Huda — الهُدى. Fait avec <span class="love">♥</span> pour la communauté musulmane.</p>
+      <p>
+        <a href="#" style="color:rgba(255,255,255,0.45);font-size:0.8rem;">Politique de confidentialité</a>
+        &nbsp;•&nbsp;
+        <a href="#" style="color:rgba(255,255,255,0.45);font-size:0.8rem;">Contact</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

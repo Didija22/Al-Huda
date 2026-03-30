@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calendrier Hijri — Al-Huda</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231B6B3A'/><text y='.9em' font-size='70' font-family='serif' x='50%' text-anchor='middle' fill='%23C9A84C'>ه</text></svg>" />
+  <link rel="stylesheet" href="../../assets/css/main.css" />
+  <link rel="stylesheet" href="../../assets/css/calendar.css" />
+</head>
+<body>
+
+<nav class="navbar scrolled" id="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="../../index.html" class="logo">
+        <div class="logo-icon">ه</div>
+        <div class="logo-text"><div class="name">Al-Huda</div><div class="tagline">الهُدى • Le Guide</div></div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Accueil</a></li>
+        <li><a href="../quran/index.html">Coran</a></li>
+        <li><a href="../azkars/index.html">Azkars</a></li>
+        <li><a href="../prayers/index.html">Prières</a></li>
+        <li><a href="../hadiths/index.html">Hadiths</a></li>
+        <li><a href="index.html" class="active">Calendrier</a></li>
+      </ul>
+      <div class="nav-cta">
+        <div class="nav-prayer-time"><span class="dot"></span><span id="next-prayer-nav">Prochaine prière</span></div>
+      </div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../../index.html">🏠 Accueil</a>
+  <a href="../quran/index.html">📖 Coran</a>
+  <a href="../azkars/index.html">🤲 Azkars</a>
+  <a href="../prayers/index.html">🕌 Prières</a>
+  <a href="index.html">📅 Calendrier</a>
+</div>
+
+<!-- HERO -->
+<section class="cal-hero">
+  <div class="container">
+    <div class="cal-hero-inner animate-fadeInUp">
+      <span class="badge badge-gold">التقويم الهجري</span>
+      <h1>Calendrier Hijri</h1>
+      <p>Date islamique, événements religieux et conversion de dates</p>
+
+      <!-- Date du jour en grand -->
+      <div class="today-card">
+        <div class="today-hijri">
+          <div class="today-day-ar" id="today-day-ar">—</div>
+          <div class="today-month-ar" id="today-month-ar">—</div>
+          <div class="today-year-ar" id="today-year-ar">—</div>
+        </div>
+        <div class="today-divider"></div>
+        <div class="today-gregorian">
+          <div class="today-day-fr" id="today-day-fr">—</div>
+          <div class="today-date-fr" id="today-date-fr">—</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENU PRINCIPAL -->
+<section class="calendar-main section-padding">
+  <div class="container">
+    <div class="calendar-layout">
+
+      <!-- CALENDRIER -->
+      <div class="calendar-col">
+        <div class="cal-widget">
+          <div class="cal-nav">
+            <button class="cal-nav-btn" id="prev-month">‹</button>
+            <div class="cal-month-title">
+              <div class="cal-month-ar" id="cal-month-ar">—</div>
+              <div class="cal-month-fr" id="cal-month-fr">—</div>
+            </div>
+            <button class="cal-nav-btn" id="next-month">›</button>
+          </div>
+
+          <!-- Jours de la semaine -->
+          <div class="cal-weekdays">
+            <div>Dim</div><div>Lun</div><div>Mar</div>
+            <div>Mer</div><div>Jeu</div><div>Ven</div><div>Sam</div>
+          </div>
+
+          <!-- Grille des jours -->
+          <div class="cal-grid" id="cal-grid">
+            <!-- Rempli par JS -->
+          </div>
+
+          <!-- Légende -->
+          <div class="cal-legend">
+            <div class="legend-item"><span class="legend-dot today-dot"></span>Aujourd'hui</div>
+            <div class="legend-item"><span class="legend-dot event-dot"></span>Événement</div>
+            <div class="legend-item"><span class="legend-dot friday-dot"></span>Vendredi</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANNEAU DROIT -->
+      <div class="calendar-sidebar">
+
+        <!-- Convertisseur -->
+        <div class="converter-widget reveal">
+          <h3>🔄 Convertir une date</h3>
+          <div class="conv-tabs">
+            <button class="conv-tab active" id="tab-greg-to-hij">Grégorien → Hijri</button>
+            <button class="conv-tab" id="tab-hij-to-greg">Hijri → Grégorien</button>
+          </div>
+
+          <!-- Grégorien → Hijri -->
+          <div class="conv-form" id="form-greg">
+            <div class="form-row">
+              <input type="number" id="greg-day"   placeholder="Jour"   min="1" max="31" />
+              <input type="number" id="greg-month" placeholder="Mois"   min="1" max="12" />
+              <input type="number" id="greg-year"  placeholder="Année"  min="622" />
+            </div>
+            <button class="btn btn-primary w-full" onclick="convertGregToHij()">Convertir</button>
+            <div class="conv-result" id="result-greg-to-hij"></div>
+          </div>
+
+          <!-- Hijri → Grégorien -->
+          <div class="conv-form" id="form-hij" style="display:none;">
+            <div class="form-row">
+              <input type="number" id="hij-day"   placeholder="Jour"   min="1" max="30" />
+              <select id="hij-month">
+                <option value="">Mois</option>
+                <option value="1">Muharram</option>
+                <option value="2">Safar</option>
+                <option value="3">Rabi al-Awwal</option>
+                <option value="4">Rabi ath-Thani</option>
+                <option value="5">Jumada al-Ula</option>
+                <option value="6">Jumada ath-Thaniya</option>
+                <option value="7">Rajab</option>
+                <option value="8">Sha'ban</option>
+                <option value="9">Ramadan</option>
+                <option value="10">Shawwal</option>
+                <option value="11">Dhul Qi'da</option>
+                <option value="12">Dhul Hijja</option>
+              </select>
+              <input type="number" id="hij-year"  placeholder="Année" min="1" />
+            </div>
+            <button class="btn btn-primary w-full" onclick="convertHijToGreg()">Convertir</button>
+            <div class="conv-result" id="result-hij-to-greg"></div>
+          </div>
+        </div>
+
+        <!-- Événements du mois -->
+        <div class="events-widget reveal delay-100">
+          <h3>🌙 Événements islamiques</h3>
+          <div class="events-list" id="events-list">
+            <!-- Rempli par JS -->
+          </div>
+        </div>
+
+        <!-- Mois islamiques -->
+        <div class="months-widget reveal delay-200">
+          <h3>📅 Les 12 mois islamiques</h3>
+          <div class="months-list" id="months-list">
+            <!-- Rempli par JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFOS MOIS EN COURS -->
+<section class="month-info-section bg-green-pale" id="month-info">
+  <div class="container">
+    <div class="month-info-inner" id="month-info-inner">
+      <!-- Rempli par JS si le mois a des infos -->
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../../index.html" class="logo">
+          <div class="logo-icon">ه</div>
+          <div class="logo-text"><div class="name">Al-Huda</div><div class="tagline">الهُدى</div></div>
+        </a>
+        <div class="arabic-motto" style="margin-top:1rem;">وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا</div>
+      </div>
+      <div class="footer-col"><h4>Navigation</h4><ul>
+        <li><a href="../quran/index.html">📖 Coran</a></li>
+        <li><a href="../azkars/index.html">🤲 Azkars</a></li>
+        <li><a href="../prayers/index.html">🕌 Prières</a></li>
+        <li><a href="../hadiths/index.html">📜 Hadiths</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Calendrier</h4><ul>
+        <li><a href="#" onclick="goToMonth(1)">Muharram</a></li>
+        <li><a href="#" onclick="goToMonth(9)">Ramadan</a></li>
+        <li><a href="#" onclick="goToMonth(12)">Dhul Hijja</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Al-Huda</h4><ul>
+        <li><a href="../../index.html">Accueil</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Al-Huda — الهُدى. Fait avec <span class="love">♥</span> pour la communauté musulmane.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/calendar.js"></script>
+</body>
+</html>

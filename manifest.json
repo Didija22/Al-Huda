@@ -1,0 +1,50 @@
+{
+  "name": "Al-Huda — الهُدى",
+  "short_name": "Al-Huda",
+  "description": "Guide islamique complet : Coran, Azkars, Hadiths et Horaires de prières",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1B6B3A",
+  "orientation": "any",
+  "lang": "fr",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "categories": ["religion", "education", "lifestyle"],
+  "shortcuts": [
+    {
+      "name": "Coran",
+      "short_name": "Coran",
+      "description": "Lire le Coran",
+      "url": "/pages/quran/index.html",
+      "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Azkars",
+      "short_name": "Azkars",
+      "description": "Invocations du jour",
+      "url": "/pages/azkars/index.html",
+      "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Hadiths",
+      "short_name": "Hadiths",
+      "description": "Hadiths du Prophète ﷺ",
+      "url": "/pages/hadiths/index.html",
+      "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

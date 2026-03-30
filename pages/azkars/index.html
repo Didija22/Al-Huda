@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Azkars & Invocations — Al-Huda</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231B6B3A'/><text y='.9em' font-size='70' font-family='serif' x='50%' text-anchor='middle' fill='%23C9A84C'>ه</text></svg>" />
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('al-huda-theme') || 'light');</script>
+  <link rel="manifest" href="../../manifest.json" />
+  <meta name="theme-color" content="#1B6B3A" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Al-Huda" />
+  <link rel="apple-touch-icon" href="../../assets/icons/icon-192.png" />
+  <link rel="stylesheet" href="../../assets/css/main.css" />
+  <link rel="stylesheet" href="../../assets/css/azkars.css" />
+</head>
+<body>
+
+<nav class="navbar scrolled" id="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="../../index.html" class="logo">
+        <div class="logo-icon">ه</div>
+        <div class="logo-text"><div class="name">Al-Huda</div><div class="tagline">الهُدى • Le Guide</div></div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Accueil</a></li>
+        <li><a href="../quran/index.html">Coran</a></li>
+        <li><a href="index.html" class="active">Azkars</a></li>
+        <li><a href="../prayers/index.html">Prières</a></li>
+        <li><a href="../hadiths/index.html">Hadiths</a></li>
+        <li><a href="../calendar/index.html">Calendrier</a></li>
+      </ul>
+      <div class="nav-cta">
+        <div class="nav-prayer-time"><span class="dot"></span><span id="next-prayer-nav">Prochaine prière</span></div>
+      </div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../../index.html">🏠 Accueil</a>
+  <a href="../quran/index.html">📖 Coran</a>
+  <a href="index.html">🤲 Azkars</a>
+  <a href="../prayers/index.html">🕌 Prières</a>
+  <a href="../hadiths/index.html">📜 Hadiths</a>
+  <a href="../calendar/index.html">📅 Calendrier</a>
+</div>
+
+<!-- HERO -->
+<section class="azkars-hero">
+  <div class="azkars-hero-pattern"></div>
+  <div class="container">
+    <div class="azkars-hero-inner animate-fadeInUp">
+      <span class="badge badge-gold">أذكار وأدعية</span>
+      <h1>Azkars & Invocations</h1>
+      <p>Les invocations prophétiques authentiques pour chaque moment de votre vie</p>
+      <div class="hero-cats">
+        <a href="#matin" class="hero-cat">🌅 Matin</a>
+        <a href="#soir" class="hero-cat">🌙 Soir</a>
+        <a href="#salat" class="hero-cat">🕌 Après la prière</a>
+        <a href="#coucher" class="hero-cat">🛌 Coucher</a>
+        <a href="#protection" class="hero-cat">🛡️ Protection</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AZKAR DU MOMENT -->
+<div class="azkar-moment-banner">
+  <div class="container">
+    <div class="moment-inner">
+      <div class="moment-label" id="moment-label">🌅 Azkars du matin</div>
+      <div class="moment-text" id="moment-text">Consultez les azkars recommandés pour ce moment de la journée</div>
+      <a href="#" id="moment-link" class="btn btn-gold" style="padding:0.4rem 1rem;font-size:0.82rem;">Voir →</a>
+    </div>
+  </div>
+</div>
+
+<!-- CATÉGORIES -->
+<section class="categories-section section-padding">
+  <div class="container">
+    <div class="section-header text-center reveal">
+      <span class="badge badge-green">Catégories</span>
+      <h2>Choisissez une catégorie</h2>
+      <div class="divider-gold"></div>
+    </div>
+    <div class="categories-grid" id="categories-grid">
+      <!-- Rempli par JS -->
+    </div>
+  </div>
+</section>
+
+<!-- SECTION MATIN -->
+<section class="azkars-list-section" id="matin">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="badge badge-green">🌅 Matin</span>
+      <h2>Azkars du Matin</h2>
+      <div class="divider-gold"></div>
+      <p class="arabic" style="font-size:1rem;color:var(--text-mid)">أذكار الصباح</p>
+      <p>À réciter après Fajr jusqu'au lever du soleil</p>
+    </div>
+    <div class="azkars-grid" id="azkars-matin"></div>
+  </div>
+</section>
+
+<!-- SECTION SOIR -->
+<section class="azkars-list-section bg-green-pale" id="soir">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="badge badge-gold">🌙 Soir</span>
+      <h2>Azkars du Soir</h2>
+      <div class="divider-gold"></div>
+      <p class="arabic" style="font-size:1rem;color:var(--text-mid)">أذكار المساء</p>
+      <p>À réciter après Asr jusqu'au coucher du soleil</p>
+    </div>
+    <div class="azkars-grid" id="azkars-soir"></div>
+  </div>
+</section>
+
+<!-- SECTION APRÈS PRIÈRE -->
+<section class="azkars-list-section" id="salat">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="badge badge-green">🕌 Prière</span>
+      <h2>Après la Prière</h2>
+      <div class="divider-gold"></div>
+      <p class="arabic" style="font-size:1rem;color:var(--text-mid)">أذكار بعد الصلاة</p>
+      <p>À réciter après chaque prière obligatoire</p>
+    </div>
+    <div class="azkars-grid" id="azkars-salat"></div>
+  </div>
+</section>
+
+<!-- SECTION COUCHER -->
+<section class="azkars-list-section bg-green-pale" id="coucher">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="badge badge-gold">🛌 Coucher</span>
+      <h2>Avant le Coucher</h2>
+      <div class="divider-gold"></div>
+      <p class="arabic" style="font-size:1rem;color:var(--text-mid)">أذكار النوم</p>
+    </div>
+    <div class="azkars-grid" id="azkars-coucher"></div>
+  </div>
+</section>
+
+<!-- SECTION PROTECTION -->
+<section class="azkars-list-section" id="protection">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="badge badge-green">🛡️ Protection</span>
+      <h2>Invocations de Protection</h2>
+      <div class="divider-gold"></div>
+    </div>
+    <div class="azkars-grid" id="azkars-protection"></div>
+  </div>
+</section>
+
+<!-- TASBIH GLOBAL -->
+<section class="tasbih-section">
+  <div class="container">
+    <div class="tasbih-widget reveal">
+      <div class="tasbih-header">
+        <h3>📿 Tasbih Numérique</h3>
+        <p>Comptez votre dhikr facilement</p>
+      </div>
+      <div class="tasbih-selector">
+        <button class="tsb-select active" data-text="سُبْحَانَ اللَّهِ" data-fr="SubhanAllah" data-max="33">SubhanAllah</button>
+        <button class="tsb-select" data-text="الْحَمْدُ لِلَّهِ" data-fr="Alhamdulillah" data-max="33">Alhamdulillah</button>
+        <button class="tsb-select" data-text="اللَّهُ أَكْبَرُ" data-fr="Allahu Akbar" data-max="34">Allahu Akbar</button>
+        <button class="tsb-select" data-text="لَا إِلَهَ إِلَّا اللَّهُ" data-fr="La ilaha illallah" data-max="100">La ilaha illallah</button>
+        <button class="tsb-select" data-text="أَسْتَغْفِرُ اللَّهَ" data-fr="Astaghfirullah" data-max="100">Astaghfirullah</button>
+      </div>
+      <div class="tasbih-display">
+        <div class="tasbih-arabic" id="tsb-arabic">سُبْحَانَ اللَّهِ</div>
+        <div class="tasbih-count-display" id="tsb-count">0</div>
+        <div class="tasbih-max" id="tsb-max">/ 33</div>
+        <div class="tasbih-progress">
+          <div class="tasbih-bar" id="tsb-bar" style="width:0%"></div>
+        </div>
+      </div>
+      <div class="tasbih-actions">
+        <button class="tsb-reset-btn" id="tsb-reset">↺ Réinitialiser</button>
+        <button class="tsb-main-btn" id="tsb-main" onclick="globalTasbih()">تسبيح</button>
+      </div>
+      <div class="tasbih-total">Total de la session : <strong id="tsb-total">0</strong></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../../index.html" class="logo">
+          <div class="logo-icon">ه</div>
+          <div class="logo-text"><div class="name">Al-Huda</div><div class="tagline">الهُدى • Le Guide</div></div>
+        </a>
+        <p style="margin-top:1rem;">Votre compagnon islamique numérique.</p>
+        <div class="arabic-motto">وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا</div>
+      </div>
+      <div class="footer-col"><h4>Azkars</h4><ul>
+        <li><a href="#matin">🌅 Matin</a></li>
+        <li><a href="#soir">🌙 Soir</a></li>
+        <li><a href="#salat">🕌 Après la prière</a></li>
+        <li><a href="#coucher">🛌 Coucher</a></li>
+        <li><a href="#protection">🛡️ Protection</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Navigation</h4><ul>
+        <li><a href="../quran/index.html">📖 Coran</a></li>
+        <li><a href="../prayers/index.html">🕌 Prières</a></li>
+        <li><a href="../hadiths/index.html">📜 Hadiths</a></li>
+        <li><a href="../calendar/index.html">📅 Calendrier Hijri</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Al-Huda</h4><ul>
+        <li><a href="../../index.html">Accueil</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Al-Huda — الهُدى. Fait avec <span class="love">♥</span> pour la communauté musulmane.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="../../assets/js/azkars-data.js"></script>
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/azkars.js"></script>
+</body>
+</html>
