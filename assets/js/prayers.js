@@ -370,43 +370,40 @@ async function fetchWeek(lat, lon) {
 
   try {
     const today = new Date();
-    const days  = [];
+    const year  = today.getFullYear();
+    const month = today.getMonth() + 1;
 
-    for (let i = 0; i < 7; i++) {
-      const d = new Date(today);
-      d.setDate(today.getDate() + i);
-      days.push(d);
-    }
+    // 1 seule requête pour tout le mois
+    const res  = await fetch(
+      `https://api.aladhan.com/v1/calendar/${year}/${month}?latitude=${lat}&longitude=${lon}&method=${currentMethod}`
+    );
+    const json = await res.json();
+    if (json.code !== 200 || !json.data) throw new Error('invalid');
 
-    const dayNames = ['Aujourd\'hui','Demain','Lun','Mar','Mer','Jeu','Ven','Sam','Dim'];
-    const daysFR   = ['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];
-
-    // Fetch en parallèle
-    const fetches = days.map(d => {
-      const ts = Math.floor(d.getTime() / 1000);
-      return fetch(`https://api.aladhan.com/v1/timings/${ts}?latitude=${lat}&longitude=${lon}&method=${currentMethod}`)
-        .then(r => r.json());
-    });
-
-    const results = await Promise.all(fetches);
+    const daysFR = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
     tbody.innerHTML = '';
 
-    results.forEach((data, i) => {
-      const t = data.data?.timings;
-      if (!t) return;
+    // Extraire les 7 jours à partir d'aujourd'hui
+    const todayDate = today.getDate();
+    let count = 0;
 
-      const d = days[i];
-      const isToday = i === 0;
-      const isTomorrow = i === 1;
+    for (let d = todayDate - 1; d < json.data.length && count < 7; d++) {
+      const entry = json.data[d];
+      const t = entry?.timings;
+      if (!t) continue;
+
+      const date = new Date(today);
+      date.setDate(todayDate + count);
 
       let dayLabel;
-      if (isToday) dayLabel = "Aujourd'hui";
-      else if (isTomorrow) dayLabel = 'Demain';
-      else dayLabel = daysFR[d.getDay()].charAt(0).toUpperCase() + daysFR[d.getDay()].slice(1)
-                    + ' ' + String(d.getDate()).padStart(2,'0') + '/' + String(d.getMonth()+1).padStart(2,'0');
+      if (count === 0) dayLabel = "Aujourd'hui";
+      else if (count === 1) dayLabel = 'Demain';
+      else dayLabel = daysFR[date.getDay()] + ' ' +
+        String(date.getDate()).padStart(2,'0') + '/' +
+        String(date.getMonth() + 1).padStart(2,'0');
 
       const tr = document.createElement('tr');
-      if (isToday) tr.classList.add('today-row');
+      if (count === 0) tr.classList.add('today-row');
 
       tr.innerHTML = `
         <td>${dayLabel}</td>
@@ -418,7 +415,8 @@ async function fetchWeek(lat, lon) {
         <td>${(t.Isha || '--:--').substring(0,5)}</td>
       `;
       tbody.appendChild(tr);
-    });
+      count++;
+    }
   } catch {
     if (tbody) tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:2rem;color:var(--text-light)">⚠️ Impossible de charger le calendrier</td></tr>';
   }

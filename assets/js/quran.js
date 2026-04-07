@@ -6,6 +6,14 @@
 const BASE_API = 'https://api.alquran.cloud/v1';
 const META_URL = '../../data/surahs-meta.json';
 
+const TRANSLATIONS = {
+  fr: { edition: 'fr.hamidullah', label: 'Hamidullah (FR)' },
+  en: { edition: 'en.sahih',      label: 'Saheeh Intl (EN)' }
+};
+let currentLang = 'fr';
+let currentSurahNum = 1;
+let currentAllMeta  = [];
+
 /* Utilise les données statiques si disponibles (file://), sinon fetch */
 async function getSurahsMeta() {
   if (window.SURAHS_META) return window.SURAHS_META;
@@ -127,19 +135,18 @@ if (document.getElementById('verses-container')) {
 
 async function initSurahReader() {
   const params   = new URLSearchParams(window.location.search);
-  let surahNum   = parseInt(params.get('s')) || 1;
-  if (surahNum < 1)   surahNum = 1;
-  if (surahNum > 114) surahNum = 114;
+  currentSurahNum = parseInt(params.get('s')) || 1;
+  if (currentSurahNum < 1)   currentSurahNum = 1;
+  if (currentSurahNum > 114) currentSurahNum = 114;
 
-  let allMeta = [];
   try {
-    allMeta = await getSurahsMeta();
+    currentAllMeta = await getSurahsMeta();
   } catch { /* silent */ }
 
-  await loadSurah(surahNum, allMeta);
-  buildSidebar(allMeta, surahNum);
-  initReaderControls(surahNum, allMeta);
-  initSidebarSearch(allMeta);
+  await loadSurah(currentSurahNum, currentAllMeta);
+  buildSidebar(currentAllMeta, currentSurahNum);
+  initReaderControls(currentSurahNum, currentAllMeta);
+  initSidebarSearch(currentAllMeta);
 }
 
 async function loadSurah(num, allMeta) {
@@ -150,18 +157,18 @@ async function loadSurah(num, allMeta) {
   updateHeader(num, meta);
 
   try {
-    // Deux appels en parallèle : arabe + traduction FR
-    const [arRes, frRes] = await Promise.all([
+    const edition = TRANSLATIONS[currentLang].edition;
+    const [arRes, trRes] = await Promise.all([
       fetch(`${BASE_API}/surah/${num}`),
-      fetch(`${BASE_API}/surah/${num}/fr.hamidullah`)
+      fetch(`${BASE_API}/surah/${num}/${edition}`)
     ]);
     const arData = await arRes.json();
-    const frData = await frRes.json();
+    const trData = await trRes.json();
 
-    if (arData.code !== 200 || frData.code !== 200) throw new Error('API error');
+    if (arData.code !== 200 || trData.code !== 200) throw new Error('API error');
 
     const arVerses = arData.data.ayahs;
-    const frVerses = frData.data.ayahs;
+    const frVerses = trData.data.ayahs;
 
     renderVerses(num, arVerses, frVerses, container, meta);
 
@@ -173,6 +180,14 @@ async function loadSurah(num, allMeta) {
         <button onclick="location.reload()" class="btn btn-primary" style="margin-top:1rem;">🔄 Réessayer</button>
       </div>`;
   }
+}
+
+async function switchLang(lang, surahNum) {
+  if (lang === currentLang) return;
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.id === `lang-${lang}`));
+  showToast(lang === 'en' ? '🇬🇧 Traduction anglaise' : '🇫🇷 Traduction française');
+  await loadSurah(surahNum, currentAllMeta);
 }
 
 function updateHeader(num, meta) {
@@ -202,6 +217,7 @@ function updateHeader(num, meta) {
 
 function renderVerses(surahNum, arVerses, frVerses, container, meta) {
   let html = '';
+  const surahNameFr = meta?.name || '';
 
   // Bismillah sauf At-Tawba (9) et Al-Fatiha (1 qui l'intègre comme v.1)
   if (surahNum !== 9) {
@@ -210,14 +226,15 @@ function renderVerses(surahNum, arVerses, frVerses, container, meta) {
 
   arVerses.forEach((av, i) => {
     const fv = frVerses[i] || {};
-    const frText = (fv.text || '').replace(/^\d+\.\s*/, ''); // enlever numéro de début si présent
+    const frText = (fv.text || '').replace(/^\d+\.\s*/, '');
     html += `
       <div class="verse-block" id="v${av.numberInSurah}" data-verse="${av.numberInSurah}">
         <div class="verse-header">
           <div class="verse-badge">${av.numberInSurah}</div>
           <div class="verse-actions">
             <button class="verse-action-btn" title="Copier le verset" onclick="copyVerse(${av.numberInSurah}, this)">📋</button>
-            <button class="verse-action-btn" title="Marquer ce verset" onclick="bookmarkVerse(${surahNum}, ${av.numberInSurah}, this)">🔖</button>
+            <button class="verse-action-btn vab-bookmark" title="Marquer ce verset" onclick="bookmarkVerse(${surahNum}, ${av.numberInSurah}, '${surahNameFr.replace(/'/g,"\\'")}', this)">🔖</button>
+            <button class="verse-action-btn vab-note" title="Ajouter une note" onclick="openNoteModal(${surahNum}, ${av.numberInSurah})">📝</button>
             <button class="verse-action-btn" title="Partager" onclick="shareVerse(${surahNum}, ${av.numberInSurah})">↗</button>
           </div>
         </div>
@@ -228,7 +245,8 @@ function renderVerses(surahNum, arVerses, frVerses, container, meta) {
   });
 
   container.innerHTML = html;
-  restoreBookmarkStates(surahNum);
+  restoreVerseStates(surahNum);
+  updateFavCount();
 }
 
 /* ---- Actions versets ---- */
@@ -241,20 +259,205 @@ function copyVerse(verseNum, btn) {
   setTimeout(() => btn.textContent = '📋', 2000);
 }
 
-function bookmarkVerse(surahNum, verseNum, btn) {
-  const key = `bookmark_${surahNum}_${verseNum}`;
-  const isBookmarked = localStorage.getItem(key);
-  if (isBookmarked) {
+function bookmarkVerse(surahNum, verseNum, surahNameFr, btn) {
+  const key = `alhuda_bm_${surahNum}_${verseNum}`;
+  const existing = localStorage.getItem(key);
+  if (existing) {
     localStorage.removeItem(key);
-    btn.textContent = '🔖';
-    btn.style.color = '';
+    btn.classList.remove('active');
     showToast('Signet retiré');
   } else {
-    localStorage.setItem(key, '1');
-    btn.textContent = '🔖';
-    btn.style.color = 'var(--gold)';
-    showToast('✓ Verset mis en favori !');
+    const block = document.getElementById(`v${verseNum}`);
+    const arabic  = block?.querySelector('.verse-arabic-text')?.textContent?.trim() || '';
+    const french  = block?.querySelector('.verse-french-text')?.textContent?.trim() || '';
+    localStorage.setItem(key, JSON.stringify({
+      surahNum, verseNum, surahNameFr,
+      arabic:  arabic.substring(0, 120),
+      french:  french.substring(0, 120),
+      ts: Date.now()
+    }));
+    btn.classList.add('active');
+    showToast('✓ Verset sauvegardé !');
   }
+  updateFavCount();
+}
+
+/* ---- Notes ---- */
+let _noteCtx = null;
+
+function openNoteModal(surahNum, verseNum) {
+  _noteCtx = { surahNum, verseNum };
+  const block   = document.getElementById(`v${verseNum}`);
+  const arabic  = block?.querySelector('.verse-arabic-text')?.textContent?.trim() || '';
+  const preview = document.getElementById('note-verse-preview');
+  const textarea = document.getElementById('note-textarea');
+  const overlay  = document.getElementById('note-overlay');
+  if (preview)  preview.textContent = arabic.substring(0, 80) + (arabic.length > 80 ? ' …' : '');
+  const saved = localStorage.getItem(`alhuda_note_${surahNum}_${verseNum}`);
+  if (textarea) textarea.value = saved ? (JSON.parse(saved).text || '') : '';
+  if (overlay)  overlay.classList.add('open');
+}
+
+function closeNoteModal() {
+  document.getElementById('note-overlay')?.classList.remove('open');
+  _noteCtx = null;
+}
+
+function saveNote() {
+  if (!_noteCtx) return;
+  const { surahNum, verseNum } = _noteCtx;
+  const text = document.getElementById('note-textarea')?.value.trim() || '';
+  const key  = `alhuda_note_${surahNum}_${verseNum}`;
+  if (text) {
+    localStorage.setItem(key, JSON.stringify({ text, ts: Date.now() }));
+    showToast('✓ Note enregistrée !');
+  } else {
+    localStorage.removeItem(key);
+    showToast('Note supprimée');
+  }
+  closeNoteModal();
+  restoreVerseStates(surahNum);
+  updateFavCount();
+}
+
+function deleteNote() {
+  if (!_noteCtx) return;
+  const { surahNum, verseNum } = _noteCtx;
+  localStorage.removeItem(`alhuda_note_${surahNum}_${verseNum}`);
+  showToast('Note supprimée');
+  closeNoteModal();
+  restoreVerseStates(surahNum);
+  updateFavCount();
+}
+
+/* ---- Restaurer états visuels ---- */
+function restoreVerseStates(surahNum) {
+  document.querySelectorAll('[data-verse]').forEach(block => {
+    const vn  = block.dataset.verse;
+    const bmBtn = block.querySelector('.vab-bookmark');
+    const ntBtn = block.querySelector('.vab-note');
+    if (bmBtn) bmBtn.classList.toggle('active', !!localStorage.getItem(`alhuda_bm_${surahNum}_${vn}`));
+    if (ntBtn) ntBtn.classList.toggle('has-note', !!localStorage.getItem(`alhuda_note_${surahNum}_${vn}`));
+  });
+}
+
+/* ---- Compteur dans toolbar ---- */
+function updateFavCount() {
+  const bms   = Object.keys(localStorage).filter(k => k.startsWith('alhuda_bm_')).length;
+  const notes = Object.keys(localStorage).filter(k => k.startsWith('alhuda_note_')).length;
+  const total = bms + notes;
+  const el = document.getElementById('fav-count');
+  if (!el) return;
+  if (total > 0) { el.textContent = total; el.style.display = 'inline-flex'; }
+  else           { el.style.display = 'none'; }
+}
+
+/* ---- Panneau Favoris ---- */
+function openFavoritesPanel() {
+  renderFavorites('bookmarks');
+  document.getElementById('fav-panel')?.classList.add('open');
+  document.getElementById('fav-overlay')?.classList.add('open');
+}
+
+function closeFavoritesPanel() {
+  document.getElementById('fav-panel')?.classList.remove('open');
+  document.getElementById('fav-overlay')?.classList.remove('open');
+}
+
+function renderFavorites(tab) {
+  const content = document.getElementById('fav-content');
+  if (!content) return;
+
+  // Tabs actifs
+  document.querySelectorAll('.fav-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.tab === tab);
+  });
+
+  if (tab === 'bookmarks') {
+    const bms = Object.keys(localStorage)
+      .filter(k => k.startsWith('alhuda_bm_'))
+      .map(k => { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } })
+      .filter(Boolean)
+      .sort((a, b) => b.ts - a.ts);
+
+    if (!bms.length) {
+      content.innerHTML = `<div class="fav-empty">Aucun marque-page pour l'instant.<br>Appuyez sur 🔖 sur un verset pour le sauvegarder.</div>`;
+      return;
+    }
+
+    content.innerHTML = bms.map(b => `
+      <div class="fav-item" onclick="goToVerse(${b.surahNum}, ${b.verseNum})">
+        <div class="fav-item-meta">
+          <span class="fav-surah">${b.surahNameFr} — v.${b.verseNum}</span>
+          <span class="fav-date">${new Date(b.ts).toLocaleDateString('fr-FR')}</span>
+        </div>
+        <div class="fav-arabic">${b.arabic}</div>
+        <div class="fav-french">${b.french}</div>
+        <button class="fav-delete" onclick="event.stopPropagation(); removeBm(${b.surahNum},${b.verseNum})">🗑</button>
+      </div>
+    `).join('');
+
+  } else {
+    const notes = Object.keys(localStorage)
+      .filter(k => k.startsWith('alhuda_note_'))
+      .map(k => {
+        try {
+          const [,, sn, vn] = k.split('_');
+          const d = JSON.parse(localStorage.getItem(k));
+          return { surahNum: parseInt(sn), verseNum: parseInt(vn), ...d };
+        } catch { return null; }
+      })
+      .filter(Boolean)
+      .sort((a, b) => b.ts - a.ts);
+
+    if (!notes.length) {
+      content.innerHTML = `<div class="fav-empty">Aucune note pour l'instant.<br>Appuyez sur 📝 sur un verset pour ajouter une note.</div>`;
+      return;
+    }
+
+    content.innerHTML = notes.map(n => `
+      <div class="fav-item" onclick="goToVerse(${n.surahNum}, ${n.verseNum})">
+        <div class="fav-item-meta">
+          <span class="fav-surah">Sourate ${n.surahNum} — v.${n.verseNum}</span>
+          <span class="fav-date">${new Date(n.ts).toLocaleDateString('fr-FR')}</span>
+        </div>
+        <div class="fav-note-text">${escapeHtml(n.text)}</div>
+        <button class="fav-delete" onclick="event.stopPropagation(); removeNote(${n.surahNum},${n.verseNum})">🗑</button>
+      </div>
+    `).join('');
+  }
+}
+
+function goToVerse(surahNum, verseNum) {
+  const params = new URLSearchParams(location.search);
+  const currentSurah = parseInt(params.get('s') || '1');
+  if (currentSurah === surahNum) {
+    closeFavoritesPanel();
+    setTimeout(() => {
+      const el = document.getElementById(`v${verseNum}`);
+      el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      el?.classList.add('highlighted');
+      setTimeout(() => el?.classList.remove('highlighted'), 2000);
+    }, 300);
+  } else {
+    location.href = `surah.html?s=${surahNum}#v${verseNum}`;
+  }
+}
+
+function removeBm(surahNum, verseNum) {
+  localStorage.removeItem(`alhuda_bm_${surahNum}_${verseNum}`);
+  renderFavorites('bookmarks');
+  restoreVerseStates(surahNum);
+  updateFavCount();
+  showToast('Signet retiré');
+}
+
+function removeNote(surahNum, verseNum) {
+  localStorage.removeItem(`alhuda_note_${surahNum}_${verseNum}`);
+  renderFavorites('notes');
+  restoreVerseStates(surahNum);
+  updateFavCount();
+  showToast('Note supprimée');
 }
 
 function shareVerse(surahNum, verseNum) {
@@ -267,15 +470,6 @@ function shareVerse(surahNum, verseNum) {
   }
 }
 
-function restoreBookmarkStates(surahNum) {
-  document.querySelectorAll('[data-verse]').forEach(block => {
-    const vn = block.dataset.verse;
-    const btn = block.querySelector('.verse-action-btn:nth-child(2)');
-    if (localStorage.getItem(`bookmark_${surahNum}_${vn}`) && btn) {
-      btn.style.color = 'var(--gold)';
-    }
-  });
-}
 
 /* ---- Contrôles de lecture ---- */
 function initReaderControls(surahNum, allMeta) {
@@ -324,10 +518,37 @@ function initReaderControls(surahNum, allMeta) {
   overlay?.addEventListener('click', closeSidebar);
   function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('open'); }
 
-  // Bookmark global
-  document.getElementById('btn-bookmark')?.addEventListener('click', () => {
-    showToast('Utilisez 🔖 sur chaque verset pour le sauvegarder');
+  // Boucle audio
+  const loopBtn = document.getElementById('btn-loop');
+  loopBtn?.addEventListener('click', () => {
+    const audio = document.getElementById('audio-element');
+    if (!audio) return;
+    audio.loop = !audio.loop;
+    loopBtn.classList.toggle('active', audio.loop);
+    showToast(audio.loop ? '🔁 Répétition activée' : 'Répétition désactivée');
   });
+
+  // Toggle langue traduction
+  document.getElementById('lang-fr')?.addEventListener('click', () => switchLang('fr', surahNum));
+  document.getElementById('lang-en')?.addEventListener('click', () => switchLang('en', surahNum));
+
+  // Panneau favoris
+  document.getElementById('btn-favorites')?.addEventListener('click', openFavoritesPanel);
+  document.getElementById('fav-panel-close')?.addEventListener('click', closeFavoritesPanel);
+  document.getElementById('fav-overlay')?.addEventListener('click', closeFavoritesPanel);
+  document.querySelectorAll('.fav-tab').forEach(tab => {
+    tab.addEventListener('click', () => renderFavorites(tab.dataset.tab));
+  });
+
+  // Modale note
+  document.getElementById('note-modal-close')?.addEventListener('click', closeNoteModal);
+  document.getElementById('note-btn-save')?.addEventListener('click', saveNote);
+  document.getElementById('note-btn-delete')?.addEventListener('click', deleteNote);
+  document.getElementById('note-overlay')?.addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) closeNoteModal();
+  });
+
+  updateFavCount();
 
   // Copier tout
   document.getElementById('btn-copy')?.addEventListener('click', () => {

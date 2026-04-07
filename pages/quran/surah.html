@@ -96,9 +96,14 @@
 
           <!-- Options lecture -->
           <div class="reading-options">
-            <button class="option-btn active" id="opt-both" title="Arabe + Traduction">AR + FR</button>
+            <button class="option-btn active" id="opt-both" title="Arabe + Traduction">AR + Trad</button>
             <button class="option-btn" id="opt-arabic" title="Arabe uniquement">AR</button>
-            <button class="option-btn" id="opt-french" title="Traduction uniquement">FR</button>
+            <button class="option-btn" id="opt-french" title="Traduction uniquement">Trad</button>
+          </div>
+          <!-- Langue traduction -->
+          <div class="lang-toggle">
+            <button class="lang-btn active" id="lang-fr" title="Traduction française">🇫🇷 FR</button>
+            <button class="lang-btn" id="lang-en" title="English translation">🇬🇧 EN</button>
           </div>
 
           <!-- Taille police -->
@@ -137,7 +142,7 @@
       <div class="reading-toolbar">
         <button class="toolbar-btn" id="open-sidebar" title="Liste des sourates">📚 Sourates</button>
         <div class="toolbar-separator"></div>
-        <button class="toolbar-btn" id="btn-bookmark" title="Marquer comme favori">🔖 Signet</button>
+        <button class="toolbar-btn" id="btn-favorites" title="Mes favoris et notes">📌 Favoris <span class="fav-count" id="fav-count" style="display:none"></span></button>
         <button class="toolbar-btn" id="btn-audio" title="Écouter la récitation">🔊 Audio</button>
         <div class="toolbar-separator"></div>
         <button class="toolbar-btn" id="btn-copy" title="Copier le texte">📋 Copier</button>
@@ -147,10 +152,13 @@
       <div class="audio-player" id="audio-player" style="display:none;">
         <div class="audio-info">
           <span>🎙️ Récitation — <strong id="reciter-name">Sheikh Mishary Rashid</strong></span>
-          <select id="reciter-select" class="reciter-select">
-            <option value="ar.alafasy">Mishary Rashid Al-Afasy</option>
-            <option value="mp3q:server12.mp3quran.net/maher">Maher Al-Muaiqly</option>
-          </select>
+          <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+            <select id="reciter-select" class="reciter-select">
+              <option value="ar.alafasy">Mishary Rashid Al-Afasy</option>
+              <option value="mp3q:server12.mp3quran.net/maher">Maher Al-Muaiqly</option>
+            </select>
+            <button class="audio-loop-btn" id="btn-loop" title="Répétition en boucle">🔁 Boucle</button>
+          </div>
         </div>
         <audio id="audio-element" controls style="width:100%;margin-top:0.5rem;"></audio>
       </div>
@@ -172,6 +180,36 @@
     </main>
   </div>
 </section>
+
+<!-- PANNEAU FAVORIS -->
+<div class="fav-panel" id="fav-panel">
+  <div class="fav-panel-header">
+    <h3>📌 Mes Favoris</h3>
+    <button class="fav-panel-close" id="fav-panel-close">✕</button>
+  </div>
+  <div class="fav-tabs">
+    <button class="fav-tab active" data-tab="bookmarks">🔖 Marque-pages</button>
+    <button class="fav-tab" data-tab="notes">📝 Notes</button>
+  </div>
+  <div class="fav-content" id="fav-content"></div>
+</div>
+<div class="fav-overlay" id="fav-overlay"></div>
+
+<!-- MODALE NOTE -->
+<div class="note-overlay" id="note-overlay">
+  <div class="note-modal">
+    <div class="note-modal-header">
+      <h3>📝 Note personnelle</h3>
+      <button class="note-modal-close" id="note-modal-close">✕</button>
+    </div>
+    <div class="note-verse-preview" id="note-verse-preview"></div>
+    <textarea class="note-textarea" id="note-textarea" placeholder="Écrire une réflexion, une mémorisation, un commentaire…" rows="5"></textarea>
+    <div class="note-modal-actions">
+      <button class="note-btn-delete" id="note-btn-delete">🗑 Supprimer</button>
+      <button class="note-btn-save" id="note-btn-save">✓ Enregistrer</button>
+    </div>
+  </div>
+</div>
 
 <!-- TOAST notification -->
 <div class="toast" id="toast"></div>

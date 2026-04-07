@@ -21,7 +21,9 @@
       "Bash(ls \"C:\\\\Users\\\\DELL\\\\OneDrive - Université Cheikh Anta DIOP de DAKAR\\\\Al-Huda\\\\pages\\\\prayers\"\" 2>/dev/null && ls \"C:UsersDELLOneDrive - Université Cheikh Anta DIOP de DAKARAl-Hudaassetscss\"\")",
       "Bash(dir \"C:\\\\Users\\\\DELL\\\\OneDrive - Université Cheikh Anta DIOP de DAKAR\\\\Al-Huda\\\\pages\\\\prayers\"\")",
       "WebFetch(domain:cdn.islamic.network)",
-      "WebFetch(domain:server.mp3quran.net)"
+      "WebFetch(domain:server.mp3quran.net)",
+      "Bash(rm -rf gpconnect)",
+      "Bash(cmd.exe //c \"rmdir /s /q gpconnect\")"
     ]
   }
 }

@@ -621,6 +621,298 @@
   transition: var(--transition);
 }
 .verse-action-btn:hover { background: var(--green-pale); color: var(--green); }
+.verse-action-btn.active   { color: var(--gold) !important; background: var(--gold-pale); }
+.verse-action-btn.has-note { color: var(--green) !important; background: var(--green-pale); }
+
+/* ---------- Bouton boucle audio ---------- */
+.audio-loop-btn {
+  padding: 0.35rem 0.85rem;
+  border: 1.5px solid var(--off-white);
+  border-radius: 50px;
+  background: var(--off-white);
+  color: var(--text-mid);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: 'Poppins', sans-serif;
+  white-space: nowrap;
+}
+.audio-loop-btn:hover { border-color: var(--green-light); color: var(--green); }
+.audio-loop-btn.active { background: var(--green-pale); border-color: var(--green); color: var(--green); }
+
+/* ---------- Toggle langue ---------- */
+.lang-toggle {
+  display: flex;
+  gap: 0.3rem;
+}
+.lang-btn {
+  padding: 0.3rem 0.75rem;
+  border: 1.5px solid var(--off-white);
+  border-radius: 50px;
+  background: var(--off-white);
+  color: var(--text-light);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: 'Poppins', sans-serif;
+}
+.lang-btn:hover { border-color: var(--green-light); color: var(--green); }
+.lang-btn.active { background: var(--green); color: var(--white); border-color: var(--green); }
+
+/* ---------- Compteur favoris dans toolbar ---------- */
+.fav-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gold);
+  color: var(--green-dark);
+  font-size: 0.65rem;
+  font-weight: 700;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  margin-left: 4px;
+}
+
+/* ---------- Panneau Favoris ---------- */
+.fav-panel {
+  position: fixed;
+  top: 0; right: -380px;
+  width: 360px; max-width: 100vw;
+  height: 100vh;
+  background: var(--white);
+  box-shadow: -4px 0 30px rgba(0,0,0,0.15);
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  transition: right 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+.fav-panel.open { right: 0; }
+.fav-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 1099;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+}
+.fav-overlay.open { opacity: 1; pointer-events: all; }
+
+.fav-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  background: linear-gradient(135deg, var(--green-dark), var(--green));
+}
+.fav-panel-header h3 { color: var(--white); font-size: 1rem; font-weight: 600; }
+.fav-panel-close {
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: var(--white);
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.85rem;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.fav-tabs {
+  display: flex;
+  border-bottom: 2px solid var(--off-white);
+}
+.fav-tab {
+  flex: 1;
+  padding: 0.85rem;
+  border: none;
+  background: transparent;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: var(--transition);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+}
+.fav-tab.active { color: var(--green); border-bottom-color: var(--green); font-weight: 600; }
+.fav-tab:hover { color: var(--green-mid); }
+
+.fav-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.75rem;
+}
+.fav-empty {
+  text-align: center;
+  color: var(--text-light);
+  font-size: 0.88rem;
+  padding: 3rem 1.5rem;
+  line-height: 1.8;
+}
+.fav-item {
+  position: relative;
+  background: var(--off-white);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  transition: var(--transition);
+  border: 1.5px solid transparent;
+}
+.fav-item:hover { border-color: var(--green-light); background: var(--green-pale); }
+.fav-item-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.fav-surah { font-size: 0.78rem; font-weight: 600; color: var(--green-dark); }
+.fav-date  { font-size: 0.72rem; color: var(--text-light); }
+.fav-arabic {
+  font-family: 'Noto Naskh Arabic', serif;
+  direction: rtl;
+  text-align: right;
+  font-size: 1rem;
+  color: var(--green-dark);
+  line-height: 1.8;
+  margin-bottom: 0.35rem;
+}
+.fav-french {
+  font-size: 0.78rem;
+  color: var(--text-mid);
+  font-style: italic;
+  line-height: 1.5;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.fav-note-text {
+  font-size: 0.85rem;
+  color: var(--text-mid);
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+.fav-delete {
+  position: absolute;
+  top: 0.6rem; left: 0.6rem;
+  background: none;
+  border: none;
+  font-size: 0.8rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: var(--transition);
+  color: #e74c3c;
+  padding: 0.2rem;
+}
+.fav-item:hover .fav-delete { opacity: 1; }
+
+/* ---------- Modale Note ---------- */
+.note-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.25s;
+  padding: 1rem;
+}
+.note-overlay.open { opacity: 1; pointer-events: all; }
+.note-modal {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  width: 100%; max-width: 480px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  transform: translateY(20px);
+  transition: transform 0.25s;
+}
+.note-overlay.open .note-modal { transform: translateY(0); }
+.note-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, var(--green-dark), var(--green));
+}
+.note-modal-header h3 { color: var(--white); font-size: 1rem; font-weight: 600; }
+.note-modal-close {
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: var(--white);
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.85rem;
+  display: flex; align-items: center; justify-content: center;
+}
+.note-verse-preview {
+  font-family: 'Noto Naskh Arabic', serif;
+  direction: rtl;
+  text-align: right;
+  padding: 1rem 1.5rem 0.5rem;
+  font-size: 1rem;
+  color: var(--green-dark);
+  line-height: 1.8;
+  border-bottom: 1px dashed var(--off-white);
+}
+.note-textarea {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border: none;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  resize: vertical;
+  background: var(--white);
+  min-height: 120px;
+}
+.note-modal-actions {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--off-white);
+  gap: 0.75rem;
+}
+.note-btn-delete {
+  padding: 0.6rem 1.2rem;
+  border: 1.5px solid #fecaca;
+  background: #fff5f5;
+  color: #e74c3c;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  transition: var(--transition);
+}
+.note-btn-delete:hover { background: #fecaca; }
+.note-btn-save {
+  flex: 1;
+  padding: 0.6rem 1.5rem;
+  background: var(--green);
+  color: var(--white);
+  border: none;
+  border-radius: 50px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  transition: var(--transition);
+}
+.note-btn-save:hover { background: var(--green-mid); }
+
+/* ---------- Dark mode ---------- */
+[data-theme="dark"] .fav-panel { background: #1e1e1e; }
+[data-theme="dark"] .fav-item  { background: #282828; }
+[data-theme="dark"] .fav-item:hover { background: #0d2418; border-color: var(--green-light); }
+[data-theme="dark"] .note-modal { background: #1e1e1e; }
+[data-theme="dark"] .note-textarea { background: #1e1e1e; color: var(--text-dark); }
 
 .verse-arabic-text {
   font-family: 'Noto Naskh Arabic', serif;
