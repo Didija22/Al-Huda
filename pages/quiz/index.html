@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Al-Huda — Quiz Islamique interactif. Testez vos connaissances sur le Coran, les Hadiths, l'Histoire islamique, les Prophètes et les Pratiques." />
+  <title>Quiz Islamique — Al-Huda | الهُدى</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231B6B3A'/><text y='.9em' font-size='70' font-family='serif' x='50%' text-anchor='middle' fill='%23C9A84C'>ه</text></svg>" />
+
+  <!-- Anti-flash dark mode -->
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('al-huda-theme') || 'light');</script>
+
+  <!-- PWA -->
+  <link rel="manifest" href="../../manifest.json" />
+  <meta name="theme-color" content="#1B6B3A" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Al-Huda" />
+  <link rel="apple-touch-icon" href="../../assets/icons/icon-192.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Quiz Islamique — Al-Huda" />
+  <meta property="og:description" content="Testez vos connaissances islamiques sur 5 catégories : Coran, Hadiths, Histoire, Prophètes et Pratiques." />
+  <meta property="og:type" content="website" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../../assets/css/main.css" />
+  <link rel="stylesheet" href="../../assets/css/quiz.css" />
+</head>
+<body>
+
+<!-- ====== NAVBAR ====== -->
+<nav class="navbar scrolled" id="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <!-- Logo -->
+      <a href="../../index.html" class="logo">
+        <div class="logo-icon">ه</div>
+        <div class="logo-text">
+          <div class="name">Al-Huda</div>
+          <div class="tagline">الهُدى • Le Guide</div>
+        </div>
+      </a>
+
+      <!-- Liens nav desktop -->
+      <ul class="nav-links">
+        <li><a href="../../index.html">Accueil</a></li>
+        <li><a href="../quran/index.html">Coran</a></li>
+        <li><a href="../azkars/index.html">Azkars</a></li>
+        <li><a href="../prayers/index.html">Prières</a></li>
+        <li><a href="../hadiths/index.html">Hadiths</a></li>
+        <li><a href="../articles/index.html">Bibliothèque</a></li>
+        <li><a href="index.html" class="active">Quiz</a></li>
+      </ul>
+
+      <!-- Bouton thème + hamburger -->
+      <div class="nav-cta">
+        <button class="theme-toggle" id="theme-toggle" title="Changer le thème" aria-label="Basculer thème sombre/clair">🌙</button>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ====== MENU MOBILE ====== -->
+<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Menu mobile">
+  <a href="../../index.html">🏠 Accueil</a>
+  <a href="../quran/index.html">📖 Coran</a>
+  <a href="../azkars/index.html">🤲 Azkars</a>
+  <a href="../prayers/index.html">🕌 Prières</a>
+  <a href="../hadiths/index.html">📜 Hadiths</a>
+  <a href="../articles/index.html">📚 Bibliothèque</a>
+  <a href="index.html" class="active">🧠 Quiz</a>
+</div>
+
+<!-- ====== HERO ====== -->
+<section class="quiz-hero" aria-label="En-tête Quiz islamique">
+  <div class="quiz-hero-pattern" aria-hidden="true"></div>
+  <div class="container">
+    <div class="quiz-hero-inner animate-fadeInUp">
+      <span class="quiz-hero-badge">اختبار إسلامي</span>
+      <h1>Quiz Islamique</h1>
+      <p>Testez et enrichissez vos connaissances sur le Coran, les Hadiths, l'Histoire, les Prophètes et les Pratiques islamiques</p>
+      <div class="quiz-hero-stats" aria-label="Statistiques du quiz">
+        <div class="qhstat">
+          <strong>50</strong>
+          <small>Questions</small>
+        </div>
+        <div class="qhstat">
+          <strong>5</strong>
+          <small>Catégories</small>
+        </div>
+        <div class="qhstat">
+          <strong>30s</strong>
+          <small>Par question</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== QUIZ PRINCIPAL ====== -->
+<main id="main-content">
+  <div class="container">
+    <div id="quiz-container" role="main" aria-label="Zone du quiz">
+      <!-- Généré dynamiquement par quiz.js -->
+      <div style="text-align:center; padding:3rem 1rem; color:var(--text-light);">
+        <span style="font-size:2rem">⏳</span>
+        <p style="margin-top:0.5rem">Chargement du quiz...</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ====== FOOTER ====== -->
+<footer style="background:var(--green-dark); color:rgba(255,255,255,0.7); text-align:center; padding:2rem 1rem; font-size:0.85rem; margin-top:3rem;">
+  <div style="margin-bottom:0.5rem;">
+    <a href="../../index.html" style="color:rgba(255,255,255,0.6); text-decoration:none; margin:0 0.75rem;">Accueil</a>
+    <a href="../quran/index.html" style="color:rgba(255,255,255,0.6); text-decoration:none; margin:0 0.75rem;">Coran</a>
+    <a href="../hadiths/index.html" style="color:rgba(255,255,255,0.6); text-decoration:none; margin:0 0.75rem;">Hadiths</a>
+    <a href="index.html" style="color:var(--gold-light,#E8C96A); text-decoration:none; margin:0 0.75rem;">Quiz</a>
+  </div>
+  <p>© 2025 Al-Huda — الهُدى • Le Guide. Fait avec ❤ pour la Oumma.</p>
+</footer>
+
+<!-- ====== SCRIPTS ====== -->
+<script src="../../assets/js/main.js" defer></script>
+<script src="../../assets/js/quiz-data.js"></script>
+<script src="../../assets/js/quiz.js"></script>
+
+</body>
+</html>

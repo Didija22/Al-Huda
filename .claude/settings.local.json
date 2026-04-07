@@ -23,7 +23,8 @@
       "WebFetch(domain:cdn.islamic.network)",
       "WebFetch(domain:server.mp3quran.net)",
       "Bash(rm -rf gpconnect)",
-      "Bash(cmd.exe //c \"rmdir /s /q gpconnect\")"
+      "Bash(cmd.exe //c \"rmdir /s /q gpconnect\")",
+      "Bash(python -c \":*)"
     ]
   }
 }
