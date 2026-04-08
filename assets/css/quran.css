@@ -1143,10 +1143,47 @@
   font-style: italic;
 }
 
+/* ── Translittération phonétique ───────────────────────────── */
+.verse-translit-text {
+  font-size: 0.82rem;
+  color: #2d7a4f;
+  line-height: 1.8;
+  padding: 0.45rem 0 0.1rem;
+  font-style: italic;
+  letter-spacing: 0.025em;
+  border-top: 1px dashed rgba(27,107,58,0.18);
+  margin-top: 0.25rem;
+}
+[data-theme="dark"] .verse-translit-text { color: #6ecf8e; }
+
+/* Bouton Translit */
+.translit-toggle { display: flex; align-items: center; }
+.translit-btn {
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--border, #ddd);
+  background: transparent;
+  color: var(--text-mid);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.translit-btn:hover { border-color: var(--green, #1B6B3A); color: var(--green, #1B6B3A); }
+.translit-btn.active {
+  background: var(--green, #1B6B3A);
+  color: #fff;
+  border-color: var(--green, #1B6B3A);
+}
+[data-theme="dark"] .translit-btn { border-color: #444; color: #aaa; }
+[data-theme="dark"] .translit-btn.active { background: var(--green-light,#2d7a4f); border-color: var(--green-light,#2d7a4f); color:#fff; }
+
 /* Modes d'affichage */
 body.arabic-only .verse-french-text,
-body.arabic-only .verse-french-text + * { display: none !important; }
-body.french-only .verse-arabic-text { display: none !important; }
+body.arabic-only .verse-translit-text { display: none !important; }
+body.french-only .verse-arabic-text,
+body.french-only .verse-translit-text { display: none !important; }
 
 /* Loading versets */
 .loading-verses {

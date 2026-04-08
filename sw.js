@@ -4,7 +4,7 @@
    Network-first pour les API
    ============================================================ */
 
-const CACHE_NAME = 'al-huda-v4';
+const CACHE_NAME = 'al-huda-v5';
 const BASE = '/Al-Huda';
 
 /* Ressources à mettre en cache immédiatement à l'installation */
@@ -21,7 +21,6 @@ const STATIC_ASSETS = [
   BASE + '/assets/css/articles.css',
   BASE + '/assets/css/prayers.css',
   BASE + '/assets/css/quiz.css',
-  BASE + '/assets/css/nour.css',
 
   /* ── JS ── */
   BASE + '/assets/js/main.js',
@@ -32,7 +31,6 @@ const STATIC_ASSETS = [
   BASE + '/assets/js/prayers.js',
   BASE + '/assets/js/quiz.js',
   BASE + '/assets/js/quiz-data.js',
-  BASE + '/assets/js/nour.js',
   BASE + '/assets/js/surahs-data.js',
   BASE + '/assets/js/azkars-data.js',
   BASE + '/assets/js/hadiths-data.js',
@@ -46,7 +44,6 @@ const STATIC_ASSETS = [
   BASE + '/pages/articles/index.html',
   BASE + '/pages/prayers/index.html',
   BASE + '/pages/quiz/index.html',
-  BASE + '/pages/nour/index.html',
   BASE + '/pages/contact/index.html',
   BASE + '/pages/privacy/index.html',
   BASE + '/pages/about/index.html',

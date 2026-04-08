@@ -25,6 +25,7 @@ const TRANSLATIONS = {
 let currentLang = 'fr';
 let currentSurahNum = 1;
 let currentAllMeta  = [];
+let _translitOn     = false;  // état translittération
 
 /* ================================================================
    RÉCITATEURS — Sources 100 % vérifiées (MP3 retournés par fetch)
@@ -260,19 +261,22 @@ async function loadSurah(num, allMeta) {
 
   try {
     const edition = TRANSLATIONS[currentLang].edition;
-    const [arRes, trRes] = await Promise.all([
+    const [arRes, trRes, tlRes] = await Promise.all([
       fetch(`${BASE_API}/surah/${num}`),
-      fetch(`${BASE_API}/surah/${num}/${edition}`)
+      fetch(`${BASE_API}/surah/${num}/${edition}`),
+      fetch(`${BASE_API}/surah/${num}/en.transliteration`)
     ]);
     const arData = await arRes.json();
     const trData = await trRes.json();
+    const tlData = await tlRes.json();
 
     if (arData.code !== 200 || trData.code !== 200) throw new Error('API error');
 
     const arVerses = arData.data.ayahs;
     const frVerses = trData.data.ayahs;
+    const tlVerses = tlData.code === 200 ? tlData.data.ayahs : [];
 
-    renderVerses(num, arVerses, frVerses, container, meta);
+    renderVerses(num, arVerses, frVerses, tlVerses, container, meta);
 
   } catch (e) {
     container.innerHTML = `
@@ -290,6 +294,18 @@ async function switchLang(lang, surahNum) {
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.id === `lang-${lang}`));
   showToast(lang === 'en' ? '🇬🇧 Traduction anglaise' : '🇫🇷 Traduction française');
   await loadSurah(surahNum, currentAllMeta);
+}
+
+function toggleTranslit() {
+  _translitOn = !_translitOn;
+  /* Afficher/masquer toutes les lignes de translittération */
+  document.querySelectorAll('.verse-translit-text').forEach(el => {
+    el.style.display = _translitOn ? 'block' : 'none';
+  });
+  /* Mettre en valeur le bouton */
+  const btn = document.getElementById('btn-translit');
+  if (btn) btn.classList.toggle('active', _translitOn);
+  showToast(_translitOn ? '🔤 Translittération activée' : '🔤 Translittération masquée');
 }
 
 function updateHeader(num, meta) {
@@ -317,7 +333,7 @@ function updateHeader(num, meta) {
   });
 }
 
-function renderVerses(surahNum, arVerses, frVerses, container, meta) {
+function renderVerses(surahNum, arVerses, frVerses, tlVerses, container, meta) {
   let html = '';
   const surahNameFr = meta?.name || '';
 
@@ -328,7 +344,10 @@ function renderVerses(surahNum, arVerses, frVerses, container, meta) {
 
   arVerses.forEach((av, i) => {
     const fv = frVerses[i] || {};
+    const tv = tlVerses[i]  || {};
     const frText = (fv.text || '').replace(/^\d+\.\s*/, '');
+    const tlText = tv.text  || '';
+    const tlDisplay = _translitOn ? '' : ' style="display:none"';
     html += `
       <div class="verse-block" id="v${av.numberInSurah}" data-verse="${av.numberInSurah}">
         <div class="verse-header">
@@ -342,6 +361,7 @@ function renderVerses(surahNum, arVerses, frVerses, container, meta) {
           </div>
         </div>
         <div class="verse-arabic-text">${av.text} ﴿${toArabicNum(av.numberInSurah)}﴾</div>
+        ${tlText ? `<div class="verse-translit-text"${tlDisplay}>${escapeHtml(tlText)}</div>` : ''}
         <div class="verse-french-text">${escapeHtml(frText)}</div>
       </div>
     `;
@@ -358,7 +378,8 @@ function renderVerses(surahNum, arVerses, frVerses, container, meta) {
   _immVerses = arVerses.map((av, i) => ({
     num:    av.numberInSurah,
     arabic: av.text + ' ﴿' + toArabicNum(av.numberInSurah) + '﴾',
-    french: ((frVerses[i]?.text || '').replace(/^\d+\.\s*/, ''))
+    french: ((frVerses[i]?.text || '').replace(/^\d+\.\s*/, '')),
+    translit: tlVerses[i]?.text || ''
   }));
 }
 
@@ -666,6 +687,9 @@ function initReaderControls(surahNum, allMeta) {
   // Toggle langue traduction
   document.getElementById('lang-fr')?.addEventListener('click', () => switchLang('fr', surahNum));
   document.getElementById('lang-en')?.addEventListener('click', () => switchLang('en', surahNum));
+
+  // Toggle translittération
+  document.getElementById('btn-translit')?.addEventListener('click', toggleTranslit);
 
   // Panneau favoris
   document.getElementById('btn-favorites')?.addEventListener('click', openFavoritesPanel);
