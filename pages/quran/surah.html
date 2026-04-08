@@ -16,6 +16,7 @@
   <link rel="apple-touch-icon" href="../../assets/icons/icon-192.png" />
   <link rel="stylesheet" href="../../assets/css/main.css" />
   <link rel="stylesheet" href="../../assets/css/quran.css" />
+  <link rel="stylesheet" href="../../assets/css/sharecard.css" />
 </head>
 <body>
 
@@ -38,6 +39,7 @@
         <li><a href="../hadiths/index.html">Hadiths</a></li>
         <li><a href="../articles/index.html">Articles</a></li>
         <li><a href="../quiz/index.html">Quiz</a></li>
+        <li><a href="../nour/index.html">Nour IA</a></li>
       </ul>
       <div class="nav-cta">
         <div class="nav-prayer-time">
@@ -147,21 +149,60 @@
         <button class="toolbar-btn" id="btn-audio" title="Écouter la récitation">🔊 Audio</button>
         <div class="toolbar-separator"></div>
         <button class="toolbar-btn" id="btn-copy" title="Copier le texte">📋 Copier</button>
+        <div class="toolbar-separator"></div>
+        <button class="toolbar-btn" id="btn-immersive" title="Mode lecture immersif plein écran">🌙 Immersif</button>
       </div>
 
       <!-- Lecteur audio -->
       <div class="audio-player" id="audio-player" style="display:none;">
-        <div class="audio-info">
-          <span>🎙️ Récitation — <strong id="reciter-name">Sheikh Mishary Rashid</strong></span>
-          <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
-            <select id="reciter-select" class="reciter-select">
-              <option value="ar.alafasy">Mishary Rashid Al-Afasy</option>
-              <option value="mp3q:server12.mp3quran.net/maher">Maher Al-Muaiqly</option>
-            </select>
-            <button class="audio-loop-btn" id="btn-loop" title="Répétition en boucle">🔁 Boucle</button>
-          </div>
+
+        <!-- En-tête -->
+        <div class="reciter-header">
+          <span class="reciter-header-title">🎙️ Récitateurs</span>
+          <button class="reciter-close-btn" id="btn-audio-close" title="Fermer le lecteur">✕</button>
         </div>
-        <audio id="audio-element" controls style="width:100%;margin-top:0.5rem;"></audio>
+
+        <!-- Chips de sélection (générées par JS) -->
+        <div class="reciter-chips" id="reciter-chips"></div>
+
+        <!-- Infos récitateur actif (mis à jour par JS) -->
+        <div class="player-reciter-bar">
+          <span class="player-flag" id="player-flag">🇰🇼</span>
+          <div class="player-reciter-info">
+            <strong class="player-reciter-name" id="reciter-name">Mishary Rashid Al-Afasy</strong>
+            <span class="player-reciter-style" id="player-style">Murattal · Hafs</span>
+          </div>
+          <button class="player-speed-btn" id="btn-speed" title="Changer la vitesse de lecture">1×</button>
+        </div>
+
+        <!-- Barre de progression -->
+        <div class="player-progress-row">
+          <span class="player-time" id="player-current">0:00</span>
+          <div class="player-progress-bar" id="player-progress-bar">
+            <div class="player-progress-fill" id="player-fill"></div>
+            <div class="player-progress-thumb" id="player-thumb"></div>
+          </div>
+          <span class="player-time" id="player-duration">–:––</span>
+        </div>
+
+        <!-- Contrôles -->
+        <div class="player-controls">
+          <button class="player-ctrl-btn" id="btn-loop" title="Répétition en boucle">🔁</button>
+          <button class="player-ctrl-btn player-ctrl-play" id="btn-play-pause" title="Lecture / Pause" disabled>
+            <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+          </button>
+          <button class="player-ctrl-btn" id="btn-mute" title="Couper le son">🔊</button>
+        </div>
+
+        <!-- Indicateur de chargement -->
+        <div class="player-loading" id="player-loading">
+          <div class="player-loader-ring"></div>
+          <span>Chargement de la récitation…</span>
+        </div>
+
+        <!-- Élément audio caché -->
+        <audio id="audio-element" preload="none"></audio>
       </div>
 
       <!-- Contenu versets -->
@@ -212,11 +253,116 @@
   </div>
 </div>
 
+<!-- MODE IMMERSIF -->
+<div class="immersive-overlay" id="immersive-overlay" role="dialog" aria-modal="true" aria-label="Mode immersif">
+
+  <!-- Canvas étoilé (généré par JS) -->
+  <canvas class="immersive-canvas" id="imm-canvas" aria-hidden="true"></canvas>
+
+  <!-- Barre haute -->
+  <div class="immersive-topbar">
+    <div>
+      <span class="immersive-surah-name" id="imm-surah-name">Al-Fatiha</span>
+      <span class="immersive-surah-sub" id="imm-surah-sub">Sourate 1</span>
+    </div>
+    <div class="immersive-controls-top">
+      <!-- Taille du texte -->
+      <div class="imm-font-controls" title="Taille du texte arabe">
+        <button class="imm-fs-btn" id="imm-fs-down" title="Réduire">A−</button>
+        <span class="imm-fs-label" id="imm-fs-label">M</span>
+        <button class="imm-fs-btn" id="imm-fs-up"   title="Agrandir">A+</button>
+      </div>
+      <button class="imm-btn" id="imm-sound-btn">🔇 Son</button>
+      <button class="imm-btn" id="imm-auto-btn">▶ Auto</button>
+      <button class="imm-btn imm-btn-exit" id="imm-exit-btn">✕ Quitter</button>
+    </div>
+  </div>
+
+  <!-- Verset -->
+  <div class="immersive-content">
+    <div class="immersive-verse-badge" id="imm-verse-num">1</div>
+    <div class="immersive-arabic"  id="imm-arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    <div class="immersive-french"  id="imm-french">Au nom d'Allah, le Tout Miséricordieux, le Très Miséricordieux.</div>
+  </div>
+
+  <!-- Navigation bas -->
+  <div class="immersive-nav">
+    <button class="imm-nav-btn" id="imm-prev" title="Précédent (←)" aria-label="Verset précédent">‹</button>
+    <div class="immersive-progress">
+      <div class="immersive-progress-bar"><div class="immersive-progress-fill" id="imm-progress-fill" style="width:0%"></div></div>
+      <span class="immersive-progress-text" id="imm-progress-text">1 / —</span>
+    </div>
+    <button class="imm-nav-btn" id="imm-next" title="Suivant (→)" aria-label="Verset suivant">›</button>
+  </div>
+</div>
+
+<!-- ============================================================
+     MODAL CARTE DE VERSET
+     ============================================================ -->
+<div class="sc-overlay" id="sc-overlay">
+  <div class="sc-modal">
+
+    <!-- En-tête -->
+    <div class="sc-header">
+      <h3>🎨 Créer une carte</h3>
+      <button class="sc-close-btn" id="sc-close" aria-label="Fermer">✕</button>
+    </div>
+
+    <!-- Prévisualisation -->
+    <div class="sc-preview-wrap">
+      <div class="sc-loading" id="sc-loading" style="display:none;">
+        <div class="spinner" style="width:22px;height:22px;border-width:3px;margin:0;"></div>
+        Chargement des polices…
+      </div>
+      <canvas id="sc-canvas"></canvas>
+    </div>
+
+    <!-- Options -->
+    <div class="sc-options">
+
+      <!-- Thème -->
+      <div class="sc-option-group">
+        <span class="sc-option-label">Fond</span>
+        <div id="sc-swatches" class="sc-swatches">
+          <!-- Généré par sharecard.js -->
+        </div>
+      </div>
+
+      <!-- Format -->
+      <div class="sc-option-group">
+        <span class="sc-option-label">Format</span>
+        <div class="sc-format-btns">
+          <button class="sc-fmt-btn active" data-fmt="square">⬜ Carré (1:1)</button>
+          <button class="sc-fmt-btn"        data-fmt="story" >📱 Story (9:16)</button>
+        </div>
+      </div>
+
+      <!-- Toggle traduction -->
+      <div class="sc-option-group">
+        <label class="sc-toggle-row">
+          <input type="checkbox" id="sc-show-fr" checked />
+          <span>Afficher la traduction française</span>
+        </label>
+      </div>
+
+    </div>
+
+    <!-- Boutons d'action -->
+    <div class="sc-actions">
+      <button id="sc-download" class="btn btn-primary">⬇️ Télécharger</button>
+      <button id="sc-share"    class="btn btn-outline" style="border-color:var(--green);color:var(--green);">↗ Partager</button>
+    </div>
+
+  </div>
+</div>
+
 <!-- TOAST notification -->
 <div class="toast" id="toast"></div>
 
 <script src="../../assets/js/surahs-data.js"></script>
+<script src="../../assets/js/tracker.js"></script>
 <script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/sharecard.js"></script>
 <script src="../../assets/js/quran.js"></script>
 </body>
 </html>

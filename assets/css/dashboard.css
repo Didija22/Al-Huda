@@ -1,0 +1,299 @@
+/* ============================================================
+   AL-HUDA — Tableau de Bord Spirituel
+   ============================================================ */
+
+/* Hero */
+.db-hero {
+  background: linear-gradient(160deg, var(--green-dark) 0%, var(--green) 65%, #0e3d1e 100%);
+  padding: 110px 0 50px;
+  position: relative;
+  overflow: hidden;
+}
+.db-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M30 0l8.66 5v10L30 20l-8.66-5V5L30 0z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.db-hero-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.db-greeting { color: rgba(255,255,255,.6); font-size: .88rem; margin-bottom: .25rem; }
+.db-hero h1  { color: #fff; font-size: clamp(1.7rem,3vw,2.6rem); font-weight:700; margin: 0 0 .4rem; }
+.db-hero-sub { color: rgba(255,255,255,.65); font-size: .9rem; }
+.db-streak-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 16px;
+  padding: 1rem 1.5rem;
+  backdrop-filter: blur(6px);
+  text-align: center;
+  min-width: 110px;
+}
+.db-streak-num  { font-size: 2.2rem; font-weight:800; color:#C9A84C; line-height:1; }
+.db-streak-fire { font-size: 1.4rem; }
+.db-streak-lbl  { font-size: .72rem; color:rgba(255,255,255,.6); margin-top:.2rem; }
+
+/* ---- Sections ---- */
+.db-section { padding: 2rem 0; }
+.db-section-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.db-section-title span { color: var(--text-light); font-size: .82rem; font-weight:400; }
+
+/* ---- Grille de stats ---- */
+.db-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  padding: 1.75rem 0 .5rem;
+  border-bottom: 1px solid var(--border);
+}
+.db-stat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.2rem 1.3rem;
+  transition: var(--transition);
+}
+.db-stat-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.db-stat-icon { font-size: 1.5rem; margin-bottom: .5rem; }
+.db-stat-num  {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  line-height: 1;
+}
+.db-stat-num.gold { color: var(--gold); }
+.db-stat-num.green { color: var(--green); }
+.db-stat-lbl  { font-size: .78rem; color: var(--text-light); margin-top: .25rem; }
+
+/* ---- Layout 2 colonnes ---- */
+.db-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border);
+}
+@media(max-width:768px) {
+  .db-grid-2 { grid-template-columns: 1fr; }
+}
+
+/* ---- Progression Coran ---- */
+.db-quran-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.3rem;
+}
+.db-quran-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.db-quran-pct {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--green);
+}
+.db-progress-bar {
+  height: 6px;
+  background: var(--off-white);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.db-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--green), var(--gold));
+  border-radius: 6px;
+  transition: width .8s ease;
+}
+/* Mini-grille des 114 sourates */
+.db-surahs-grid {
+  display: grid;
+  grid-template-columns: repeat(19, 1fr);
+  gap: 3px;
+}
+.db-surah-dot {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 3px;
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  cursor: default;
+  transition: transform .15s;
+  position: relative;
+}
+.db-surah-dot.read {
+  background: var(--green);
+  border-color: var(--green);
+}
+.db-surah-dot.read:hover {
+  transform: scale(1.4);
+  z-index: 2;
+}
+.db-surah-dot[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--text-dark);
+  color: #fff;
+  font-size: .68rem;
+  padding: .2rem .45rem;
+  border-radius: 6px;
+  white-space: nowrap;
+  z-index: 10;
+  pointer-events: none;
+}
+.db-legend {
+  display: flex;
+  gap: 1rem;
+  margin-top: .75rem;
+  font-size: .72rem;
+  color: var(--text-light);
+}
+.db-legend-dot {
+  display: inline-block;
+  width: 10px; height: 10px;
+  border-radius: 2px;
+  margin-right: .3rem;
+  vertical-align: middle;
+}
+
+/* ---- Achievements ---- */
+.db-badges-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.3rem;
+}
+.db-badges-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .7rem;
+}
+.db-badge {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  padding: .75rem .85rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--off-white);
+  transition: var(--transition);
+}
+.db-badge.unlocked {
+  background: linear-gradient(135deg, rgba(27,107,58,.08), rgba(201,168,76,.05));
+  border-color: rgba(27,107,58,.25);
+}
+.db-badge.unlocked:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+.db-badge-icon {
+  font-size: 1.3rem;
+  filter: grayscale(1) opacity(.35);
+  flex-shrink: 0;
+}
+.db-badge.unlocked .db-badge-icon { filter: none; }
+.db-badge-info {}
+.db-badge-name {
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--text-light);
+}
+.db-badge.unlocked .db-badge-name { color: var(--text-dark); }
+.db-badge-desc {
+  font-size: .68rem;
+  color: var(--text-light);
+  margin-top: .1rem;
+  line-height: 1.3;
+}
+
+/* ---- Graphe activité semaine ---- */
+.db-chart-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.3rem;
+  margin-bottom: 1.5rem;
+}
+#db-chart {
+  width: 100%;
+  height: 120px;
+  display: block;
+}
+
+/* ---- Activité récente ---- */
+.db-activity-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.3rem;
+  margin-bottom: 2rem;
+}
+.db-activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: .9rem;
+  padding: .7rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.db-activity-item:last-child { border-bottom: none; }
+.db-act-icon {
+  width: 34px; height: 34px;
+  border-radius: 10px;
+  background: rgba(27,107,58,.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.db-act-text   { font-size: .84rem; color: var(--text); line-height: 1.5; flex: 1; }
+.db-act-arabic { font-family: 'Amiri', serif; font-size: .95rem; direction: rtl; color: var(--text-dark); display: block; margin-bottom: .1rem; }
+.db-act-date   { font-size: .72rem; color: var(--text-light); white-space: nowrap; }
+
+.db-empty {
+  text-align: center;
+  padding: 1.5rem;
+  color: var(--text-light);
+  font-size: .88rem;
+}
+.db-empty .e-icon { font-size: 2rem; display: block; margin-bottom: .5rem; }
+
+/* Reset btn style */
+.db-reset-btn {
+  background: none;
+  border: 1px solid rgba(220,50,50,.3);
+  color: rgba(200,50,50,.7);
+  border-radius: 8px;
+  padding: .35rem .85rem;
+  font-size: .75rem;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  transition: var(--transition);
+}
+.db-reset-btn:hover { background: rgba(220,50,50,.08); }
+
+@media(max-width:600px) {
+  .db-stats { grid-template-columns: repeat(2, 1fr); }
+  .db-badges-grid { grid-template-columns: 1fr; }
+  .db-surahs-grid { grid-template-columns: repeat(12, 1fr); }
+}

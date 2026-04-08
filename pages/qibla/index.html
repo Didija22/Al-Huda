@@ -1,0 +1,287 @@
+﻿<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Al-Huda — Boussole de Qibla : trouvez la direction de La Mecque en temps réel depuis n'importe où dans le monde." />
+  <title>Boussole de Qibla — Al-Huda | الهُدى</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231B6B3A'/><text y='.9em' font-size='70' font-family='serif' x='50%' text-anchor='middle' fill='%23C9A84C'>ه</text></svg>" />
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('al-huda-theme') || 'light');</script>
+  <link rel="manifest" href="../../manifest.json" />
+  <meta name="theme-color" content="#1B6B3A" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="stylesheet" href="../../assets/css/main.css" />
+  <link rel="stylesheet" href="../../assets/css/qibla.css" />
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar scrolled" id="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="../../index.html" class="logo">
+        <div class="logo-icon">ه</div>
+        <div class="logo-text">
+          <div class="name">Al-Huda</div>
+          <div class="tagline">الهُدى • Le Guide</div>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Accueil</a></li>
+        <li><a href="../quran/index.html">Coran</a></li>
+        <li><a href="../azkars/index.html">Azkars</a></li>
+        <li><a href="../prayers/index.html">Prières</a></li>
+        <li><a href="../hadiths/index.html">Hadiths</a></li>
+        <li><a href="../quiz/index.html">Quiz</a></li>
+        <li><a href="../nour/index.html">Nour IA</a></li>
+        <li><a href="index.html" class="active">Qibla</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../../index.html">🏠 Accueil</a>
+  <a href="../quran/index.html">📖 Coran</a>
+  <a href="../prayers/index.html">🕌 Prières</a>
+  <a href="../azkars/index.html">🤲 Azkars</a>
+  <a href="../hadiths/index.html">📜 Hadiths</a>
+  <a href="../quiz/index.html">🧠 Quiz</a>
+  <a href="../nour/index.html">🌙 Nour IA</a>
+  <a href="index.html">🧭 Qibla</a>
+</div>
+
+<!-- HERO -->
+<section class="qibla-hero">
+  <div class="container">
+    <span class="badge badge-gold">القبلة</span>
+    <h1>🧭 Boussole de Qibla</h1>
+    <p>Trouvez la direction de La Mecque en temps réel, où que vous soyez dans le monde</p>
+  </div>
+</section>
+
+<!-- CONTENU PRINCIPAL -->
+<section style="padding-bottom:4rem;">
+  <div class="container">
+    <div class="qibla-layout">
+
+      <!-- === BOUSSOLE === -->
+      <div class="compass-wrapper">
+
+        <!-- Anneau externe -->
+        <div class="compass-outer-ring">
+          <div class="compass-face">
+
+            <!-- SVG : cercles, graduations, points cardinaux -->
+            <svg viewBox="0 0 284 284" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Cercle intérieur décoratif -->
+              <circle cx="142" cy="142" r="130" fill="none" stroke="rgba(201,168,76,.12)" stroke-width="1"/>
+              <circle cx="142" cy="142" r="115" fill="none" stroke="rgba(201,168,76,.08)" stroke-width="1"/>
+
+              <!-- Graduations toutes les 10° -->
+              <g stroke="rgba(201,168,76,.35)" stroke-width="0.8">
+                <!-- 36 tirets de 10° chacun -->
+                <line x1="142" y1="14" x2="142" y2="22" transform="rotate(0   142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="20" transform="rotate(10  142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="20" transform="rotate(20  142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="22" transform="rotate(30  142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="20" transform="rotate(40  142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="20" transform="rotate(50  142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="22" transform="rotate(60  142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="20" transform="rotate(70  142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="20" transform="rotate(80  142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="22" transform="rotate(90  142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="20" transform="rotate(100 142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="20" transform="rotate(110 142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="22" transform="rotate(120 142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="20" transform="rotate(130 142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="20" transform="rotate(140 142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="22" transform="rotate(150 142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="20" transform="rotate(160 142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="20" transform="rotate(170 142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="22" transform="rotate(180 142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="20" transform="rotate(190 142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="20" transform="rotate(200 142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="22" transform="rotate(210 142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="20" transform="rotate(220 142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="20" transform="rotate(230 142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="22" transform="rotate(240 142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="20" transform="rotate(250 142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="20" transform="rotate(260 142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="22" transform="rotate(270 142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="20" transform="rotate(280 142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="20" transform="rotate(290 142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="22" transform="rotate(300 142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="20" transform="rotate(310 142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="20" transform="rotate(320 142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="22" transform="rotate(330 142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="20" transform="rotate(340 142 142)"/>
+                <line x1="142" y1="14" x2="142" y2="20" transform="rotate(350 142 142)"/>
+              </g>
+
+              <!-- Points cardinaux principaux -->
+              <text x="142" y="38"  text-anchor="middle" font-size="16" font-weight="700" fill="#C9A84C" font-family="Poppins,sans-serif">N</text>
+              <text x="142" y="274" text-anchor="middle" font-size="14" font-weight="600" fill="rgba(201,168,76,.55)" font-family="Poppins,sans-serif">S</text>
+              <text x="268" y="147" text-anchor="middle" font-size="14" font-weight="600" fill="rgba(201,168,76,.55)" font-family="Poppins,sans-serif">E</text>
+              <text x="16"  y="147" text-anchor="middle" font-size="14" font-weight="600" fill="rgba(201,168,76,.55)" font-family="Poppins,sans-serif">O</text>
+
+              <!-- Points intermédiaires -->
+              <text x="228" y="58"  text-anchor="middle" font-size="9" fill="rgba(255,255,255,.2)" font-family="Poppins,sans-serif">NE</text>
+              <text x="228" y="236" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.2)" font-family="Poppins,sans-serif">SE</text>
+              <text x="56"  y="236" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.2)" font-family="Poppins,sans-serif">SO</text>
+              <text x="56"  y="58"  text-anchor="middle" font-size="9" fill="rgba(255,255,255,.2)" font-family="Poppins,sans-serif">NO</text>
+
+              <!-- Cercle fond central -->
+              <circle cx="142" cy="142" r="30" fill="rgba(27,107,58,.15)" stroke="rgba(201,168,76,.2)" stroke-width="1"/>
+            </svg>
+
+            <!-- Aiguille -->
+            <div class="compass-needle-wrap" id="compass-needle-wrap">
+              <div class="compass-needle">
+                <div class="needle-qibla"></div>
+                <div class="needle-kaaba">🕋</div>
+                <div class="needle-shaft"></div>
+                <div class="needle-south"></div>
+              </div>
+            </div>
+
+            <!-- Pivot central -->
+            <div class="compass-pivot"></div>
+
+          </div><!-- /.compass-face -->
+        </div><!-- /.compass-outer-ring -->
+
+        <!-- Degré affiché -->
+        <div class="compass-label">
+          <div class="compass-degree" id="compass-degree">—°</div>
+          <div class="compass-degree-sub">Direction de la Qibla depuis le Nord</div>
+        </div>
+
+        <!-- Statut gyroscope -->
+        <div class="compass-status">
+          <span class="status-dot waiting" id="status-dot"></span>
+          <span id="status-text">Initialisation…</span>
+        </div>
+
+        <!-- Bouton permission iOS -->
+        <button class="btn btn-primary btn-permission" id="btn-permission">
+          📍 Activer le gyroscope
+        </button>
+
+        <!-- Hint mode statique -->
+        <div class="no-gyro-hint" id="no-gyro-hint">
+          💡 Gyroscope non disponible. L'aiguille indique la direction exacte de la Qibla depuis le Nord magnétique. Orientez-vous vers le Nord puis suivez l'angle indiqué.
+        </div>
+
+      </div><!-- /.compass-wrapper -->
+
+      <!-- === INFOS === -->
+      <div class="qibla-info-panel">
+
+        <!-- Ville -->
+        <div class="qibla-card">
+          <div class="qibla-card-title">📍 Votre position</div>
+          <div class="qibla-card-value" id="user-city" style="font-size:1.3rem;">Détection…</div>
+          <div class="qibla-card-sub">Calculé par géolocalisation GPS</div>
+        </div>
+
+        <!-- Angle Qibla -->
+        <div class="qibla-card">
+          <div class="qibla-card-title">🧭 Angle de la Qibla</div>
+          <div class="qibla-card-value gold" id="qibla-bearing">—<span class="unit">depuis le Nord</span></div>
+          <div class="qibla-card-sub">Mesuré dans le sens des aiguilles d'une montre</div>
+        </div>
+
+        <!-- Distance -->
+        <div class="qibla-card">
+          <div class="qibla-card-title">✈️ Distance à La Mecque</div>
+          <div class="qibla-card-value" id="qibla-dist">—</div>
+          <div class="qibla-card-sub">Distance en ligne droite (grand cercle)</div>
+        </div>
+
+        <!-- Étapes -->
+        <div class="qibla-steps">
+          <h4>📖 Comment utiliser la boussole</h4>
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-text">Autorisez l'accès à votre <strong>localisation GPS</strong> quand le navigateur le demande.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-text">Sur mobile, autorisez également le <strong>gyroscope</strong> pour une boussole en temps réel.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-text">L'<strong>aiguille dorée 🕋</strong> indique la direction exacte de la Qibla (la Kaaba à La Mecque).</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-text">En cas de doute, <strong>calibrez votre téléphone</strong> en faisant un 8 dans l'air plusieurs fois.</div>
+          </div>
+        </div>
+
+        <!-- Hadith -->
+        <div class="qibla-card" style="border-left:4px solid var(--green); background:linear-gradient(135deg,rgba(27,107,58,.05),transparent);">
+          <div class="qibla-card-title" style="color:var(--green);">📜 Rappel</div>
+          <p style="font-size:.85rem;color:var(--text);line-height:1.7;margin:0;">
+            « Oriente-toi vers la Mosquée Sacrée. Et où que vous soyez, tournez vos visages vers elle. »
+            <br><em style="color:var(--text-light);font-size:.78rem;">— Coran, Al-Baqara 2:144</em>
+          </p>
+        </div>
+
+      </div><!-- /.qibla-info-panel -->
+
+    </div><!-- /.qibla-layout -->
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../../index.html" class="logo">
+          <div class="logo-icon">ه</div>
+          <div class="logo-text"><div class="name">Al-Huda</div><div class="tagline">الهُدى • Le Guide</div></div>
+        </a>
+        <p style="margin-top:1rem;">Votre compagnon islamique numérique.</p>
+        <div class="arabic-motto">وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا</div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="../quran/index.html">📖 Coran</a></li>
+          <li><a href="../prayers/index.html">🕌 Prières</a></li>
+          <li><a href="../azkars/index.html">🤲 Azkars</a></li>
+          <li><a href="index.html">🧭 Qibla</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Al-Huda</h4>
+        <ul>
+          <li><a href="../quiz/index.html">🧠 Quiz</a></li>
+          <li><a href="../nour/index.html">🌙 Nour IA</a></li>
+          <li><a href="../asma/index.html">✨ 99 Noms</a></li>
+          <li><a href="../duas/index.html">🤲 Duas</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Légal</h4>
+        <ul>
+          <li><a href="../about/index.html">À propos</a></li>
+          <li><a href="../privacy/index.html">Confidentialité</a></li>
+          <li><a href="../contact/index.html">✉️ Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Al-Huda — الهُدى. Fait avec <span class="love">♥</span> pour la communauté musulmane.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/qibla.js"></script>
+</body>
+</html>

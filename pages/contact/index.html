@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contactez l'équipe Al-Huda pour toute question, suggestion ou collaboration." />
+  <title>Contact — Al-Huda | الهُدى</title>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231B6B3A'/><text y='.9em' font-size='70' font-family='serif' x='50%' text-anchor='middle' fill='%23C9A84C'>ه</text></svg>" />
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('al-huda-theme') || 'light');</script>
+  <link rel="manifest" href="../../manifest.json" />
+  <meta name="theme-color" content="#1B6B3A" />
+
+  <link rel="stylesheet" href="../../assets/css/main.css" />
+  <style>
+    /* ---- Hero ---- */
+    .contact-hero {
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
+      padding: 3.5rem 0 2.5rem;
+      text-align: center;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(201,168,76,.15) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .contact-hero-badge {
+      display: inline-block;
+      background: rgba(201,168,76,.2);
+      color: var(--gold);
+      border: 1px solid rgba(201,168,76,.4);
+      border-radius: 20px;
+      padding: .3rem 1rem;
+      font-size: .82rem;
+      margin-bottom: 1rem;
+    }
+    .contact-hero h1 { font-size: clamp(1.8rem,4vw,2.6rem); margin: 0 0 .6rem; color: #fff; }
+    .contact-hero p  { opacity: .88; max-width: 480px; margin: 0 auto; line-height: 1.6; }
+
+    /* ---- Layout ---- */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 2rem;
+      padding: 2.5rem 0 3rem;
+      align-items: start;
+    }
+    @media (max-width: 800px) {
+      .contact-layout { grid-template-columns: 1fr; }
+    }
+
+    /* ---- Form card ---- */
+    .contact-form-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,.06);
+    }
+    .contact-form-card h2 {
+      font-size: 1.2rem;
+      margin: 0 0 1.5rem;
+      color: var(--text);
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label {
+      display: block;
+      font-size: .87rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: .4rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: .65rem .95rem;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: .92rem;
+      background: var(--bg);
+      color: var(--text);
+      font-family: inherit;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--green); }
+    .form-group textarea { resize: vertical; min-height: 130px; line-height: 1.6; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
+
+    .form-submit {
+      width: 100%;
+      padding: .85rem;
+      background: var(--green);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s, transform .1s;
+      display: flex; align-items: center; justify-content: center; gap: .5rem;
+      margin-top: .5rem;
+    }
+    .form-submit:hover { background: var(--green-dark); }
+    .form-submit:active { transform: scale(.98); }
+
+    /* Success message */
+    .contact-success {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+      background: var(--green-pale);
+      border: 1px solid var(--green);
+      border-radius: 14px;
+      margin-top: 1rem;
+    }
+    .contact-success.show { display: block; }
+    .contact-success .success-icon { font-size: 2.5rem; margin-bottom: .7rem; }
+    .contact-success h3 { color: var(--green); margin: 0 0 .4rem; }
+    .contact-success p { font-size: .9rem; color: var(--text-secondary); margin: 0; }
+
+    /* ---- Sidebar info ---- */
+    .contact-info-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .contact-info-card h3 {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 1rem;
+      padding-bottom: .6rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .contact-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      margin-bottom: .95rem;
+    }
+    .contact-info-item:last-child { margin-bottom: 0; }
+    .contact-info-icon {
+      width: 38px; height: 38px;
+      background: var(--green-pale);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .contact-info-content strong { display: block; font-size: .87rem; color: var(--text); margin-bottom: .1rem; }
+    .contact-info-content span { font-size: .82rem; color: var(--text-secondary); line-height: 1.4; }
+
+    /* Valeurs islamiques */
+    .islamic-note {
+      background: linear-gradient(135deg, rgba(27,107,58,.08), rgba(201,168,76,.08));
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
+      border-radius: 10px;
+      padding: 1rem 1.1rem;
+      font-size: .84rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .islamic-note strong { color: var(--green); }
+  </style>
+</head>
+<body>
+
+<!-- ====== NAVBAR ====== -->
+<nav class="navbar scrolled" id="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="../../index.html" class="logo">
+        <div class="logo-icon">ه</div>
+        <div class="logo-text">
+          <div class="name">Al-Huda</div>
+          <div class="tagline">الهُدى • Le Guide</div>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Accueil</a></li>
+        <li><a href="../quran/index.html">Coran</a></li>
+        <li><a href="../azkars/index.html">Azkars</a></li>
+        <li><a href="../prayers/index.html">Prières</a></li>
+        <li><a href="../hadiths/index.html">Hadiths</a></li>
+        <li><a href="../articles/index.html">Bibliothèque</a></li>
+        <li><a href="../quiz/index.html">Quiz</a></li>
+        <li><a href="../nour/index.html">Nour IA</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="theme-toggle" id="theme-toggle" title="Changer le thème" aria-label="Basculer thème sombre/clair">🌙</button>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../../index.html">🏠 Accueil</a>
+  <a href="../quran/index.html">📖 Coran</a>
+  <a href="../azkars/index.html">🤲 Azkars</a>
+  <a href="../prayers/index.html">🕌 Prières</a>
+  <a href="../hadiths/index.html">📜 Hadiths</a>
+  <a href="../articles/index.html">📚 Bibliothèque</a>
+  <a href="../quiz/index.html">🧠 Quiz</a>
+  <a href="../nour/index.html">🌙 Nour IA</a>
+  <a href="index.html" class="active">✉️ Contact</a>
+</div>
+
+<!-- ====== HERO ====== -->
+<section class="contact-hero">
+  <div class="container" style="position:relative;">
+    <div class="animate-fadeInUp">
+      <span class="contact-hero-badge">تواصل معنا</span>
+      <h1>Contactez-nous</h1>
+      <p>Une question, une suggestion, une erreur à signaler ? Nous lisons chaque message avec attention.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CONTENU ====== -->
+<main class="container">
+  <div class="contact-layout">
+
+    <!-- Formulaire -->
+    <div class="contact-form-card">
+      <h2>✉️ Envoyer un message</h2>
+
+      <!-- IMPORTANT : remplace VOTRE_ID_FORMSPREE par ton ID Formspree (voir README) -->
+      <form id="contact-form" action="https://formspree.io/f/xkopekew" method="POST">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="prenom">Prénom *</label>
+            <input type="text" id="prenom" name="prenom" placeholder="Fatima" required />
+          </div>
+          <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" placeholder="Diallo" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Adresse email *</label>
+          <input type="email" id="email" name="email" placeholder="exemple@email.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="sujet">Sujet *</label>
+          <select id="sujet" name="sujet" required>
+            <option value="" disabled selected>Choisir un sujet…</option>
+            <option value="suggestion">💡 Suggestion / Amélioration</option>
+            <option value="erreur">🔧 Signaler une erreur</option>
+            <option value="contenu">📖 Demande de contenu</option>
+            <option value="collaboration">🤝 Collaboration / Partenariat</option>
+            <option value="technique">⚙️ Problème technique</option>
+            <option value="autre">💬 Autre</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message *</label>
+          <textarea id="message" name="message" placeholder="Écris ton message ici…" required></textarea>
+        </div>
+
+        <!-- Champ anti-spam honeypot (invisible) -->
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+        <button type="submit" class="form-submit">
+          <span>📨</span> Envoyer le message
+        </button>
+      </form>
+
+      <!-- Message de succès (affiché après envoi) -->
+      <div class="contact-success" id="contact-success">
+        <div class="success-icon">✅</div>
+        <h3>Jazakum Allahu Khayran !</h3>
+        <p>Ton message a bien été envoyé. Nous te répondrons dans les meilleurs délais, incha'Allah.</p>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside>
+      <div class="contact-info-card">
+        <h3>ℹ️ Informations</h3>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">⏱️</div>
+          <div class="contact-info-content">
+            <strong>Temps de réponse</strong>
+            <span>Généralement sous 48h, incha'Allah</span>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">🌍</div>
+          <div class="contact-info-content">
+            <strong>Langues acceptées</strong>
+            <span>Français, Anglais, Arabe, Wolof</span>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">💡</div>
+          <div class="contact-info-content">
+            <strong>Suggestions bienvenues</strong>
+            <span>Nouvelles fonctionnalités, corrections de contenu, collaborations…</span>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">🔒</div>
+          <div class="contact-info-content">
+            <strong>Confidentialité</strong>
+            <span>Tes données ne sont pas partagées avec des tiers</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="islamic-note">
+        <strong>« Celui qui montre le chemin du bien est comme celui qui le fait. »</strong><br>
+        — Hadith rapporté par Muslim<br><br>
+        Chaque suggestion qui améliore Al-Huda est une Sadaqah Jariyah pour toi.
+      </div>
+    </aside>
+
+  </div>
+</main>
+
+<!-- ====== FOOTER ====== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo-icon" style="width:32px;height:32px;font-size:1rem;">ه</div>
+        <span><strong>Al-Huda</strong> — الهُدى</span>
+      </div>
+      <ul class="footer-links">
+        <li><a href="../../index.html">Accueil</a></li>
+        <li><a href="../quran/index.html">Coran</a></li>
+        <li><a href="../hadiths/index.html">Hadiths</a></li>
+        <li><a href="../quiz/index.html">Quiz</a></li>
+        <li><a href="../nour/index.html">Nour IA</a></li>
+        <li><a href="../privacy/index.html">Confidentialité</a></li>
+      </ul>
+    </div>
+    <p>© 2025 Al-Huda — الهُدى • Le Guide. Fait avec ❤ pour la Oumma.</p>
+  <p style="margin-top:.4rem;"><a href="../about/index.html" style="color:rgba(255,255,255,.45);font-size:.8rem;">À propos</a> &nbsp;•&nbsp; <a href="../privacy/index.html" style="color:rgba(255,255,255,.45);font-size:.8rem;">Politique de confidentialité</a></p>
+  </div>
+</footer>
+
+<script>
+  // Afficher le message de succès si Formspree redirige avec ?success=true
+  // OU intercepter la soumission pour un retour visuel
+  const form = document.getElementById('contact-form');
+  const success = document.getElementById('contact-success');
+
+  if (window.location.search.includes('success')) {
+    form.style.display = 'none';
+    success.classList.add('show');
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    // Si l'action contient VOTRE_ID_FORMSPREE (non configuré), afficher un message
+    // Formspree configuré
+    // Sinon laisser Formspree gérer
+  });
+</script>
+<script src="../../assets/js/main.js"></script>
+</body>
+</html>

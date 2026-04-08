@@ -24,7 +24,17 @@
       "WebFetch(domain:server.mp3quran.net)",
       "Bash(rm -rf gpconnect)",
       "Bash(cmd.exe //c \"rmdir /s /q gpconnect\")",
-      "Bash(python -c \":*)"
+      "Bash(python -c \":*)",
+      "Bash(python3 -u -c \":*)",
+      "Bash(python3 -c \":*)",
+      "WebFetch(domain:mp3quran.net)",
+      "WebFetch(domain:server11.mp3quran.net)",
+      "WebFetch(domain:server7.mp3quran.net)",
+      "WebFetch(domain:quran.com)",
+      "WebFetch(domain:api.quran.com)",
+      "WebFetch(domain:download.quranicaudio.com)",
+      "WebFetch(domain:server12.mp3quran.net)",
+      "WebFetch(domain:server8.mp3quran.net)"
     ]
   }
 }

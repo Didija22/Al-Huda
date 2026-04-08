@@ -1,0 +1,230 @@
+/* ============================================================
+   AL-HUDA — Générateur de cartes de versets
+   ============================================================ */
+
+/* Overlay */
+.sc-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0,0,0,0.72);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.sc-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Modal */
+.sc-modal {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  width: 100%;
+  max-width: 500px;
+  max-height: 92vh;
+  overflow-y: auto;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: thin;
+}
+
+/* Header */
+.sc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem 1rem;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--card-bg);
+  z-index: 2;
+  border-radius: 22px 22px 0 0;
+}
+.sc-header h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0;
+}
+.sc-close-btn {
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: .85rem;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-light);
+  transition: var(--transition);
+}
+.sc-close-btn:hover { background: var(--border); color: var(--text-dark); }
+
+/* Zone preview */
+.sc-preview-wrap {
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--off-white);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  min-height: 160px;
+}
+#sc-canvas {
+  display: block;
+  border-radius: 10px;
+  max-width: 100%;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+.sc-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--off-white);
+  border-radius: 0;
+  gap: .6rem;
+  font-size: .85rem;
+  color: var(--text-light);
+}
+
+/* Options */
+.sc-options {
+  padding: 1.1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  border-bottom: 1px solid var(--border);
+}
+.sc-option-group {}
+.sc-option-label {
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: .55rem;
+  display: block;
+}
+
+/* Swatches thème */
+.sc-swatches {
+  display: flex;
+  gap: .55rem;
+  flex-wrap: wrap;
+}
+.sc-swatch {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all .18s;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+.sc-swatch:hover { transform: scale(1.1); }
+.sc-swatch.active {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(27,107,58,.25), 0 2px 8px rgba(0,0,0,.2);
+}
+.sc-swatch.active::after {
+  content: '✓';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .85rem;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+}
+.sc-swatch-label {
+  font-size: .72rem;
+  color: var(--text-light);
+  text-align: center;
+  margin-top: .3rem;
+}
+
+/* Toggle traduction */
+.sc-toggle-row {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  cursor: pointer;
+  width: fit-content;
+}
+.sc-toggle-row input[type="checkbox"] {
+  width: 16px; height: 16px;
+  accent-color: var(--green);
+  cursor: pointer;
+}
+.sc-toggle-row span {
+  font-size: .88rem;
+  color: var(--text);
+}
+
+/* Format */
+.sc-format-btns {
+  display: flex;
+  gap: .5rem;
+}
+.sc-fmt-btn {
+  flex: 1;
+  padding: .5rem .75rem;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-light);
+  font-size: .8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+.sc-fmt-btn:hover { border-color: var(--green); color: var(--green); }
+.sc-fmt-btn.active {
+  border-color: var(--green);
+  background: rgba(27,107,58,.08);
+  color: var(--green);
+  font-weight: 600;
+}
+
+/* Actions */
+.sc-actions {
+  padding: 1.1rem 1.5rem 1.25rem;
+  display: flex;
+  gap: .75rem;
+}
+.sc-actions .btn {
+  flex: 1;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Bouton carte dans les versets */
+.vab-card {
+  position: relative;
+}
+.vab-card::after {
+  content: '';
+}
+
+@media (max-width: 480px) {
+  .sc-modal { border-radius: 16px 16px 0 0; max-height: 95vh; }
+  .sc-overlay { align-items: flex-end; padding: 0; }
+  .sc-header { padding: 1rem 1.1rem .85rem; }
+  .sc-options { padding: .9rem 1.1rem; }
+  .sc-actions { padding: .9rem 1.1rem 1.1rem; }
+}

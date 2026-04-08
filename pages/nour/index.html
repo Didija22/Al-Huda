@@ -1,0 +1,234 @@
+﻿<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Al-Huda — Nour, votre assistante IA islamique. Posez vos questions sur le Coran, la Sunnah et les enseignements des Ulema." />
+  <title>Nour — Assistante IA Islamique | Al-Huda</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231B6B3A'/><text y='.9em' font-size='70' font-family='serif' x='50%' text-anchor='middle' fill='%23C9A84C'>ه</text></svg>" />
+
+  <!-- Anti-flash dark mode -->
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('al-huda-theme') || 'light');</script>
+
+  <!-- PWA -->
+  <link rel="manifest" href="../../manifest.json" />
+  <meta name="theme-color" content="#1B6B3A" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Al-Huda" />
+  <link rel="apple-touch-icon" href="../../assets/icons/icon-192.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Nour — Assistante IA Islamique — Al-Huda" />
+  <meta property="og:description" content="Posez vos questions islamiques à Nour, assistante IA basée sur le Coran, la Sunnah et les enseignements des Ulema." />
+  <meta property="og:type" content="website" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../../assets/css/main.css" />
+  <link rel="stylesheet" href="../../assets/css/nour.css" />
+</head>
+<body>
+
+<!-- ====== NAVBAR ====== -->
+<nav class="navbar scrolled" id="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="../../index.html" class="logo">
+        <div class="logo-icon">ه</div>
+        <div class="logo-text">
+          <div class="name">Al-Huda</div>
+          <div class="tagline">الهُدى • Le Guide</div>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Accueil</a></li>
+        <li><a href="../quran/index.html">Coran</a></li>
+        <li><a href="../azkars/index.html">Azkars</a></li>
+        <li><a href="../prayers/index.html">Prières</a></li>
+        <li><a href="../hadiths/index.html">Hadiths</a></li>
+        <li><a href="../articles/index.html">Bibliothèque</a></li>
+        <li><a href="../quiz/index.html">Quiz</a></li>
+        <li><a href="index.html" class="active">Nour IA</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="theme-toggle" id="theme-toggle" title="Changer le thème" aria-label="Basculer thème sombre/clair">🌙</button>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ====== MENU MOBILE ====== -->
+<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Menu mobile">
+  <a href="../../index.html">🏠 Accueil</a>
+  <a href="../quran/index.html">📖 Coran</a>
+  <a href="../azkars/index.html">🤲 Azkars</a>
+  <a href="../prayers/index.html">🕌 Prières</a>
+  <a href="../hadiths/index.html">📜 Hadiths</a>
+  <a href="../articles/index.html">📚 Bibliothèque</a>
+  <a href="../quiz/index.html">🧠 Quiz</a>
+  <a href="index.html" class="active">🌙 Nour IA</a>
+</div>
+
+<!-- ====== HERO ====== -->
+<section class="nour-hero" aria-label="Nour — Assistante IA islamique">
+  <div class="nour-hero-pattern" aria-hidden="true"></div>
+  <div class="container">
+    <div class="animate-fadeInUp">
+      <span class="nour-hero-badge">نور • Intelligence Artificielle Islamique</span>
+      <h1><span>Nour</span> — نور</h1>
+      <p>Votre assistante IA islamique, guidée par le Coran, la Sunnah du Prophète ﷺ et les enseignements des Ulema</p>
+      <div class="nour-status">
+        <span class="nour-status-dot"></span>
+        En ligne · Propulsée par Groq AI
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CONTENU PRINCIPAL ====== -->
+<main class="container">
+
+  <!-- Bannière clé API -->
+  <div class="nour-apikey-banner" id="nour-apikey-banner">
+    <div class="nour-apikey-icon">🔑</div>
+    <div class="nour-apikey-text">
+      <h3>Configuration requise — Clé API Groq</h3>
+      <p>Nour utilise l'API Groq (gratuite). Crée ton compte sur <a href="https://console.groq.com" target="_blank" rel="noopener">console.groq.com</a>, génère une clé API gratuite, et colle-la ci-dessous. Ta clé est stockée uniquement sur ton appareil.</p>
+      <div class="nour-apikey-input-row">
+        <input type="password" id="nour-apikey-input" placeholder="gsk_xxxxxxxxxxxxxxxxxxxxxxxxxx" autocomplete="off" />
+        <button class="nour-apikey-save" id="nour-apikey-save">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Layout principal -->
+  <div class="nour-layout">
+
+    <!-- Zone de chat -->
+    <div class="nour-chatbox">
+      <!-- Header du chat -->
+      <div class="nour-chat-header">
+        <div class="nour-chat-avatar">🌙</div>
+        <div class="nour-chat-info">
+          <strong>Nour — نور</strong>
+          <small>Assistante islamique · Coran, Sunnah &amp; Ulema</small>
+        </div>
+        <div class="nour-chat-actions">
+          <button class="nour-action-btn" id="nour-new-chat" title="Nouvelle conversation">🗑️ Vider</button>
+        </div>
+      </div>
+
+      <!-- Messages -->
+      <div class="nour-messages" id="nour-messages" role="log" aria-live="polite" aria-label="Conversation avec Nour">
+        <div class="nour-welcome">
+          <div class="nour-welcome-icon">🌙</div>
+          <h3>Assalamu Alaykum !</h3>
+          <p>Je suis <strong>Nour</strong>, ton assistante islamique.<br>
+          Pose-moi une question sur le Coran, la Sunnah, l'histoire ou les pratiques islamiques.</p>
+        </div>
+      </div>
+
+      <!-- Zone de saisie -->
+      <div class="nour-input-area">
+        <div class="nour-input-row">
+          <textarea
+            id="nour-input"
+            class="nour-input"
+            placeholder="Pose ta question islamique ici… (Entrée pour envoyer)"
+            rows="1"
+            aria-label="Message à Nour"
+          ></textarea>
+          <button class="nour-send-btn" id="nour-send" aria-label="Envoyer">➤</button>
+        </div>
+        <p class="nour-input-hint">Nour peut faire des erreurs. Vérifie les informations importantes avec un érudit.</p>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="nour-sidebar">
+
+      <!-- Questions suggérées -->
+      <div class="nour-sidebar-card">
+        <h4>💡 Questions suggérées</h4>
+        <div class="nour-suggestions">
+          <button class="nour-suggestion-btn" data-q="Quelle est la signification de la sourate Al-Fatiha ?">📖 Signification de la sourate Al-Fatiha</button>
+          <button class="nour-suggestion-btn" data-q="Quelles sont les conditions de validité de la prière ?">🤲 Conditions de la prière</button>
+          <button class="nour-suggestion-btn" data-q="Qu'est-ce que le Tawhid et quels sont ses types ?">☝️ Le Tawhid et ses types</button>
+          <button class="nour-suggestion-btn" data-q="Quels sont les signes de la fin des temps mentionnés dans les hadiths ?">🌍 Signes de la fin des temps</button>
+          <button class="nour-suggestion-btn" data-q="Comment le Prophète Muhammad ﷺ traitait-il ses voisins et les non-musulmans ?">☮️ Le Prophète et les non-musulmans</button>
+          <button class="nour-suggestion-btn" data-q="Quelle est la différence entre Fard, Wajib, Sunnah, Mustahabb et Haram ?">⚖️ Les catégories du Fiqh</button>
+        </div>
+      </div>
+
+      <!-- Sources -->
+      <div class="nour-sidebar-card">
+        <h4>📚 Sources de référence</h4>
+        <ul class="nour-sources-list">
+          <li><span>📖</span><span>Saint Coran (sourate + verset cités)</span></li>
+          <li><span>📜</span><span>Hadiths : Bukhari, Muslim, Abu Dawud, Tirmidhi, Nasa'i, Ibn Majah</span></li>
+          <li><span>🕌</span><span>Consensus (Ijma') des Ulema</span></li>
+          <li><span>⭐</span><span>Pieux prédécesseurs (As-Salaf)</span></li>
+          <li><span>📗</span><span>Ibn Taymiyya, Ibn al-Qayyim, An-Nawawi, Al-Ghazali…</span></li>
+        </ul>
+      </div>
+
+      <!-- Réglages -->
+      <div class="nour-sidebar-card">
+        <h4>⚙️ Réglages</h4>
+        <div class="nour-settings-row">
+          <button class="nour-settings-btn" id="nour-settings-btn">🔑 Changer la clé API Groq</button>
+        </div>
+        <p class="nour-disclaimer" style="margin-top:.7rem;">Ta clé API est stockée uniquement dans ton navigateur (localStorage). Elle n'est jamais envoyée à nos serveurs.</p>
+      </div>
+
+    </aside>
+  </div><!-- /.nour-layout -->
+
+</main>
+
+<!-- ====== FOOTER ====== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo-icon" style="width:32px;height:32px;font-size:1rem;">ه</div>
+        <span><strong>Al-Huda</strong> — الهُدى</span>
+      </div>
+      <ul class="footer-links">
+        <li><a href="../../index.html">Accueil</a></li>
+        <li><a href="../quran/index.html">Coran</a></li>
+        <li><a href="../hadiths/index.html">Hadiths</a></li>
+        <li><a href="../quiz/index.html">Quiz</a></li>
+        <li><a href="index.html">Nour IA</a></li>
+      </ul>
+    </div>
+    <p>© 2025 Al-Huda — الهُدى • Le Guide. Fait avec ❤ pour la Oumma.</p>
+    <p style="margin-top:.4rem;"><a href="../about/index.html" style="color:rgba(255,255,255,.45);font-size:.8rem;">À propos</a> &nbsp;•&nbsp; <a href="../privacy/index.html" style="color:rgba(255,255,255,.45);font-size:.8rem;">Politique de confidentialité</a> &nbsp;•&nbsp; <a href="../contact/index.html" style="color:rgba(255,255,255,.45);font-size:.8rem;">Contact</a></p>
+  </div>
+</footer>
+
+<!-- ====== MODAL RÉGLAGES ====== -->
+<div class="nour-modal-overlay" id="nour-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="nour-modal-title">
+  <div class="nour-modal">
+    <h3 id="nour-modal-title">🔑 Clé API Groq</h3>
+    <p>Ta clé est stockée uniquement dans ton navigateur. Obtiens-en une gratuitement sur <a href="https://console.groq.com" target="_blank" rel="noopener" style="color:var(--green);font-weight:600;">console.groq.com</a>.</p>
+    <label for="nour-modal-key-input">Clé API</label>
+    <input type="password" id="nour-modal-key-input" placeholder="gsk_xxxxxxxxxxxxxxxxxxxxxxxx" autocomplete="off" />
+    <div class="nour-modal-btns">
+      <button class="nour-modal-cancel" id="nour-modal-cancel">Annuler</button>
+      <button class="nour-modal-save" id="nour-modal-save">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SCRIPTS ====== -->
+<script src="../../assets/js/nour.js"></script>
+<script src="../../assets/js/main.js"></script>
+
+</body>
+</html>

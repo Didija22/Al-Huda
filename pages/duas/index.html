@@ -1,0 +1,350 @@
+﻿<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Collection de Duas islamiques authentiques par catégorie — voyage, repas, maladie, stress et plus." />
+  <title>Duas — Invocations Islamiques | Al-Huda</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231B6B3A'/><text y='.9em' font-size='70' font-family='serif' x='50%' text-anchor='middle' fill='%23C9A84C'>ه</text></svg>" />
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('al-huda-theme') || 'light');</script>
+  <link rel="manifest" href="../../manifest.json" />
+  <meta name="theme-color" content="#1B6B3A" />
+  <link rel="stylesheet" href="../../assets/css/main.css" />
+  <style>
+    .duas-hero {
+      background:linear-gradient(135deg,var(--green-dark) 0%,var(--green) 60%,#1a7a42 100%);
+      padding:3.5rem 0 2.5rem; text-align:center; color:#fff; position:relative; overflow:hidden;
+    }
+    .duas-hero::before {
+      content:'';position:absolute;inset:0;
+      background-image:radial-gradient(circle,rgba(201,168,76,.15) 1px,transparent 1px);
+      background-size:28px 28px;
+    }
+    .duas-hero-badge { display:inline-block;background:rgba(201,168,76,.2);color:var(--gold);border:1px solid rgba(201,168,76,.4);border-radius:20px;padding:.3rem 1rem;font-size:.82rem;margin-bottom:1rem; }
+    .duas-hero h1 { font-size:clamp(1.8rem,4vw,2.8rem);margin:0 0 .5rem;color:#fff; }
+    .duas-hero p  { opacity:.88;max-width:500px;margin:0 auto;line-height:1.6; }
+
+    /* Tabs */
+    .duas-tabs { display:flex;flex-wrap:wrap;gap:.5rem;padding:1.5rem 0 1rem; }
+    .duas-tab {
+      padding:.45rem 1rem;background:var(--card-bg);border:1.5px solid var(--border);
+      border-radius:20px;font-size:.85rem;color:var(--text-secondary);cursor:pointer;
+      transition:all .2s;
+    }
+    .duas-tab.active, .duas-tab:hover { background:var(--green);border-color:var(--green);color:#fff; }
+
+    /* Cards */
+    .duas-list { display:flex;flex-direction:column;gap:1.2rem;padding-bottom:3rem; }
+    .dua-card {
+      background:var(--card-bg);border:1px solid var(--border);border-radius:16px;
+      overflow:hidden;transition:box-shadow .2s;
+    }
+    .dua-card:hover { box-shadow:0 6px 20px rgba(0,0,0,.08); }
+    .dua-card-header {
+      display:flex;align-items:center;gap:.8rem;
+      padding:1rem 1.2rem;border-bottom:1px solid var(--border);
+      background:linear-gradient(90deg,rgba(27,107,58,.04),transparent);
+      cursor:pointer;
+    }
+    .dua-card-icon { font-size:1.3rem;flex-shrink:0; }
+    .dua-card-title { font-size:.95rem;font-weight:700;color:var(--text);flex:1; }
+    .dua-card-chevron { color:var(--text-secondary);transition:transform .3s;font-size:.8rem; }
+    .dua-card.open .dua-card-chevron { transform:rotate(180deg); }
+    .dua-card-body { display:none;padding:1.2rem 1.4rem; }
+    .dua-card.open .dua-card-body { display:block; }
+
+    /* Individual dua */
+    .dua-item { margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border); }
+    .dua-item:last-child { margin-bottom:0;padding-bottom:0;border-bottom:none; }
+    .dua-arabic {
+      font-family:'Amiri','Noto Naskh Arabic',serif;
+      font-size:1.5rem;direction:rtl;text-align:right;
+      color:var(--green);line-height:1.8;margin-bottom:.6rem;
+    }
+    .dua-transliteration { font-size:.85rem;color:var(--gold);font-style:italic;margin-bottom:.4rem;line-height:1.5; }
+    .dua-translation { font-size:.9rem;color:var(--text);line-height:1.6;margin-bottom:.4rem; }
+    .dua-source { font-size:.78rem;color:var(--text-secondary);font-weight:600; }
+    .dua-copy-btn {
+      background:none;border:1px solid var(--border);border-radius:8px;
+      padding:.3rem .7rem;font-size:.78rem;color:var(--text-secondary);
+      cursor:pointer;margin-top:.5rem;transition:all .2s;
+    }
+    .dua-copy-btn:hover { background:var(--green-pale);border-color:var(--green);color:var(--green); }
+  </style>
+</head>
+<body>
+<nav class="navbar scrolled" id="navbar">
+  <div class="container"><div class="navbar-inner">
+    <a href="../../index.html" class="logo"><div class="logo-icon">ه</div><div class="logo-text"><div class="name">Al-Huda</div><div class="tagline">الهُدى • Le Guide</div></div></a>
+    <ul class="nav-links">
+      <li><a href="../../index.html">Accueil</a></li>
+      <li><a href="../quran/index.html">Coran</a></li>
+      <li><a href="../azkars/index.html">Azkars</a></li>
+      <li><a href="../prayers/index.html">Prières</a></li>
+      <li><a href="../hadiths/index.html">Hadiths</a></li>
+      <li><a href="../articles/index.html">Bibliothèque</a></li>
+      <li><a href="../quiz/index.html">Quiz</a></li>
+      <li><a href="../nour/index.html">Nour IA</a></li>
+    </ul>
+    <div class="nav-cta"><button class="theme-toggle" id="theme-toggle" title="Changer le thème">🌙</button></div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div></div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../../index.html">🏠 Accueil</a>
+  <a href="../quran/index.html">📖 Coran</a>
+  <a href="../azkars/index.html">🤲 Azkars</a>
+  <a href="../prayers/index.html">🕌 Prières</a>
+  <a href="../hadiths/index.html">📜 Hadiths</a>
+  <a href="../articles/index.html">📚 Bibliothèque</a>
+  <a href="../quiz/index.html">🧠 Quiz</a>
+  <a href="../nour/index.html">🌙 Nour IA</a>
+  <a href="index.html" class="active">🤲 Duas</a>
+</div>
+
+<section class="duas-hero">
+  <div class="container" style="position:relative;">
+    <div class="animate-fadeInUp">
+      <span class="duas-hero-badge">الأدعية المأثورة</span>
+      <h1>🤲 Duas — Invocations</h1>
+      <p>Invocations authentiques du Prophète ﷺ pour toutes les situations de la vie quotidienne</p>
+    </div>
+  </div>
+</section>
+
+<main class="container">
+  <div class="duas-tabs" id="duas-tabs"></div>
+  <div class="duas-list" id="duas-list"></div>
+</main>
+
+<footer style="background:var(--green-dark);color:rgba(255,255,255,0.7);text-align:center;padding:2rem 1rem;font-size:0.85rem;margin-top:2rem;">
+  <div style="margin-bottom:.5rem;">
+    <a href="../../index.html" style="color:rgba(255,255,255,.6);text-decoration:none;margin:0 .75rem;">Accueil</a>
+    <a href="../quran/index.html" style="color:rgba(255,255,255,.6);text-decoration:none;margin:0 .75rem;">Coran</a>
+    <a href="../azkars/index.html" style="color:rgba(255,255,255,.6);text-decoration:none;margin:0 .75rem;">Azkars</a>
+    <a href="../asma/index.html" style="color:rgba(255,255,255,.6);text-decoration:none;margin:0 .75rem;">✨ 99 Noms</a>
+    <a href="../nour/index.html" style="color:rgba(255,255,255,.6);text-decoration:none;margin:0 .75rem;">Nour IA</a>
+    <a href="../quiz/index.html" style="color:rgba(255,255,255,.6);text-decoration:none;margin:0 .75rem;">Quiz</a>
+  </div>
+  <p>© 2025 Al-Huda — الهُدى • Le Guide. Fait avec ❤ pour la Oumma.</p>
+  <p style="margin-top:.4rem;">
+    <a href="../about/index.html" style="color:rgba(255,255,255,.45);font-size:.8rem;text-decoration:none;margin:0 .4rem;">À propos</a> &nbsp;•&nbsp;
+    <a href="../privacy/index.html" style="color:rgba(255,255,255,.45);font-size:.8rem;text-decoration:none;margin:0 .4rem;">Confidentialité</a> &nbsp;•&nbsp;
+    <a href="../contact/index.html" style="color:rgba(255,255,255,.45);font-size:.8rem;text-decoration:none;margin:0 .4rem;">Contact</a>
+  </p>
+</footer>
+
+<script>
+const DUAS = [
+  {
+    cat:'quotidien', label:'☀️ Quotidien', items:[
+      { title:'Se réveiller', icon:'🌅',
+        arabic:'الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ',
+        translit:'Alhamdulillah illadhi ahyana ba\'da ma amatana wa ilayhin-nushur',
+        translation:'Louange à Allah qui nous a redonné la vie après nous avoir fait mourir, et c\'est vers Lui que sera la résurrection.',
+        source:'Bukhari' },
+      { title:'Avant de dormir', icon:'🌙',
+        arabic:'بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا',
+        translit:'Bismika Allahumma amutu wa ahya',
+        translation:'En Ton nom, ô Allah, je meurs et je vis.',
+        source:'Bukhari' },
+      { title:'En entrant dans la maison', icon:'🏠',
+        arabic:'بِسْمِ اللَّهِ وَلَجْنَا، وَبِسْمِ اللَّهِ خَرَجْنَا، وَعَلَى اللَّهِ رَبِّنَا تَوَكَّلْنَا',
+        translit:'Bismillahi walajna, wa bismillahi kharajna, wa \'ala Allahi rabbina tawakkalna',
+        translation:'Au nom d\'Allah nous entrons, au nom d\'Allah nous sortons, et en Allah notre Seigneur nous nous confions.',
+        source:'Abu Dawud' },
+      { title:'En sortant de la maison', icon:'🚪',
+        arabic:'بِسْمِ اللَّهِ، تَوَكَّلْتُ عَلَى اللَّهِ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ',
+        translit:'Bismillah, tawakkaltu \'ala Allah, wa la hawla wa la quwwata illa billah',
+        translation:'Au nom d\'Allah, je me confie à Allah, il n\'y a ni force ni puissance sinon par Allah.',
+        source:'Abu Dawud, Tirmidhi' },
+    ]
+  },
+  {
+    cat:'repas', label:'🍽️ Repas', items:[
+      { title:'Avant de manger', icon:'🌿',
+        arabic:'بِسْمِ اللَّهِ',
+        translit:'Bismillah',
+        translation:'Au nom d\'Allah.',
+        source:'Bukhari, Muslim' },
+      { title:'Si l\'on oublie de dire Bismillah', icon:'💭',
+        arabic:'بِسْمِ اللَّهِ أَوَّلَهُ وَآخِرَهُ',
+        translit:'Bismillahi awwalahu wa akhirahu',
+        translation:'Au nom d\'Allah au début et à la fin.',
+        source:'Abu Dawud, Tirmidhi' },
+      { title:'Après le repas', icon:'🙏',
+        arabic:'الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنَا وَسَقَانَا وَجَعَلَنَا مُسْلِمِينَ',
+        translit:'Alhamdulillah illadhi at\'amana wa saqana wa ja\'alana muslimin',
+        translation:'Louange à Allah qui nous a nourris, désaltérés et nous a faits musulmans.',
+        source:'Abu Dawud, Tirmidhi' },
+      { title:'Boire de l\'eau', icon:'💧',
+        arabic:'الْحَمْدُ لِلَّهِ الَّذِي سَقَانَا عَذْبًا فُرَاتًا',
+        translit:'Alhamdulillah illadhi saqana \'adhban furatan',
+        translation:'Louange à Allah qui nous a désaltérés d\'une eau douce et limpide.',
+        source:'Ibn Majah' },
+    ]
+  },
+  {
+    cat:'voyage', label:'✈️ Voyage', items:[
+      { title:'Monter dans un véhicule', icon:'🚗',
+        arabic:'سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبُونَ',
+        translit:'Subhana alladhi sakhkhara lana hadha wa ma kunna lahu muqrinin wa inna ila rabbina lamunqalibun',
+        translation:'Gloire à Celui qui nous a soumis cela, alors que nous n\'aurions pu le faire par nous-mêmes. C\'est vers notre Seigneur que nous retournerons.',
+        source:'Abu Dawud, Tirmidhi (43:13)' },
+      { title:'Au début d\'un voyage', icon:'🌍',
+        arabic:'اللَّهُمَّ إِنَّا نَسْأَلُكَ فِي سَفَرِنَا هَذَا الْبِرَّ وَالتَّقْوَى',
+        translit:'Allahumma inna nas\'aluka fi safarina hadha al-birra wat-taqwa',
+        translation:'Ô Allah, nous Te demandons lors de ce voyage la piété et la crainte.',
+        source:'Muslim' },
+      { title:'Entrer dans une ville', icon:'🏙️',
+        arabic:'اللَّهُمَّ رَبَّ السَّمَاوَاتِ السَّبْعِ وَمَا أَظْلَلْنَ، وَرَبَّ الْأَرَضِينَ وَمَا أَقْلَلْنَ',
+        translit:'Allahumma rabba s-samawati s-sab\'i wa ma athallalna, wa rabba l-aradina wa ma aqllalna...',
+        translation:'Ô Allah, Seigneur des sept cieux et de ce qu\'ils couvrent, Seigneur des terres et de ce qu\'elles portent...',
+        source:'Ibn as-Sunni' },
+    ]
+  },
+  {
+    cat:'sante', label:'🏥 Santé', items:[
+      { title:'Lors d\'une douleur physique', icon:'💊',
+        arabic:'بِسْمِ اللَّهِ (ثَلَاثًا) أَعُوذُ بِعِزَّةِ اللَّهِ وَقُدْرَتِهِ مِنْ شَرِّ مَا أَجِدُ وَأُحَاذِرُ',
+        translit:'Bismillah (3x), a\'udhu bi\'izzatillah wa qudratihi min sharri ma ajidu wa uhadhiru',
+        translation:'Au nom d\'Allah (3x), je me réfugie dans la puissance d\'Allah contre le mal que je ressens et que je crains.',
+        source:'Muslim' },
+      { title:'Visiter un malade (Ruqya)', icon:'🤲',
+        arabic:'اللَّهُمَّ رَبَّ النَّاسِ، أَذْهِبِ الْبَأْسَ، اشْفِ أَنْتَ الشَّافِي',
+        translit:'Allahumma rabba n-nas, adhhib al-ba\'s, ishfi anta sh-shafi',
+        translation:'Ô Allah, Seigneur des hommes, supprime la souffrance, guéris — Tu es le Guérisseur.',
+        source:'Bukhari, Muslim' },
+      { title:'Dua pour la guérison', icon:'✨',
+        arabic:'اللَّهُمَّ عَافِنِي فِي بَدَنِي، اللَّهُمَّ عَافِنِي فِي سَمْعِي، اللَّهُمَّ عَافِنِي فِي بَصَرِي',
+        translit:'Allahumma \'afini fi badani, Allahumma \'afini fi sam\'i, Allahumma \'afini fi basari',
+        translation:'Ô Allah, accorde-moi la santé dans mon corps, dans mon ouïe, dans ma vue.',
+        source:'Abu Dawud' },
+    ]
+  },
+  {
+    cat:'stress', label:'😔 Anxiété & Épreuves', items:[
+      { title:'En cas d\'anxiété et de tristesse', icon:'💙',
+        arabic:'اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَالْعَجْزِ وَالْكَسَلِ',
+        translit:'Allahumma inni a\'udhu bika min al-hammi wal-hazani, wal-\'ajzi wal-kasali',
+        translation:'Ô Allah, je cherche refuge en Toi contre l\'anxiété et la tristesse, contre la faiblesse et la paresse.',
+        source:'Bukhari' },
+      { title:'Dua de Yunus (Jonas) ﷺ', icon:'🐋',
+        arabic:'لَا إِلَٰهَ إِلَّا أَنتَ سُبْحَانَكَ إِنِّي كُنتُ مِنَ الظَّالِمِينَ',
+        translit:'La ilaha illa anta subhanaka inni kuntu min az-zalimin',
+        translation:'Il n\'y a de divinité que Toi, gloire à Toi ! Vraiment j\'ai été du nombre des injustes.',
+        source:'Coran 21:87 — dit dans les ténèbres' },
+      { title:'Hasbi Allah (Tawakkul)', icon:'☝️',
+        arabic:'حَسْبِيَ اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ',
+        translit:'Hasbiya Allahu la ilaha illa huwa \'alayhi tawakkaltu wa huwa rabbu l-\'arshi l-\'azim',
+        translation:'Allah me suffit, il n\'y a de divinité que Lui, en Lui je me confie, Il est le Seigneur du Trône immense.',
+        source:'Coran 9:129' },
+      { title:'Face à une calamité', icon:'🌊',
+        arabic:'إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ، اللَّهُمَّ أْجُرْنِي فِي مُصِيبَتِي',
+        translit:'Inna lillahi wa inna ilayhi raji\'un. Allahumma\'jurni fi musibati...',
+        translation:'Nous appartenons à Allah et c\'est vers Lui que nous retournons. Ô Allah, récompense-moi dans mon épreuve...',
+        source:'Muslim' },
+    ]
+  },
+  {
+    cat:'famille', label:'👨‍👩‍👧 Famille', items:[
+      { title:'Pour ses parents', icon:'❤️',
+        arabic:'رَبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا',
+        translit:'Rabbi irhamhuma kama rabbayani saghira',
+        translation:'Seigneur, aie pitié d\'eux comme ils ont pris soin de moi quand j\'étais petit.',
+        source:'Coran 17:24' },
+      { title:'Pour un bon conjoint', icon:'💍',
+        arabic:'رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا',
+        translit:'Rabbana hab lana min azwajina wa dhurriyyatina qurrata a\'yunin waj\'alna lil-muttaqina imama',
+        translation:'Seigneur, accorde-nous en nos époux et descendants la joie des yeux et fais de nous un exemple pour les pieux.',
+        source:'Coran 25:74' },
+      { title:'Pour la bonne entente familiale', icon:'🌿',
+        arabic:'رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِن ذُرِّيَّتِي رَبَّنَا وَتَقَبَّلْ دُعَاءِ',
+        translit:'Rabbi j\'alni muqima as-salati wa min dhurriyyati, rabbana wa taqabbal du\'a',
+        translation:'Seigneur, fais de moi quelqu\'un qui accomplit la prière, ainsi que de ma descendance. Seigneur, exauce ma supplication.',
+        source:'Coran 14:40' },
+    ]
+  },
+  {
+    cat:'connaissance', label:'📖 Savoir & Guidance', items:[
+      { title:'Pour augmenter la connaissance', icon:'📚',
+        arabic:'رَبِّ زِدْنِي عِلْمًا',
+        translit:'Rabbi zidni \'ilma',
+        translation:'Seigneur, accrois ma connaissance.',
+        source:'Coran 20:114' },
+      { title:'Pour la guidance', icon:'🌟',
+        arabic:'اللَّهُمَّ اهْدِنِي وَسَدِّدْنِي',
+        translit:'Allahumma hdini wa saddidni',
+        translation:'Ô Allah, guide-moi et dirige-moi vers la droiture.',
+        source:'Muslim' },
+      { title:'Pour un cœur pur', icon:'💚',
+        arabic:'اللَّهُمَّ آتِ نَفْسِي تَقْوَاهَا، وَزَكِّهَا أَنْتَ خَيْرُ مَنْ زَكَّاهَا',
+        translit:'Allahumma ati nafsi taqwaha wa zakkiha anta khayru man zakkaha',
+        translation:'Ô Allah, donne à mon âme sa piété et purifie-la — Tu es le meilleur de ceux qui la purifient.',
+        source:'Muslim' },
+      { title:'Istikhara (guidance pour un choix)', icon:'🤍',
+        arabic:'اللَّهُمَّ إِنِّي أَسْتَخِيرُكَ بِعِلْمِكَ، وَأَسْتَقْدِرُكَ بِقُدْرَتِكَ',
+        translit:'Allahumma inni astakhiruka bi\'ilmika wa astaqdiruka biqudratika...',
+        translation:'Ô Allah, je Te consulte par Ta science et je Te demande d\'agir par Ta puissance...',
+        source:'Bukhari' },
+    ]
+  },
+];
+
+const tabsEl = document.getElementById('duas-tabs');
+const listEl = document.getElementById('duas-list');
+let current = 'all';
+
+function renderTabs() {
+  const allBtn = `<button class="duas-tab ${current==='all'?'active':''}" onclick="show('all')">🌿 Toutes</button>`;
+  const cats = DUAS.map(c =>
+    `<button class="duas-tab ${current===c.cat?'active':''}" onclick="show('${c.cat}')">${c.label}</button>`
+  ).join('');
+  tabsEl.innerHTML = allBtn + cats;
+}
+
+function renderList() {
+  const cats = current === 'all' ? DUAS : DUAS.filter(c => c.cat === current);
+  listEl.innerHTML = cats.map(cat => `
+    <div class="dua-card open">
+      <div class="dua-card-header" onclick="this.parentElement.classList.toggle('open')">
+        <span class="dua-card-icon">${cat.label.split(' ')[0]}</span>
+        <span class="dua-card-title">${cat.label}</span>
+        <span class="dua-card-chevron">▼</span>
+      </div>
+      <div class="dua-card-body">
+        ${cat.items.map(item => `
+          <div class="dua-item">
+            <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem;">
+              <span style="font-size:1.1rem;">${item.icon}</span>
+              <strong style="font-size:.9rem;color:var(--text);">${item.title}</strong>
+            </div>
+            <div class="dua-arabic">${item.arabic}</div>
+            <div class="dua-transliteration">${item.translit}</div>
+            <div class="dua-translation">« ${item.translation} »</div>
+            <div class="dua-source">📜 Source : ${item.source}</div>
+            <button class="dua-copy-btn" onclick="copyDua(this, \`${item.arabic}\n\n${item.translit}\n\n« ${item.translation} »\n— ${item.source}\`)">📋 Copier</button>
+          </div>
+        `).join('')}
+      </div>
+    </div>`).join('');
+}
+
+function show(cat) {
+  current = cat;
+  renderTabs();
+  renderList();
+}
+
+function copyDua(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✅ Copié !';
+    setTimeout(() => btn.textContent = '📋 Copier', 2000);
+  });
+}
+
+show('all');
+</script>
+<script src="../../assets/js/main.js"></script>
+</body>
+</html>

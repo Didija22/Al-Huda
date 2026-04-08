@@ -209,6 +209,7 @@ function nextQuestion() {
 /* ---------- Résultats ---------- */
 function showResults() {
   clearTimer();
+  window.AlHudaTracker?.trackQuiz(score, totalQuestions);
   const pct = Math.round((score / totalQuestions) * 100);
   const badge = getBadge(pct);
   const categoryLabel = selectedCategory === 'all'
@@ -416,6 +417,8 @@ function showScreen(id) {
 }
 
 /* ---------- Boot ---------- */
-document.addEventListener('DOMContentLoaded', () => {
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initQuiz);
+} else {
   initQuiz();
-});
+}

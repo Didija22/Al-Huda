@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="À propos d'Al-Huda — la mission, la vision et les valeurs du projet islamique numérique." />
+  <title>À propos — Al-Huda | الهُدى</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231B6B3A'/><text y='.9em' font-size='70' font-family='serif' x='50%' text-anchor='middle' fill='%23C9A84C'>ه</text></svg>" />
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('al-huda-theme') || 'light');</script>
+  <link rel="manifest" href="../../manifest.json" />
+  <meta name="theme-color" content="#1B6B3A" />
+  <link rel="stylesheet" href="../../assets/css/main.css" />
+  <style>
+    /* Hero */
+    .about-hero {
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 60%, #1a7a42 100%);
+      padding: 4rem 0 3rem;
+      text-align: center;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(201,168,76,.15) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .about-hero-badge {
+      display: inline-block;
+      background: rgba(201,168,76,.2);
+      color: var(--gold);
+      border: 1px solid rgba(201,168,76,.4);
+      border-radius: 20px;
+      padding: .3rem 1rem;
+      font-size: .82rem;
+      margin-bottom: 1.2rem;
+    }
+    .about-hero h1 { font-size: clamp(2rem,5vw,3rem); margin: 0 0 .7rem; color: #fff; }
+    .about-hero h1 span { color: var(--gold); }
+    .about-hero .hero-verse {
+      font-family: 'Amiri', serif;
+      font-size: 1.4rem;
+      direction: rtl;
+      margin: 1.2rem auto .4rem;
+      max-width: 540px;
+      opacity: .95;
+      line-height: 1.7;
+    }
+    .about-hero .hero-verse-fr {
+      font-size: .88rem;
+      opacity: .75;
+      font-style: italic;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* Layout */
+    .about-content { padding: 3rem 0 4rem; }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    @media (max-width: 720px) { .about-grid { grid-template-columns: 1fr; } }
+
+    /* Cards */
+    .about-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.8rem;
+    }
+    .about-card-icon {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, var(--green-pale), rgba(201,168,76,.1));
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .about-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--text); margin: 0 0 .7rem; }
+    .about-card p { font-size: .9rem; color: var(--text-secondary); line-height: 1.7; margin: 0; }
+
+    /* Mission full-width */
+    .about-mission {
+      background: linear-gradient(135deg, rgba(27,107,58,.06), rgba(201,168,76,.06));
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--green);
+      border-radius: 0 16px 16px 0;
+      padding: 2rem 2.2rem;
+      margin-bottom: 3rem;
+    }
+    .about-mission h2 { font-size: 1.15rem; color: var(--green); margin: 0 0 .8rem; }
+    .about-mission p { font-size: .95rem; color: var(--text-secondary); line-height: 1.8; margin: 0; }
+
+    /* Features grid */
+    .features-title {
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+    .features-title span { color: var(--green); }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .feature-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.4rem 1rem;
+      text-align: center;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .feature-item:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+    .feature-item .fi { font-size: 1.8rem; margin-bottom: .6rem; }
+    .feature-item strong { display: block; font-size: .9rem; color: var(--text); margin-bottom: .3rem; }
+    .feature-item span { font-size: .8rem; color: var(--text-secondary); line-height: 1.4; }
+
+    /* Valeurs islamiques */
+    .about-values {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .about-values h2 { font-size: 1.2rem; color: var(--text); margin: 0 0 1.5rem; }
+    .values-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+    .value-badge {
+      background: var(--green-pale);
+      color: var(--green);
+      border: 1px solid rgba(27,107,58,.2);
+      border-radius: 20px;
+      padding: .45rem 1.1rem;
+      font-size: .85rem;
+      font-weight: 600;
+    }
+
+    /* CTA */
+    .about-cta {
+      text-align: center;
+      padding: 2.5rem;
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      border-radius: 20px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-cta::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.08) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+    .about-cta h2 { font-size: 1.4rem; color: #fff; margin: 0 0 .6rem; position: relative; }
+    .about-cta p { opacity: .88; margin: 0 0 1.4rem; position: relative; }
+    .about-cta-btns { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; position: relative; }
+    .cta-btn {
+      padding: .7rem 1.6rem;
+      border-radius: 10px;
+      font-size: .95rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform .2s, opacity .2s;
+    }
+    .cta-btn:hover { transform: translateY(-2px); opacity: .9; }
+    .cta-btn-primary { background: var(--gold); color: #1a1a1a; border: none; }
+    .cta-btn-secondary { background: rgba(255,255,255,.15); color: #fff; border: 1px solid rgba(255,255,255,.3); }
+  </style>
+</head>
+<body>
+
+<!-- ====== NAVBAR ====== -->
+<nav class="navbar scrolled" id="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="../../index.html" class="logo">
+        <div class="logo-icon">ه</div>
+        <div class="logo-text">
+          <div class="name">Al-Huda</div>
+          <div class="tagline">الهُدى • Le Guide</div>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Accueil</a></li>
+        <li><a href="../quran/index.html">Coran</a></li>
+        <li><a href="../azkars/index.html">Azkars</a></li>
+        <li><a href="../prayers/index.html">Prières</a></li>
+        <li><a href="../hadiths/index.html">Hadiths</a></li>
+        <li><a href="../articles/index.html">Bibliothèque</a></li>
+        <li><a href="../quiz/index.html">Quiz</a></li>
+        <li><a href="../nour/index.html">Nour IA</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="theme-toggle" id="theme-toggle" title="Changer le thème" aria-label="Basculer thème sombre/clair">🌙</button>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../../index.html">🏠 Accueil</a>
+  <a href="../quran/index.html">📖 Coran</a>
+  <a href="../azkars/index.html">🤲 Azkars</a>
+  <a href="../prayers/index.html">🕌 Prières</a>
+  <a href="../hadiths/index.html">📜 Hadiths</a>
+  <a href="../articles/index.html">📚 Bibliothèque</a>
+  <a href="../quiz/index.html">🧠 Quiz</a>
+  <a href="../nour/index.html">🌙 Nour IA</a>
+  <a href="index.html" class="active">ℹ️ À propos</a>
+</div>
+
+<!-- ====== HERO ====== -->
+<section class="about-hero">
+  <div class="container" style="position:relative;">
+    <div class="animate-fadeInUp">
+      <span class="about-hero-badge">عن المشروع</span>
+      <h1>À propos d'<span>Al-Huda</span></h1>
+      <p class="hero-verse">وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا</p>
+      <p class="hero-verse-fr">« Celui qui craint Allah — Il lui ouvrira une issue. » (At-Talaq 65:2)</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CONTENU ====== -->
+<main class="about-content">
+  <div class="container">
+
+    <!-- Mission -->
+    <div class="about-mission">
+      <h2>🌿 Notre mission</h2>
+      <p>Al-Huda (الهُدى — Le Guide) est un projet islamique numérique gratuit, conçu pour rendre les connaissances religieuses accessibles à tous les musulmans francophones, en particulier en Afrique de l'Ouest. Notre mission est simple : offrir un compagnon islamique numérique de confiance, ancré dans le Coran et la Sunnah authentique du Prophète ﷺ.</p>
+    </div>
+
+    <!-- Cards valeurs -->
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="about-card-icon">📖</div>
+        <h3>Fondé sur les sources authentiques</h3>
+        <p>Chaque contenu d'Al-Huda — hadiths, articles, réponses de Nour IA — s'appuie sur le Coran, les hadiths sahih et les enseignements des grands Ulema de l'Islam. Pas d'invention, pas d'innovation blâmable.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">🌍</div>
+        <h3>Pour la Oumma francophone</h3>
+        <p>Des millions de musulmans francophones manquent de ressources islamiques de qualité dans leur langue. Al-Huda comble ce vide avec un contenu soigné en français, tout en incluant les termes arabes essentiels.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">🔒</div>
+        <h3>100% gratuit, sans publicité</h3>
+        <p>Al-Huda est entièrement gratuit et ne diffuse aucune publicité. Ce projet est un acte de Sadaqah Jariyah — une aumône continue dont les bénéfices, incha'Allah, se poursuivront après nous.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">📱</div>
+        <h3>Accessible partout</h3>
+        <p>Conçu comme une Progressive Web App (PWA), Al-Huda fonctionne sur mobile, tablette et ordinateur. Tu peux l'installer sur ton écran d'accueil et l'utiliser même hors connexion pour certaines fonctionnalités.</p>
+      </div>
+    </div>
+
+    <!-- Fonctionnalités -->
+    <h2 class="features-title">Ce que contient <span>Al-Huda</span></h2>
+    <div class="features-grid">
+      <div class="feature-item">
+        <div class="fi">📖</div>
+        <strong>Coran</strong>
+        <span>Texte arabe, traductions FR/EN, audio, marque-pages et notes</span>
+      </div>
+      <div class="feature-item">
+        <div class="fi">🕌</div>
+        <strong>Prières</strong>
+        <span>Horaires par géolocalisation, calendrier Hijri</span>
+      </div>
+      <div class="feature-item">
+        <div class="fi">📜</div>
+        <strong>Hadiths</strong>
+        <span>Collections authentiques des 6 grands recueils</span>
+      </div>
+      <div class="feature-item">
+        <div class="fi">🤲</div>
+        <strong>Azkars</strong>
+        <span>Invocations du matin, soir, après la prière et plus</span>
+      </div>
+      <div class="feature-item">
+        <div class="fi">📚</div>
+        <strong>Bibliothèque</strong>
+        <span>Articles islamiques sur la foi, le fiqh, l'histoire</span>
+      </div>
+      <div class="feature-item">
+        <div class="fi">🧠</div>
+        <strong>Quiz</strong>
+        <span>150 questions sur le Coran, les prophètes, l'histoire</span>
+      </div>
+      <div class="feature-item">
+        <div class="fi">🌙</div>
+        <strong>Nour IA</strong>
+        <span>Assistante IA islamique basée sur Coran et Sunnah</span>
+      </div>
+      <div class="feature-item">
+        <div class="fi">🌓</div>
+        <strong>Mode sombre</strong>
+        <span>Lecture confortable de nuit, thème clair ou sombre</span>
+      </div>
+    </div>
+
+    <!-- Valeurs -->
+    <div class="about-values">
+      <h2>🌿 Nos valeurs</h2>
+      <div class="values-row">
+        <span class="value-badge">☝️ Tawhid</span>
+        <span class="value-badge">📖 Ittiba' as-Sunnah</span>
+        <span class="value-badge">🕊️ Rahma</span>
+        <span class="value-badge">🌍 Service à la Oumma</span>
+        <span class="value-badge">🔒 Confidentialité</span>
+        <span class="value-badge">✅ Authenticité</span>
+        <span class="value-badge">🆓 Gratuité</span>
+        <span class="value-badge">💡 Accessibilité</span>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="about-cta">
+      <h2>Rejoins la communauté Al-Huda</h2>
+      <p>Partage ce site avec tes proches — chaque partage est une Sadaqah Jariyah.</p>
+      <div class="about-cta-btns">
+        <a href="../nour/index.html" class="cta-btn cta-btn-primary">🌙 Parler à Nour IA</a>
+        <a href="../contact/index.html" class="cta-btn cta-btn-secondary">✉️ Nous contacter</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ====== FOOTER ====== -->
+<footer style="background:var(--green-dark); color:rgba(255,255,255,0.7); text-align:center; padding:2rem 1rem; font-size:0.85rem; margin-top:3rem;">
+  <div style="margin-bottom:0.5rem;">
+    <a href="../../index.html" style="color:rgba(255,255,255,0.6); text-decoration:none; margin:0 0.75rem;">Accueil</a>
+    <a href="../quran/index.html" style="color:rgba(255,255,255,0.6); text-decoration:none; margin:0 0.75rem;">Coran</a>
+    <a href="../quiz/index.html" style="color:rgba(255,255,255,0.6); text-decoration:none; margin:0 0.75rem;">Quiz</a>
+    <a href="../nour/index.html" style="color:rgba(255,255,255,0.6); text-decoration:none; margin:0 0.75rem;">Nour IA</a>
+    <a href="../contact/index.html" style="color:rgba(255,255,255,0.6); text-decoration:none; margin:0 0.75rem;">Contact</a>
+  </div>
+  <p>© 2025 Al-Huda — الهُدى • Le Guide. Fait avec ❤ pour la Oumma.</p>
+  <p style="margin-top:.4rem;">
+    <a href="../privacy/index.html" style="color:rgba(255,255,255,0.45); font-size:0.8rem; text-decoration:none; margin:0 0.4rem;">Politique de confidentialité</a>
+    &nbsp;•&nbsp;
+    <a href="index.html" style="color:rgba(255,255,255,0.45); font-size:0.8rem; text-decoration:none; margin:0 0.4rem;">À propos</a>
+  </p>
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+</body>
+</html>

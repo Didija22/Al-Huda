@@ -1,0 +1,295 @@
+/* ============================================================
+   AL-HUDA — Boussole de Qibla
+   ============================================================ */
+
+/* Hero */
+.qibla-hero {
+  background: linear-gradient(160deg, var(--green-dark) 0%, var(--green) 60%, #0e3d1e 100%);
+  padding: 120px 0 60px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.qibla-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='35' fill='none' stroke='%23ffffff' stroke-width='0.4' stroke-opacity='0.06'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.qibla-hero h1 { font-size: clamp(2rem,4vw,3rem); font-weight:700; color:#fff; margin:.5rem 0; }
+.qibla-hero p  { color:rgba(255,255,255,.7); font-size:1rem; max-width:520px; margin:.5rem auto 0; }
+
+/* Layout */
+.qibla-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+  padding: 3rem 0;
+}
+@media(max-width:768px) {
+  .qibla-layout { grid-template-columns:1fr; gap:2rem; padding:2rem 0; }
+}
+
+/* =========== BOUSSOLE =========== */
+.compass-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* Anneau décoratif externe */
+.compass-outer-ring {
+  position: relative;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(201,168,76,.12) 0deg 45deg,
+    rgba(27,107,58,.1)   45deg 90deg,
+    rgba(201,168,76,.12) 90deg 135deg,
+    rgba(27,107,58,.1)   135deg 180deg,
+    rgba(201,168,76,.12) 180deg 225deg,
+    rgba(27,107,58,.1)   225deg 270deg,
+    rgba(201,168,76,.12) 270deg 315deg,
+    rgba(27,107,58,.1)   315deg 360deg
+  );
+  box-shadow: 0 0 0 3px rgba(201,168,76,.4), 0 0 40px rgba(0,0,0,.25), inset 0 0 40px rgba(0,0,0,.3);
+  border: 2px solid rgba(201,168,76,.5);
+  animation: compass-breath 4s ease-in-out infinite;
+}
+@keyframes compass-breath {
+  0%,100% { box-shadow: 0 0 0 3px rgba(201,168,76,.4), 0 0 40px rgba(0,0,0,.25); }
+  50%      { box-shadow: 0 0 0 3px rgba(201,168,76,.7), 0 0 60px rgba(201,168,76,.15); }
+}
+
+/* Face de la boussole */
+.compass-face {
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #162816, #0a1a0a 80%);
+  border: 1px solid rgba(201,168,76,.25);
+  overflow: hidden;
+}
+
+/* SVG des marques de degrés et points cardinaux */
+.compass-face svg {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+}
+
+/* Aiguille */
+.compass-needle-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s cubic-bezier(.23,1,.32,1);
+  will-change: transform;
+}
+.compass-needle {
+  position: relative;
+  width: 6px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* Moitié haute → Qibla (dorée) */
+.needle-qibla {
+  width: 0; height: 0;
+  border-left:  7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 90px solid #C9A84C;
+  filter: drop-shadow(0 0 6px rgba(201,168,76,.6));
+}
+.needle-kaaba {
+  font-size: 1rem;
+  line-height: 1;
+  margin-top: 2px;
+}
+/* Tige */
+.needle-shaft {
+  width: 3px;
+  height: 30px;
+  background: linear-gradient(to bottom, rgba(201,168,76,.7), rgba(27,107,58,.5));
+  border-radius: 2px;
+}
+/* Moitié basse (verte sombre) */
+.needle-south {
+  width: 0; height: 0;
+  border-left:  5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 70px solid rgba(27,107,58,.55);
+}
+/* Pivot central */
+.compass-pivot {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #C9A84C, #8a6520);
+  border: 2px solid rgba(255,255,255,.2);
+  z-index: 3;
+  box-shadow: 0 0 8px rgba(201,168,76,.5);
+}
+
+/* Étiquette sous la boussole */
+.compass-label {
+  text-align: center;
+}
+.compass-degree {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+.compass-degree-sub {
+  font-size: .8rem;
+  color: var(--text-light);
+  margin-top: .2rem;
+}
+
+/* Anneau de statut gyroscope */
+.compass-status {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: .35rem .9rem;
+  font-size: .78rem;
+  color: var(--text-light);
+}
+.status-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #aaa;
+}
+.status-dot.active   { background: #22c55e; animation: dot-pulse 1.5s infinite; }
+.status-dot.error    { background: #ef4444; }
+.status-dot.waiting  { background: #f59e0b; animation: dot-pulse 1s infinite; }
+@keyframes dot-pulse {
+  0%,100% { opacity:1; } 50% { opacity:.35; }
+}
+
+/* Bouton demande permission iOS */
+.btn-permission {
+  display: none;
+  margin-top: .75rem;
+}
+
+/* =========== PANNEAU D'INFO =========== */
+.qibla-info-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.qibla-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.4rem 1.5rem;
+  transition: var(--transition);
+}
+.qibla-card:first-child {
+  border-left: 4px solid var(--gold);
+}
+.qibla-card-title {
+  font-size: .75rem;
+  font-weight: 600;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  margin-bottom: .6rem;
+}
+.qibla-card-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+.qibla-card-value.gold { color: var(--gold); }
+.qibla-card-value .unit {
+  font-size: .9rem;
+  font-weight: 400;
+  color: var(--text-light);
+  margin-left: .25rem;
+}
+.qibla-card-sub {
+  font-size: .8rem;
+  color: var(--text-light);
+  margin-top: .2rem;
+}
+
+/* Aide étapes */
+.qibla-steps {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.4rem 1.5rem;
+}
+.qibla-steps h4 { font-size: .9rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-dark); }
+.step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: .85rem;
+  margin-bottom: .85rem;
+}
+.step-item:last-child { margin-bottom: 0; }
+.step-num {
+  width: 26px; height: 26px;
+  min-width: 26px;
+  border-radius: 50%;
+  background: var(--green);
+  color: #fff;
+  font-size: .75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: .05rem;
+}
+.step-text { font-size: .85rem; color: var(--text); line-height: 1.55; }
+
+/* État d'erreur géoloc */
+.qibla-error {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-light);
+}
+.qibla-error .emoji { font-size: 2.5rem; display: block; margin-bottom: .75rem; }
+
+/* Mode dégradé (sans gyro) */
+.no-gyro-hint {
+  background: rgba(201,168,76,.08);
+  border: 1px solid rgba(201,168,76,.25);
+  border-radius: 12px;
+  padding: .8rem 1rem;
+  font-size: .8rem;
+  color: var(--gold-dark, #a07820);
+  line-height: 1.5;
+  margin-top: .5rem;
+  display: none;
+}
+.no-gyro-hint.show { display: block; }
+
+/* Aiguille pulsante quand pas de gyro */
+.compass-needle-wrap.no-gyro-anim {
+  animation: needle-glow 2.5s ease-in-out infinite;
+}
+@keyframes needle-glow {
+  0%,100% { filter: none; }
+  50%      { filter: drop-shadow(0 0 12px rgba(201,168,76,.4)); }
+}
+
+/* Dark mode */
+[data-theme="dark"] .compass-face {
+  background: radial-gradient(circle at 40% 35%, #0d1d0d, #070f07 80%);
+}

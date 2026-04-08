@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Politique de confidentialité d'Al-Huda — comment nous protégeons vos données." />
+  <title>Politique de confidentialité — Al-Huda | الهُدى</title>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231B6B3A'/><text y='.9em' font-size='70' font-family='serif' x='50%' text-anchor='middle' fill='%23C9A84C'>ه</text></svg>" />
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('al-huda-theme') || 'light');</script>
+  <link rel="manifest" href="../../manifest.json" />
+  <meta name="theme-color" content="#1B6B3A" />
+  <link rel="stylesheet" href="../../assets/css/main.css" />
+
+  <style>
+    .privacy-hero {
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      padding: 3rem 0 2rem;
+      text-align: center;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .privacy-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(201,168,76,.15) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .privacy-hero-badge {
+      display: inline-block;
+      background: rgba(201,168,76,.2);
+      color: var(--gold);
+      border: 1px solid rgba(201,168,76,.4);
+      border-radius: 20px;
+      padding: .3rem 1rem;
+      font-size: .82rem;
+      margin-bottom: 1rem;
+    }
+    .privacy-hero h1 { font-size: clamp(1.6rem,3vw,2.4rem); color: #fff; margin: 0 0 .5rem; }
+    .privacy-hero small { opacity: .8; font-size: .85rem; }
+
+    /* Content */
+    .privacy-content {
+      max-width: 780px;
+      margin: 2.5rem auto 3.5rem;
+      padding: 0 1rem;
+    }
+    .privacy-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.6rem 1.8rem;
+      margin-bottom: 1.2rem;
+    }
+    .privacy-section h2 {
+      font-size: 1.05rem;
+      color: var(--green);
+      margin: 0 0 .9rem;
+      display: flex; align-items: center; gap: .5rem;
+      padding-bottom: .6rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .privacy-section p, .privacy-section li {
+      font-size: .9rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin: 0 0 .6rem;
+    }
+    .privacy-section ul {
+      padding-left: 1.4rem;
+      margin: .4rem 0;
+    }
+    .privacy-section li { margin-bottom: .3rem; }
+    .privacy-section strong { color: var(--text); }
+    .privacy-highlight {
+      background: var(--green-pale);
+      border-left: 4px solid var(--green);
+      border-radius: 0 8px 8px 0;
+      padding: .8rem 1rem;
+      font-size: .88rem;
+      color: var(--text);
+      margin-top: .8rem;
+    }
+    .last-updated {
+      text-align: center;
+      font-size: .82rem;
+      color: var(--text-secondary);
+      margin-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ====== NAVBAR ====== -->
+<nav class="navbar scrolled" id="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="../../index.html" class="logo">
+        <div class="logo-icon">ه</div>
+        <div class="logo-text">
+          <div class="name">Al-Huda</div>
+          <div class="tagline">الهُدى • Le Guide</div>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Accueil</a></li>
+        <li><a href="../quran/index.html">Coran</a></li>
+        <li><a href="../azkars/index.html">Azkars</a></li>
+        <li><a href="../prayers/index.html">Prières</a></li>
+        <li><a href="../hadiths/index.html">Hadiths</a></li>
+        <li><a href="../articles/index.html">Bibliothèque</a></li>
+        <li><a href="../quiz/index.html">Quiz</a></li>
+        <li><a href="../nour/index.html">Nour IA</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="theme-toggle" id="theme-toggle" title="Changer le thème" aria-label="Basculer thème sombre/clair">🌙</button>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../../index.html">🏠 Accueil</a>
+  <a href="../quran/index.html">📖 Coran</a>
+  <a href="../azkars/index.html">🤲 Azkars</a>
+  <a href="../prayers/index.html">🕌 Prières</a>
+  <a href="../hadiths/index.html">📜 Hadiths</a>
+  <a href="../articles/index.html">📚 Bibliothèque</a>
+  <a href="../quiz/index.html">🧠 Quiz</a>
+  <a href="../nour/index.html">🌙 Nour IA</a>
+</div>
+
+<!-- ====== HERO ====== -->
+<section class="privacy-hero">
+  <div class="container" style="position:relative;">
+    <span class="privacy-hero-badge">سياسة الخصوصية</span>
+    <h1>🔒 Politique de confidentialité</h1>
+    <small>Dernière mise à jour : Avril 2025</small>
+  </div>
+</section>
+
+<!-- ====== CONTENU ====== -->
+<main>
+  <div class="privacy-content">
+
+    <div class="privacy-section">
+      <h2>📌 1. Présentation</h2>
+      <p>Al-Huda (الهُدى — Le Guide) est un site web islamique gratuit, à but non lucratif, conçu pour aider les musulmans à enrichir leurs connaissances religieuses. Ce site est entièrement statique : il n'a <strong>aucun serveur propre</strong>, aucune base de données, et ne collecte aucune donnée personnelle de manière automatique.</p>
+      <div class="privacy-highlight">
+        ✅ Al-Huda ne vend, ne loue et ne partage aucune donnée personnelle avec des tiers à des fins commerciales.
+      </div>
+    </div>
+
+    <div class="privacy-section">
+      <h2>💾 2. Données stockées localement (localStorage)</h2>
+      <p>Pour améliorer ton expérience, Al-Huda utilise le <strong>localStorage</strong> de ton navigateur (stockage local, jamais envoyé à nos serveurs) pour sauvegarder :</p>
+      <ul>
+        <li>Tes <strong>marque-pages et notes</strong> sur les versets coraniques</li>
+        <li>Ton <strong>historique de conversation</strong> avec l'assistante Nour IA</li>
+        <li>Ta <strong>clé API Groq</strong> (uniquement sur ton appareil, jamais transmise)</li>
+        <li>Ta <strong>préférence de thème</strong> (clair / sombre)</li>
+        <li>Ta <strong>préférence de langue</strong> de traduction coranique (FR / EN)</li>
+      </ul>
+      <p>Ces données restent <strong>exclusivement sur ton appareil</strong>. Tu peux les supprimer à tout moment en vidant le localStorage de ton navigateur (Paramètres → Effacer les données de navigation).</p>
+    </div>
+
+    <div class="privacy-section">
+      <h2>🌐 3. APIs tierces utilisées</h2>
+      <p>Al-Huda fait appel à des services externes pour certaines fonctionnalités. Ces services ont leurs propres politiques de confidentialité :</p>
+      <ul>
+        <li><strong>AlQuran.cloud</strong> — Texte et audio du Coran</li>
+        <li><strong>Aladhan.com</strong> — Horaires de prière et calendrier islamique</li>
+        <li><strong>Groq AI</strong> (groq.com) — Moteur de l'assistante Nour IA (requiert ta clé API personnelle)</li>
+        <li><strong>Google Fonts</strong> — Polices d'écriture (Amiri, Inter)</li>
+        <li><strong>ip-api.com</strong> — Géolocalisation approximative pour les horaires de prière (aucune donnée sauvegardée)</li>
+        <li><strong>Nominatim / OpenStreetMap</strong> — Recherche de villes pour les horaires</li>
+        <li><strong>Formspree.io</strong> — Traitement des messages du formulaire de contact</li>
+      </ul>
+    </div>
+
+    <div class="privacy-section">
+      <h2>📨 4. Formulaire de contact</h2>
+      <p>Lorsque tu utilises le formulaire de contact, les informations que tu saisis (prénom, email, message) sont transmises via <strong>Formspree.io</strong> et nous parviennent par email. Ces données sont utilisées uniquement pour répondre à ta demande. Elles ne sont jamais partagées avec des tiers.</p>
+    </div>
+
+    <div class="privacy-section">
+      <h2>🍪 5. Cookies</h2>
+      <p>Al-Huda <strong>n'utilise pas de cookies</strong> de traçage ou publicitaires. Certains services tiers (Google Fonts, Formspree) peuvent déposer des cookies techniques nécessaires à leur fonctionnement.</p>
+    </div>
+
+    <div class="privacy-section">
+      <h2>👶 6. Données des mineurs</h2>
+      <p>Al-Huda ne collecte intentionnellement aucune donnée personnelle concernant des enfants de moins de 13 ans. Si tu es parent et constates une collecte involontaire, contacte-nous via le formulaire de contact.</p>
+    </div>
+
+    <div class="privacy-section">
+      <h2>✏️ 7. Modifications</h2>
+      <p>Cette politique peut être mise à jour. La date de dernière modification est indiquée en haut de la page. En continuant à utiliser Al-Huda après une modification, tu acceptes la nouvelle politique.</p>
+    </div>
+
+    <div class="privacy-section">
+      <h2>📬 8. Nous contacter</h2>
+      <p>Pour toute question relative à cette politique ou à tes données, utilise notre <a href="../contact/index.html" style="color:var(--green);font-weight:600;">formulaire de contact</a>.</p>
+    </div>
+
+    <p class="last-updated">Document mis à jour en Avril 2025 · Al-Huda — الهُدى</p>
+
+  </div>
+</main>
+
+<!-- ====== FOOTER ====== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo-icon" style="width:32px;height:32px;font-size:1rem;">ه</div>
+        <span><strong>Al-Huda</strong> — الهُدى</span>
+      </div>
+      <ul class="footer-links">
+        <li><a href="../../index.html">Accueil</a></li>
+        <li><a href="../quran/index.html">Coran</a></li>
+        <li><a href="../hadiths/index.html">Hadiths</a></li>
+        <li><a href="../quiz/index.html">Quiz</a></li>
+        <li><a href="../nour/index.html">Nour IA</a></li>
+        <li><a href="../contact/index.html">Contact</a></li>
+      </ul>
+    </div>
+    <p>© 2025 Al-Huda — الهُدى • Le Guide. Fait avec ❤ pour la Oumma.</p>
+  <p style="margin-top:.4rem;"><a href="../about/index.html" style="color:rgba(255,255,255,.45);font-size:.8rem;">À propos</a> &nbsp;•&nbsp; <a href="../contact/index.html" style="color:rgba(255,255,255,.45);font-size:.8rem;">Contact</a></p>
+  </div>
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+</body>
+</html>

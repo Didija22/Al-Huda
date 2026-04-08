@@ -187,10 +187,18 @@
 .card-header .header-date { color: rgba(255,255,255,0.7); font-size: 0.82rem; margin-top: 0.2rem; }
 .card-header-right { text-align: right; }
 .card-header .hijri-date {
-  font-family: 'Noto Naskh Arabic', serif;
-  color: var(--gold-light);
-  font-size: 1rem;
+  font-family: 'Amiri', 'Noto Naskh Arabic', serif;
+  color: var(--gold-light, #E8C96A);
+  font-size: 1.15rem;
+  font-weight: 700;
   direction: rtl;
+  background: rgba(201,168,76,.18);
+  border: 1px solid rgba(201,168,76,.35);
+  border-radius: 20px;
+  padding: .28rem .9rem;
+  letter-spacing: .01em;
+  display: inline-block;
+  margin-top: .2rem;
 }
 
 /* ---------- Liste des prières ---------- */

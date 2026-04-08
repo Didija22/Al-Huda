@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Al-Huda — Tableau de bord spirituel : suivez votre progression dans la lecture du Coran, vos azkars et quiz." />
+  <title>Tableau de Bord — Al-Huda | الهُدى</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231B6B3A'/><text y='.9em' font-size='70' font-family='serif' x='50%' text-anchor='middle' fill='%23C9A84C'>ه</text></svg>" />
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('al-huda-theme') || 'light');</script>
+  <link rel="manifest" href="../../manifest.json" />
+  <meta name="theme-color" content="#1B6B3A" />
+  <link rel="stylesheet" href="../../assets/css/main.css" />
+  <link rel="stylesheet" href="../../assets/css/dashboard.css" />
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar scrolled" id="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="../../index.html" class="logo">
+        <div class="logo-icon">ه</div>
+        <div class="logo-text">
+          <div class="name">Al-Huda</div>
+          <div class="tagline">الهُدى • Le Guide</div>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Accueil</a></li>
+        <li><a href="../quran/index.html">Coran</a></li>
+        <li><a href="../prayers/index.html">Prières</a></li>
+        <li><a href="../hadiths/index.html">Hadiths</a></li>
+        <li><a href="../quiz/index.html">Quiz</a></li>
+        <li><a href="../nour/index.html">Nour IA</a></li>
+        <li><a href="index.html" class="active">Tableau de bord</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../../index.html">🏠 Accueil</a>
+  <a href="../quran/index.html">📖 Coran</a>
+  <a href="../prayers/index.html">🕌 Prières</a>
+  <a href="../hadiths/index.html">📜 Hadiths</a>
+  <a href="../quiz/index.html">🧠 Quiz</a>
+  <a href="../nour/index.html">🌙 Nour IA</a>
+  <a href="index.html">📊 Tableau de bord</a>
+</div>
+
+<!-- HERO -->
+<section class="db-hero">
+  <div class="container">
+    <div class="db-hero-inner">
+      <div>
+        <p class="db-greeting" id="db-greeting">As-salâmu alaykum 🌿</p>
+        <h1>📊 Mon Tableau de Bord</h1>
+        <p class="db-hero-sub">Votre progression spirituelle en un coup d'œil</p>
+      </div>
+      <div class="db-streak-badge">
+        <span class="db-streak-fire">🔥</span>
+        <span class="db-streak-num" id="db-streak-num">0</span>
+        <span class="db-streak-lbl">jours consécutifs</span>
+        <span class="db-streak-lbl" id="db-best-streak" style="margin-top:.3rem;font-size:.68rem;color:rgba(255,255,255,.4);">Meilleur : 0 j</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS RAPIDES -->
+<div class="container">
+  <div class="db-stats">
+
+    <div class="db-stat-card" id="db-s-surahs">
+      <div class="db-stat-icon">📖</div>
+      <div class="db-stat-num green">0</div>
+      <div class="db-stat-lbl">Sourates lues</div>
+    </div>
+
+    <div class="db-stat-card" id="db-s-streak">
+      <div class="db-stat-icon">🔥</div>
+      <div class="db-stat-num">0</div>
+      <div class="db-stat-lbl">Jours consécutifs</div>
+    </div>
+
+    <div class="db-stat-card" id="db-s-bm">
+      <div class="db-stat-icon">🔖</div>
+      <div class="db-stat-num">0</div>
+      <div class="db-stat-lbl">Marque-pages</div>
+    </div>
+
+    <div class="db-stat-card" id="db-s-notes">
+      <div class="db-stat-icon">📝</div>
+      <div class="db-stat-num">0</div>
+      <div class="db-stat-lbl">Notes personnelles</div>
+    </div>
+
+    <div class="db-stat-card" id="db-s-quiz">
+      <div class="db-stat-icon">🧠</div>
+      <div class="db-stat-num">0</div>
+      <div class="db-stat-lbl">Quiz complétés</div>
+    </div>
+
+    <div class="db-stat-card" id="db-s-score">
+      <div class="db-stat-icon">⭐</div>
+      <div class="db-stat-num">0%</div>
+      <div class="db-stat-lbl">Score quiz moyen</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- GRAPHE ACTIVITÉ -->
+<div class="container db-section">
+  <div class="db-section-title">📅 Activité des 7 derniers jours <span>(sourates lues par jour)</span></div>
+  <div class="db-chart-card">
+    <canvas id="db-chart"></canvas>
+  </div>
+</div>
+
+<!-- PROGRESSION CORAN + BADGES -->
+<div class="container">
+  <div class="db-grid-2">
+
+    <!-- Progression Coran -->
+    <div>
+      <div class="db-section-title">📖 Progression dans le Coran</div>
+      <div class="db-quran-card">
+        <div class="db-quran-header">
+          <span class="db-stat-lbl" id="db-surahs-count">0 / 114 sourates</span>
+          <span class="db-quran-pct" id="db-quran-pct">0%</span>
+        </div>
+        <div class="db-progress-bar">
+          <div class="db-progress-fill" id="db-progress-fill" style="width:0%"></div>
+        </div>
+        <div class="db-surahs-grid" id="db-surahs-grid">
+          <!-- Généré par dashboard.js -->
+        </div>
+        <div class="db-legend">
+          <span><span class="db-legend-dot" style="background:var(--green)"></span>Lue</span>
+          <span><span class="db-legend-dot" style="background:var(--border)"></span>Non lue</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Badges -->
+    <div>
+      <div class="db-section-title">🏅 Récompenses <span>(débloquées en vert)</span></div>
+      <div class="db-badges-card">
+        <div class="db-badges-grid" id="db-badges-grid">
+          <!-- Généré par dashboard.js -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ACTIVITÉ RÉCENTE -->
+<div class="container db-section">
+  <div class="db-section-title">🕒 Activité récente <span>(marque-pages &amp; notes)</span></div>
+  <div class="db-activity-card">
+    <div id="db-activity-list">
+      <!-- Généré par dashboard.js -->
+    </div>
+  </div>
+</div>
+
+<!-- RESET + LIENS -->
+<div class="container" style="padding-bottom:3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+  <div style="display:flex;gap:.75rem;flex-wrap:wrap;">
+    <a href="../quran/index.html" class="btn btn-primary">📖 Lire le Coran</a>
+    <a href="../quiz/index.html"  class="btn btn-outline" style="border-color:var(--green);color:var(--green);">🧠 Faire un Quiz</a>
+    <a href="../qibla/index.html" class="btn btn-outline" style="border-color:var(--green);color:var(--green);">🧭 Qibla</a>
+  </div>
+  <button class="db-reset-btn" id="db-reset-btn">🗑 Réinitialiser mes données</button>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../../index.html" class="logo">
+          <div class="logo-icon">ه</div>
+          <div class="logo-text"><div class="name">Al-Huda</div><div class="tagline">الهُدى • Le Guide</div></div>
+        </a>
+        <p style="margin-top:1rem;">Votre compagnon islamique numérique.</p>
+        <div class="arabic-motto">وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا</div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="../quran/index.html">📖 Coran</a></li>
+          <li><a href="../prayers/index.html">🕌 Prières</a></li>
+          <li><a href="../quiz/index.html">🧠 Quiz</a></li>
+          <li><a href="../nour/index.html">🌙 Nour IA</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="../qibla/index.html">🧭 Qibla</a></li>
+          <li><a href="../asma/index.html">✨ 99 Noms</a></li>
+          <li><a href="../duas/index.html">🤲 Duas</a></li>
+          <li><a href="index.html">📊 Tableau de bord</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Légal</h4>
+        <ul>
+          <li><a href="../about/index.html">À propos</a></li>
+          <li><a href="../privacy/index.html">Confidentialité</a></li>
+          <li><a href="../contact/index.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Al-Huda — الهُدى. Fait avec <span class="love">♥</span> pour la communauté musulmane.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../../assets/js/tracker.js"></script>
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/dashboard.js"></script>
+</body>
+</html>
