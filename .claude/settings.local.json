@@ -34,7 +34,8 @@
       "WebFetch(domain:api.quran.com)",
       "WebFetch(domain:download.quranicaudio.com)",
       "WebFetch(domain:server12.mp3quran.net)",
-      "WebFetch(domain:server8.mp3quran.net)"
+      "WebFetch(domain:server8.mp3quran.net)",
+      "Bash(powershell.exe -Command \":*)"
     ]
   }
 }
