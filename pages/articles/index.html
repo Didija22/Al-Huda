@@ -166,6 +166,11 @@
   /* ── Rendu catalogue ── */
   const catalogue = document.getElementById('lib-catalogue');
 
+  /* ── Reveal observer (défini avant renderCatalogue pour éviter ReferenceError) ── */
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('visible'); revealObs.unobserve(en.target); } });
+  }, { threshold: 0.07 });
+
   function renderCatalogue(filteredCats) {
     catalogue.innerHTML = '';
     let total = 0;
@@ -298,11 +303,6 @@
   closeBtn?.addEventListener('click', closeModal);
   backdrop?.addEventListener('click', closeModal);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-  /* ── Reveal observer ── */
-  const revealObs = new IntersectionObserver(entries => {
-    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('visible'); revealObs.unobserve(en.target); } });
-  }, { threshold: 0.07 });
 
 })();
 </script>
