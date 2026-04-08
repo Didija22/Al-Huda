@@ -21,43 +21,9 @@
 <body>
 
 <!-- NAVBAR -->
-<nav class="navbar scrolled" id="navbar">
-  <div class="container">
-    <div class="navbar-inner">
-      <a href="../../index.html" class="logo">
-        <div class="logo-icon">ه</div>
-        <div class="logo-text">
-          <div class="name">Al-Huda</div>
-          <div class="tagline">الهُدى • Le Guide</div>
-        </div>
-      </a>
-      <ul class="nav-links">
-        <li><a href="../../index.html">Accueil</a></li>
-        <li><a href="index.html" class="active">Coran</a></li>
-        <li><a href="../azkars/index.html">Azkars</a></li>
-        <li><a href="../prayers/index.html">Prières</a></li>
-        <li><a href="../hadiths/index.html">Hadiths</a></li>
-        <li><a href="../articles/index.html">Articles</a></li>
-        <li><a href="../quiz/index.html">Quiz</a></li>
-        
-      </ul>
-      <div class="nav-cta">
-        <div class="nav-prayer-time">
-          <span class="dot"></span>
-          <span id="next-prayer-nav">Prochaine prière</span>
-        </div>
-      </div>
-      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
-    </div>
-  </div>
-</nav>
-<div class="mobile-menu" id="mobile-menu">
-  <a href="../../index.html">🏠 Accueil</a>
-  <a href="index.html">📖 Coran</a>
-  <a href="../azkars/index.html">🤲 Azkars</a>
-  <a href="../prayers/index.html">🕌 Prières</a>
-  <a href="../hadiths/index.html">📜 Hadiths</a>
-</div>
+<div id="nav-placeholder"></div>
+<script src="../../assets/js/icons.js"></script>
+<script src="../../assets/js/components.js"></script>
 
 <!-- HEADER SOURATE -->
 <section class="surah-hero" id="surah-hero">
@@ -148,14 +114,29 @@
 
       <!-- Barre d'outils flottante -->
       <div class="reading-toolbar">
-        <button class="toolbar-btn" id="open-sidebar" title="Liste des sourates">📚 Sourates</button>
+        <button class="toolbar-btn" id="open-sidebar" title="Liste des sourates">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="alhuda-icon" aria-hidden="true"><line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/></svg>
+          Sourates
+        </button>
         <div class="toolbar-separator"></div>
-        <button class="toolbar-btn" id="btn-favorites" title="Mes favoris et notes">📌 Favoris <span class="fav-count" id="fav-count" style="display:none"></span></button>
-        <button class="toolbar-btn" id="btn-audio" title="Écouter la récitation">🔊 Audio</button>
+        <button class="toolbar-btn" id="btn-favorites" title="Mes favoris et notes">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="alhuda-icon" aria-hidden="true"><path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"/></svg>
+          Favoris <span class="fav-count" id="fav-count" style="display:none"></span>
+        </button>
+        <button class="toolbar-btn" id="btn-audio" title="Écouter la récitation">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="alhuda-icon" aria-hidden="true"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg>
+          Audio
+        </button>
         <div class="toolbar-separator"></div>
-        <button class="toolbar-btn" id="btn-copy" title="Copier le texte">📋 Copier</button>
+        <button class="toolbar-btn" id="btn-copy" title="Copier le texte">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="alhuda-icon" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+          Copier
+        </button>
         <div class="toolbar-separator"></div>
-        <button class="toolbar-btn" id="btn-immersive" title="Mode lecture immersif plein écran">🌙 Immersif</button>
+        <button class="toolbar-btn" id="btn-immersive" title="Mode lecture immersif plein écran">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="alhuda-icon" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
+          Immersif
+        </button>
       </div>
 
       <!-- Lecteur audio -->
@@ -163,8 +144,13 @@
 
         <!-- En-tête -->
         <div class="reciter-header">
-          <span class="reciter-header-title">🎙️ Récitateurs</span>
-          <button class="reciter-close-btn" id="btn-audio-close" title="Fermer le lecteur">✕</button>
+          <span class="reciter-header-title">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="alhuda-icon" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+            Récitateurs
+          </span>
+          <button class="reciter-close-btn" id="btn-audio-close" title="Fermer le lecteur">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </button>
         </div>
 
         <!-- Chips de sélection (générées par JS) -->
@@ -192,12 +178,16 @@
 
         <!-- Contrôles -->
         <div class="player-controls">
-          <button class="player-ctrl-btn" id="btn-loop" title="Répétition en boucle">🔁</button>
+          <button class="player-ctrl-btn" id="btn-loop" title="Répétition en boucle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m17 2 4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+          </button>
           <button class="player-ctrl-btn player-ctrl-play" id="btn-play-pause" title="Lecture / Pause" disabled>
             <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M8 5v14l11-7z"/></svg>
             <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
           </button>
-          <button class="player-ctrl-btn" id="btn-mute" title="Couper le son">🔊</button>
+          <button class="player-ctrl-btn" id="btn-mute" title="Couper le son">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-volume" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          </button>
         </div>
 
         <!-- Indicateur de chargement -->
@@ -231,12 +221,23 @@
 <!-- PANNEAU FAVORIS -->
 <div class="fav-panel" id="fav-panel">
   <div class="fav-panel-header">
-    <h3>📌 Mes Favoris</h3>
-    <button class="fav-panel-close" id="fav-panel-close">✕</button>
+    <h3>
+      <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="alhuda-icon" aria-hidden="true"><path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"/></svg>
+      Mes Favoris
+    </h3>
+    <button class="fav-panel-close" id="fav-panel-close">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
   </div>
   <div class="fav-tabs">
-    <button class="fav-tab active" data-tab="bookmarks">🔖 Marque-pages</button>
-    <button class="fav-tab" data-tab="notes">📝 Notes</button>
+    <button class="fav-tab active" data-tab="bookmarks">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="alhuda-icon" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
+      Marque-pages
+    </button>
+    <button class="fav-tab" data-tab="notes">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="alhuda-icon" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      Notes
+    </button>
   </div>
   <div class="fav-content" id="fav-content"></div>
 </div>
@@ -246,14 +247,25 @@
 <div class="note-overlay" id="note-overlay">
   <div class="note-modal">
     <div class="note-modal-header">
-      <h3>📝 Note personnelle</h3>
-      <button class="note-modal-close" id="note-modal-close">✕</button>
+      <h3>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="alhuda-icon" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        Note personnelle
+      </h3>
+      <button class="note-modal-close" id="note-modal-close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
     </div>
     <div class="note-verse-preview" id="note-verse-preview"></div>
     <textarea class="note-textarea" id="note-textarea" placeholder="Écrire une réflexion, une mémorisation, un commentaire…" rows="5"></textarea>
     <div class="note-modal-actions">
-      <button class="note-btn-delete" id="note-btn-delete">🗑 Supprimer</button>
-      <button class="note-btn-save" id="note-btn-save">✓ Enregistrer</button>
+      <button class="note-btn-delete" id="note-btn-delete">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="alhuda-icon" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+        Supprimer
+      </button>
+      <button class="note-btn-save" id="note-btn-save">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="alhuda-icon" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        Enregistrer
+      </button>
     </div>
   </div>
 </div>
@@ -277,9 +289,18 @@
         <span class="imm-fs-label" id="imm-fs-label">M</span>
         <button class="imm-fs-btn" id="imm-fs-up"   title="Agrandir">A+</button>
       </div>
-      <button class="imm-btn" id="imm-sound-btn">🔇 Son</button>
-      <button class="imm-btn" id="imm-auto-btn">▶ Auto</button>
-      <button class="imm-btn imm-btn-exit" id="imm-exit-btn">✕ Quitter</button>
+      <button class="imm-btn" id="imm-sound-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="alhuda-icon" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+        Son
+      </button>
+      <button class="imm-btn" id="imm-auto-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="alhuda-icon" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Auto
+      </button>
+      <button class="imm-btn imm-btn-exit" id="imm-exit-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="alhuda-icon" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        Quitter
+      </button>
     </div>
   </div>
 

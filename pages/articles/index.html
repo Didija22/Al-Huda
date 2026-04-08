@@ -1,12 +1,18 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Al-Huda — Bibliothèque islamique complète : Aqidah, Fiqh, Eschatologie, Famille, Comportement et bien plus." />
+  <meta name="description" content="Al-Huda — Bibliothèque islamique complète : Aqidah, Fiqh, Eschatologie, Famille, Comportement et bien plus. Lisez et téléchargez gratuitement." />
   <title>Bibliothèque Islamique — Al-Huda | الهُدى</title>
+
+  <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231B6B3A'/><text y='.9em' font-size='70' font-family='serif' x='50%' text-anchor='middle' fill='%23C9A84C'>ه</text></svg>" />
+
+  <!-- Anti-flash dark mode -->
   <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('al-huda-theme') || 'light');</script>
+
+  <!-- PWA -->
   <link rel="manifest" href="../../manifest.json" />
   <meta name="theme-color" content="#1B6B3A" />
   <meta name="mobile-web-app-capable" content="yes" />
@@ -14,578 +20,292 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Al-Huda" />
   <link rel="apple-touch-icon" href="../../assets/icons/icon-192.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Bibliothèque Islamique — Al-Huda" />
+  <meta property="og:description" content="Lisez et téléchargez des ressources islamiques classées par thème — Aqidah, Fiqh, Eschatologie, Famille et bien plus." />
+  <meta property="og:type" content="website" />
+
+  <!-- Styles -->
   <link rel="stylesheet" href="../../assets/css/main.css" />
   <link rel="stylesheet" href="../../assets/css/articles.css" />
 </head>
 <body>
 
-<nav class="navbar scrolled" id="navbar">
-  <div class="container">
-    <div class="navbar-inner">
-      <a href="../../index.html" class="logo">
-        <div class="logo-icon">ه</div>
-        <div class="logo-text"><div class="name">Al-Huda</div><div class="tagline">الهُدى • Le Guide</div></div>
-      </a>
-      <ul class="nav-links">
-        <li><a href="../../index.html">Accueil</a></li>
-        <li><a href="../quran/index.html">Coran</a></li>
-        <li><a href="../azkars/index.html">Azkars</a></li>
-        <li><a href="../prayers/index.html">Prières</a></li>
-        <li><a href="../hadiths/index.html">Hadiths</a></li>
-        <li><a href="index.html" class="active">Bibliothèque</a></li>
-        <li><a href="../quiz/index.html">Quiz</a></li>
-        
-      </ul>
-      <div class="nav-cta">
-        <div class="nav-prayer-time"><span class="dot"></span><span id="next-prayer-nav">Prochaine prière</span></div>
-      </div>
-      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
-    </div>
-  </div>
-</nav>
-<div class="mobile-menu" id="mobile-menu">
-  <a href="../../index.html">🏠 Accueil</a>
-  <a href="../quran/index.html">📖 Coran</a>
-  <a href="../azkars/index.html">🤲 Azkars</a>
-  <a href="../prayers/index.html">🕌 Prières</a>
-  <a href="../hadiths/index.html">📜 Hadiths</a>
-  <a href="index.html">📚 Bibliothèque</a>
-</div>
+<!-- ====== NAVBAR ====== -->
+<div id="nav-placeholder"></div>
+<script src="../../assets/js/icons.js"></script>
+<script src="../../assets/js/components.js"></script>
 
-<!-- HERO -->
-<section class="lib-hero">
-  <div class="lib-hero-pattern"></div>
+<!-- ====== HERO ====== -->
+<section class="lib-hero" aria-label="En-tête Bibliothèque islamique">
+  <div class="lib-hero-pattern" aria-hidden="true"></div>
   <div class="container">
     <div class="lib-hero-inner animate-fadeInUp">
       <span class="badge badge-gold">المكتبة الإسلامية</span>
       <h1>Bibliothèque Islamique</h1>
-      <p>Une collection complète de ressources islamiques classées par thème — Aqidah, Fiqh, Eschatologie, Famille et bien plus</p>
-      <div class="lib-drive-banner">
-        <div class="drive-icon">📁</div>
-        <div class="drive-info">
-          <strong>Collection Google Drive</strong>
-          <span>Ressources téléchargeables • PDF & Documents</span>
-        </div>
-        <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="btn btn-gold">
-          Ouvrir la bibliothèque →
-        </a>
+      <p>Une collection de ressources islamiques classées par thème — lisez directement ou téléchargez gratuitement</p>
+      <div class="lib-hero-stats" aria-label="Statistiques">
+        <div class="lhstat"><strong id="stat-books">0</strong><small>Livres</small></div>
+        <div class="lhstat"><strong>6</strong><small>Catégories</small></div>
+        <div class="lhstat"><strong>Gratuit</strong><small>Accès libre</small></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- STATS -->
-<section class="lib-stats-bar">
-  <div class="container">
-    <div class="lib-stats">
-      <div class="lstat"><strong>30+</strong><span>Thèmes islamiques</span></div>
-      <div class="lstat-sep"></div>
-      <div class="lstat"><strong>6</strong><span>Grandes catégories</span></div>
-      <div class="lstat-sep"></div>
-      <div class="lstat"><strong>100+</strong><span>Documents & PDF</span></div>
-      <div class="lstat-sep"></div>
-      <div class="lstat"><strong>Gratuit</strong><span>Accès libre</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- RECHERCHE -->
-<section class="lib-search-bar">
+<!-- ====== RECHERCHE & FILTRES ====== -->
+<section class="lib-search-bar" aria-label="Recherche et filtres">
   <div class="container">
     <div class="lib-search-inner">
-      <div class="search-box">
-        <span class="search-icon">🔍</span>
-        <input type="text" id="lib-search" placeholder="Rechercher un thème..." autocomplete="off" />
-        <button class="search-clear" id="lib-search-clear" style="display:none;">✕</button>
-      </div>
-      <div class="lib-cat-filters" id="lib-cat-filters">
-        <button class="lib-filter active" data-cat="all">Tous</button>
-        <button class="lib-filter" data-cat="eschatologie">🌙 Eschatologie</button>
-        <button class="lib-filter" data-cat="aqidah">📿 Aqidah</button>
-        <button class="lib-filter" data-cat="fiqh">🕌 Fiqh</button>
-        <button class="lib-filter" data-cat="akhlaq">🌿 Comportement</button>
-        <button class="lib-filter" data-cat="famille">👨‍👩‍👧 Famille</button>
-        <button class="lib-filter" data-cat="spiritualite">🤲 Spiritualité</button>
-        <button class="lib-filter" data-cat="textes">📚 Textes & Histoire</button>
+      <div class="search-box" role="search">
+        <span class="search-icon" aria-hidden="true" id="lib-search-icon"></span>
+        <input type="text" id="lib-search" placeholder="Rechercher un livre..." autocomplete="off" aria-label="Rechercher un livre" />
+        <button class="search-clear" id="lib-search-clear" style="display:none;" aria-label="Effacer la recherche">
+          <span id="lib-clear-icon"></span>
+        </button>
       </div>
     </div>
-    <div class="results-count"><span id="lib-count">30</span> thèmes</div>
+    <div class="lib-cat-filters" id="lib-cat-filters" role="tablist" aria-label="Filtrer par catégorie">
+      <button class="lib-filter active" data-cat="all" role="tab">Tous</button>
+    </div>
+    <p class="results-count" id="lib-results-count" aria-live="polite"></p>
   </div>
 </section>
 
-<!-- ====== CATÉGORIE : ESCHATOLOGIE ====== -->
-<section class="lib-category-section" id="eschatologie" data-cat="eschatologie">
+<!-- ====== CATALOGUE ====== -->
+<main id="main-content">
   <div class="container">
-    <div class="lib-cat-header reveal">
-      <div class="lib-cat-icon">🌙</div>
-      <div>
-        <h2>Eschatologie — Fin des Temps</h2>
-        <p>Ce qui nous attend : les signes, le Dajjal, le Paradis, l'Enfer et le Jour Dernier</p>
+    <div id="lib-catalogue" aria-label="Catalogue des livres">
+      <!-- Généré dynamiquement par le script ci-dessous -->
+      <div style="text-align:center;padding:4rem 1rem;color:var(--text-light);">
+        <p>Chargement de la bibliothèque...</p>
       </div>
     </div>
-    <div class="lib-grid">
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal" data-cat="eschatologie" data-name="Dajjal">
-        <div class="lib-card-emoji">👁️</div>
-        <div class="lib-card-body">
-          <h4>Le Dajjal</h4>
-          <p>Le Grand Imposteur — signes, description et protection selon la Sunna</p>
-          <div class="lib-card-tags"><span class="ltag">Eschatologie</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal delay-100" data-cat="eschatologie" data-name="Jours Derniers">
-        <div class="lib-card-emoji">⏳</div>
-        <div class="lib-card-body">
-          <h4>Les Jours Derniers</h4>
-          <p>Les signes mineurs et majeurs de la fin des temps, la résurrection et le Jugement</p>
-          <div class="lib-card-tags"><span class="ltag">Eschatologie</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal delay-200" data-cat="eschatologie" data-name="Paradis">
-        <div class="lib-card-emoji">✨</div>
-        <div class="lib-card-body">
-          <h4>Le Paradis</h4>
-          <p>Description du Paradis, ses portes, ses délices et comment y entrer</p>
-          <div class="lib-card-tags"><span class="ltag">Eschatologie</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal delay-300" data-cat="eschatologie" data-name="Enfer">
-        <div class="lib-card-emoji">🔥</div>
-        <div class="lib-card-body">
-          <h4>L'Enfer</h4>
-          <p>Description de la Géhenne, ses niveaux et comment s'en protéger</p>
-          <div class="lib-card-tags"><span class="ltag">Eschatologie</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal delay-100" data-cat="eschatologie" data-name="Châtiment de la tombe">
-        <div class="lib-card-emoji">⚰️</div>
-        <div class="lib-card-body">
-          <h4>Châtiment de la Tombe</h4>
-          <p>Ce qui se passe après la mort, les questions des anges et l'isthme (barzakh)</p>
-          <div class="lib-card-tags"><span class="ltag">Eschatologie</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-    </div>
   </div>
-</section>
+</main>
 
-<!-- ====== CATÉGORIE : AQIDAH ====== -->
-<section class="lib-category-section bg-green-pale" id="aqidah" data-cat="aqidah">
-  <div class="container">
-    <div class="lib-cat-header reveal">
-      <div class="lib-cat-icon">📿</div>
-      <div>
-        <h2>Aqidah — Croyance Islamique</h2>
-        <p>Les fondements de la croyance islamique, les innovations et la protection contre les déviations</p>
-      </div>
-    </div>
-    <div class="lib-grid">
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal" data-cat="aqidah" data-name="Aqidah">
-        <div class="lib-card-emoji">🌟</div>
-        <div class="lib-card-body">
-          <h4>Aqidah</h4>
-          <p>Les piliers de la croyance : Allah, Ses anges, Ses livres, Ses messagers, le Destin</p>
-          <div class="lib-card-tags"><span class="ltag">Croyance</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal delay-100" data-cat="aqidah" data-name="Innovation">
-        <div class="lib-card-emoji">⚠️</div>
-        <div class="lib-card-body">
-          <h4>Les Innovations (Bid'ah)</h4>
-          <p>Distinguer la Sunna des innovations blâmables — comprendre et éviter les bid'ah</p>
-          <div class="lib-card-tags"><span class="ltag">Aqidah</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal delay-200" data-cat="aqidah" data-name="Diable">
-        <div class="lib-card-emoji">👿</div>
-        <div class="lib-card-body">
-          <h4>Le Diable (Shaytan)</h4>
-          <p>Les ruses d'Iblis, comment il s'attaque aux croyants et comment s'en protéger</p>
-          <div class="lib-card-tags"><span class="ltag">Aqidah</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal delay-300" data-cat="aqidah" data-name="Djins Sorcellerie">
-        <div class="lib-card-emoji">🌀</div>
-        <div class="lib-card-body">
-          <h4>Djins & Sorcellerie</h4>
-          <p>La réalité des djins, la magie noire (sihr), le mauvais œil et la ruqya légale</p>
-          <div class="lib-card-tags"><span class="ltag">Aqidah</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<!-- ====== CATÉGORIE : FIQH ====== -->
-<section class="lib-category-section" id="fiqh" data-cat="fiqh">
-  <div class="container">
-    <div class="lib-cat-header reveal">
-      <div class="lib-cat-icon">🕌</div>
-      <div>
-        <h2>Fiqh — Pratiques Religieuses</h2>
-        <p>Les piliers pratiques de l'Islam : prière, jeûne, aumône et pèlerinage</p>
-      </div>
-    </div>
-    <div class="lib-grid">
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal" data-cat="fiqh" data-name="Prière">
-        <div class="lib-card-emoji">🕌</div>
-        <div class="lib-card-body">
-          <h4>La Prière (Salat)</h4>
-          <p>Conditions, piliers, obligations et sounnates de la prière — guide complet</p>
-          <div class="lib-card-tags"><span class="ltag">Fiqh</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal delay-100" data-cat="fiqh" data-name="Jeûner">
-        <div class="lib-card-emoji">🌙</div>
-        <div class="lib-card-body">
-          <h4>Le Jeûne (Siyam)</h4>
-          <p>Règles du jeûne de Ramadan, jeûnes sunnats, ce qui rompt le jeûne</p>
-          <div class="lib-card-tags"><span class="ltag">Fiqh</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal delay-200" data-cat="fiqh" data-name="Aumône">
-        <div class="lib-card-emoji">💰</div>
-        <div class="lib-card-body">
-          <h4>L'Aumône (Zakat & Sadaqa)</h4>
-          <p>Nisab, calcul de la zakat, conditions, bénéficiaires et vertus de la charité</p>
-          <div class="lib-card-tags"><span class="ltag">Fiqh</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal delay-300" data-cat="fiqh" data-name="Pèlerinage">
-        <div class="lib-card-emoji">🕋</div>
-        <div class="lib-card-body">
-          <h4>Le Pèlerinage (Hajj & Umra)</h4>
-          <p>Rituels du Hajj, étapes de l'Umra, conditions, erreurs à éviter</p>
-          <div class="lib-card-tags"><span class="ltag">Fiqh</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<!-- ====== CATÉGORIE : COMPORTEMENT ====== -->
-<section class="lib-category-section bg-green-pale" id="akhlaq" data-cat="akhlaq">
-  <div class="container">
-    <div class="lib-cat-header reveal">
-      <div class="lib-cat-icon">🌿</div>
-      <div>
-        <h2>Akhlaq — Comportement & Morale</h2>
-        <p>Le caractère islamique, les péchés à éviter, la purification de l'âme</p>
-      </div>
-    </div>
-    <div class="lib-grid">
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal" data-cat="akhlaq" data-name="Comportement">
-        <div class="lib-card-emoji">💚</div>
-        <div class="lib-card-body">
-          <h4>Comportement Islamique</h4>
-          <p>Les bonnes mœurs du musulman — honnêteté, humilité, générosité et justice</p>
-          <div class="lib-card-tags"><span class="ltag">Akhlaq</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal delay-100" data-cat="akhlaq" data-name="Péchés">
-        <div class="lib-card-emoji">🚫</div>
-        <div class="lib-card-body">
-          <h4>Les Péchés Majeurs</h4>
-          <p>Les grands péchés en Islam, leur gravité et comment se repentir sincèrement</p>
-          <div class="lib-card-tags"><span class="ltag">Akhlaq</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal delay-200" data-cat="akhlaq" data-name="Passions">
-        <div class="lib-card-emoji">💭</div>
-        <div class="lib-card-body">
-          <h4>Les Passions (Hawa)</h4>
-          <p>Maîtriser ses désirs, lutter contre le nafs et purifier son cœur</p>
-          <div class="lib-card-tags"><span class="ltag">Akhlaq</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal delay-300" data-cat="akhlaq" data-name="Musique">
-        <div class="lib-card-emoji">🎵</div>
-        <div class="lib-card-body">
-          <h4>La Musique</h4>
-          <p>Le jugement islamique sur la musique et le chant — preuves et positions des savants</p>
-          <div class="lib-card-tags"><span class="ltag">Akhlaq</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal delay-100" data-cat="akhlaq" data-name="Fornication">
-        <div class="lib-card-emoji">⚡</div>
-        <div class="lib-card-body">
-          <h4>La Fornication (Zina)</h4>
-          <p>La gravité du zina, ses conséquences et les moyens de s'en protéger</p>
-          <div class="lib-card-tags"><span class="ltag">Akhlaq</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal delay-200" data-cat="akhlaq" data-name="Prendre soin de soi">
-        <div class="lib-card-emoji">🌸</div>
-        <div class="lib-card-body">
-          <h4>Prendre Soin de Soi</h4>
-          <p>L'hygiène corporelle en Islam, la Fitra, les sounnates du corps</p>
-          <div class="lib-card-tags"><span class="ltag">Akhlaq</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<!-- ====== CATÉGORIE : FAMILLE ====== -->
-<section class="lib-category-section" id="famille" data-cat="famille">
-  <div class="container">
-    <div class="lib-cat-header reveal">
-      <div class="lib-cat-icon">👨‍👩‍👧</div>
-      <div>
-        <h2>Famille & Société</h2>
-        <p>Le mariage, les droits des parents, la femme et l'homme en Islam</p>
-      </div>
-    </div>
-    <div class="lib-grid">
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal" data-cat="famille" data-name="Mariage">
-        <div class="lib-card-emoji">💍</div>
-        <div class="lib-card-body">
-          <h4>Le Mariage</h4>
-          <p>Conditions du mariage islamique, droits et devoirs des époux, le divorce</p>
-          <div class="lib-card-tags"><span class="ltag">Famille</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal delay-100" data-cat="famille" data-name="La femme">
-        <div class="lib-card-emoji">🌺</div>
-        <div class="lib-card-body">
-          <h4>La Femme en Islam</h4>
-          <p>Le statut de la femme, ses droits, le hijab, et sa place dans la société islamique</p>
-          <div class="lib-card-tags"><span class="ltag">Famille</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal delay-200" data-cat="famille" data-name="Les Parents">
-        <div class="lib-card-emoji">👨‍👩‍👧‍👦</div>
-        <div class="lib-card-body">
-          <h4>Les Parents</h4>
-          <p>L'obéissance aux parents, la birr al-walidayn et leurs droits en Islam</p>
-          <div class="lib-card-tags"><span class="ltag">Famille</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal delay-300" data-cat="famille" data-name="L'Homme">
-        <div class="lib-card-emoji">👤</div>
-        <div class="lib-card-body">
-          <h4>L'Homme en Islam</h4>
-          <p>Le rôle du musulman, sa responsabilité de chef de famille, la virilité islamique</p>
-          <div class="lib-card-tags"><span class="ltag">Famille</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<!-- ====== CATÉGORIE : SPIRITUALITÉ ====== -->
-<section class="lib-category-section bg-green-pale" id="spiritualite" data-cat="spiritualite">
-  <div class="container">
-    <div class="lib-cat-header reveal">
-      <div class="lib-cat-icon">🤲</div>
-      <div>
-        <h2>Spiritualité & Âme</h2>
-        <p>Invocations, dhikr, épreuves et purification intérieure</p>
-      </div>
-    </div>
-    <div class="lib-grid">
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal" data-cat="spiritualite" data-name="Invocation">
-        <div class="lib-card-emoji">🤲</div>
-        <div class="lib-card-body">
-          <h4>Invocations (Dua')</h4>
-          <p>Les invocations coraniques et prophétiques, les conditions d'acceptation</p>
-          <div class="lib-card-tags"><span class="ltag">Spiritualité</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal delay-100" data-cat="spiritualite" data-name="Dhikr">
-        <div class="lib-card-emoji">📿</div>
-        <div class="lib-card-body">
-          <h4>Le Dhikr</h4>
-          <p>Les formules de dhikr, leurs vertus, le tasbih et la mention d'Allah</p>
-          <div class="lib-card-tags"><span class="ltag">Spiritualité</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal delay-200" data-cat="spiritualite" data-name="Épreuve">
-        <div class="lib-card-emoji">🌊</div>
-        <div class="lib-card-body">
-          <h4>L'Épreuve (Ibtila)</h4>
-          <p>Pourquoi Allah éprouve les croyants, comment faire preuve de patience et de confiance</p>
-          <div class="lib-card-tags"><span class="ltag">Spiritualité</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal delay-300" data-cat="spiritualite" data-name="Dîne">
-        <div class="lib-card-emoji">🕊️</div>
-        <div class="lib-card-body">
-          <h4>Le Dîne (Religion)</h4>
-          <p>La complétude de l'Islam comme mode de vie — foi, culte et transactions</p>
-          <div class="lib-card-tags"><span class="ltag">Spiritualité</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<!-- ====== CATÉGORIE : TEXTES & HISTOIRE ====== -->
-<section class="lib-category-section" id="textes" data-cat="textes">
-  <div class="container">
-    <div class="lib-cat-header reveal">
-      <div class="lib-cat-icon">📚</div>
-      <div>
-        <h2>Textes & Histoire Islamique</h2>
-        <p>Les grands recueils de hadiths, le Coran, la Hijra et l'histoire de l'Islam</p>
-      </div>
-    </div>
-    <div class="lib-grid">
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal" data-cat="textes" data-name="Sahih">
-        <div class="lib-card-emoji">📖</div>
-        <div class="lib-card-body">
-          <h4>Les différents Sahih</h4>
-          <p>Sahih Al-Bukhari, Sahih Muslim et les grandes collections de hadiths authentiques</p>
-          <div class="lib-card-tags"><span class="ltag">Hadiths</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal delay-100" data-cat="textes" data-name="Coran">
-        <div class="lib-card-emoji">📗</div>
-        <div class="lib-card-body">
-          <h4>Le Coran</h4>
-          <p>Ressources coraniques : Tafsir, mémorisation, tajwid et traductions</p>
-          <div class="lib-card-tags"><span class="ltag">Coran</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal delay-200" data-cat="textes" data-name="Hijra">
-        <div class="lib-card-emoji">🌍</div>
-        <div class="lib-card-body">
-          <h4>La Hijra</h4>
-          <p>L'émigration du Prophète ﷺ, son importance historique et spirituelle</p>
-          <div class="lib-card-tags"><span class="ltag">Histoire</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="lib-card reveal delay-300" data-cat="textes" data-name="Clan islam">
-        <div class="lib-card-emoji">🕌</div>
-        <div class="lib-card-body">
-          <h4>La Communauté Islamique</h4>
-          <p>La Oumma, ses fondements, l'unité des musulmans et la fraternité islamique</p>
-          <div class="lib-card-tags"><span class="ltag">Histoire</span><span class="ltag ltag-gold">PDF</span></div>
-        </div>
-        <div class="lib-card-arrow">→</div>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<!-- CTA Drive -->
-<section class="lib-cta-section">
-  <div class="container">
-    <div class="lib-cta reveal">
-      <div class="lib-cta-icon">📁</div>
-      <h2>Accédez à la bibliothèque complète</h2>
-      <p>Tous les documents sont disponibles en téléchargement gratuit sur Google Drive</p>
-      <a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank" rel="noopener" class="btn btn-gold" style="font-size:1rem;padding:0.85rem 2rem;">
-        📁 Ouvrir la bibliothèque Drive →
-      </a>
-    </div>
-  </div>
-</section>
-
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="../../index.html" class="logo">
-          <div class="logo-icon">ه</div>
-          <div class="logo-text"><div class="name">Al-Huda</div><div class="tagline">الهُدى • Le Guide</div></div>
+<!-- ====== MODAL PDF READER ====== -->
+<div id="pdf-modal" class="pdf-modal" role="dialog" aria-modal="true" aria-label="Lecteur PDF" style="display:none;">
+  <div class="pdf-modal-backdrop" id="pdf-modal-backdrop"></div>
+  <div class="pdf-modal-box">
+    <div class="pdf-modal-header">
+      <h3 id="pdf-modal-title">Lecture</h3>
+      <div class="pdf-modal-actions">
+        <a id="pdf-download-btn" href="#" class="btn btn-gold btn-sm" download aria-label="Télécharger le livre">
+          <span id="pdf-dl-icon"></span> Télécharger
         </a>
-        <p style="margin-top:1rem;">Votre compagnon islamique numérique.</p>
-        <div class="arabic-motto">وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا</div>
+        <button id="pdf-modal-close" class="pdf-modal-close-btn" aria-label="Fermer le lecteur">
+          <span id="pdf-close-icon"></span>
+        </button>
       </div>
-      <div class="footer-col"><h4>Catégories</h4><ul>
-        <li><a href="#eschatologie">🌙 Eschatologie</a></li>
-        <li><a href="#aqidah">📿 Aqidah</a></li>
-        <li><a href="#fiqh">🕌 Fiqh</a></li>
-        <li><a href="#akhlaq">🌿 Comportement</a></li>
-        <li><a href="#famille">👨‍👩‍👧 Famille</a></li>
-      </ul></div>
-      <div class="footer-col"><h4>Navigation</h4><ul>
-        <li><a href="../quran/index.html">📖 Coran</a></li>
-        <li><a href="../azkars/index.html">🤲 Azkars</a></li>
-        <li><a href="../hadiths/index.html">📜 Hadiths</a></li>
-        <li><a href="../prayers/index.html">🕌 Prières</a></li>
-      </ul></div>
-      <div class="footer-col"><h4>Al-Huda</h4><ul>
-        <li><a href="../../index.html">Accueil</a></li>
-        <li><a href="https://drive.google.com/drive/folders/1-2jW-M7FySpr9xVDkXguzddrX7putQyW" target="_blank">📁 Bibliothèque Drive</a></li>
-      </ul></div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2025 Al-Huda — الهُدى. Fait avec <span class="love">♥</span> pour la communauté musulmane.</p>
-      <p style="margin-top:.4rem;"><a href="../about/index.html" style="color:rgba(255,255,255,.45);font-size:.8rem;">À propos</a> &nbsp;•&nbsp; <a href="../privacy/index.html" style="color:rgba(255,255,255,.45);font-size:.8rem;">Politique de confidentialité</a> &nbsp;•&nbsp; <a href="../contact/index.html" style="color:rgba(255,255,255,.45);font-size:.8rem;">Contact</a></p>
+    <div class="pdf-modal-body">
+      <iframe id="pdf-iframe" src="" title="Lecteur de livre" allowfullscreen loading="lazy"></iframe>
     </div>
   </div>
+</div>
+
+<!-- ====== FOOTER ====== -->
+<footer style="background:var(--green-dark);color:rgba(255,255,255,0.7);text-align:center;padding:2rem 1rem;font-size:0.85rem;margin-top:3rem;">
+  <div style="margin-bottom:0.5rem;">
+    <a href="../../index.html" style="color:rgba(255,255,255,0.6);text-decoration:none;margin:0 0.75rem;">Accueil</a>
+    <a href="../quran/index.html" style="color:rgba(255,255,255,0.6);text-decoration:none;margin:0 0.75rem;">Coran</a>
+    <a href="../hadiths/index.html" style="color:rgba(255,255,255,0.6);text-decoration:none;margin:0 0.75rem;">Hadiths</a>
+    <a href="index.html" style="color:var(--gold-light,#E8C96A);text-decoration:none;margin:0 0.75rem;">Bibliothèque</a>
+  </div>
+  <p>© 2025 Al-Huda — الهُدى • Le Guide. Fait avec ❤ pour la Oumma.</p>
+  <p style="margin-top:0.4rem;">
+    <a href="../about/index.html" style="color:rgba(255,255,255,0.45);font-size:0.8rem;text-decoration:none;margin:0 0.4rem;">À propos</a>
+    &nbsp;•&nbsp;
+    <a href="../privacy/index.html" style="color:rgba(255,255,255,0.45);font-size:0.8rem;text-decoration:none;margin:0 0.4rem;">Confidentialité</a>
+    &nbsp;•&nbsp;
+    <a href="../contact/index.html" style="color:rgba(255,255,255,0.45);font-size:0.8rem;text-decoration:none;margin:0 0.4rem;">Contact</a>
+  </p>
 </footer>
 
+<!-- ====== DATA + SCRIPT ====== -->
+<script src="../../assets/js/library-data.js"></script>
 <script src="../../assets/js/main.js"></script>
-<script src="../../assets/js/articles.js"></script>
+<script>
+(function () {
+  /* ── Icônes ── */
+  const ic = window.AlHudaIcons;
+  const searchIcon = document.getElementById('lib-search-icon');
+  const clearIcon  = document.getElementById('lib-clear-icon');
+  const dlIcon     = document.getElementById('pdf-dl-icon');
+  const closeIcon  = document.getElementById('pdf-close-icon');
+  if (searchIcon) searchIcon.innerHTML = ic?.get('search', 16) || '';
+  if (clearIcon)  clearIcon.innerHTML  = ic?.get('close', 14) || '✕';
+  if (dlIcon)     dlIcon.innerHTML     = ic?.get('download', 15) || '';
+  if (closeIcon)  closeIcon.innerHTML  = ic?.get('close', 18) || '✕';
+
+  /* ── Data ── */
+  const data = window.LIBRARY;
+  if (!data) return;
+
+  const categories = data.categories;
+  const allBooks   = categories.flatMap(c => c.books.map(b => ({ ...b, catId: c.id, catLabel: c.label })));
+
+  /* ── Stats ── */
+  const totalBooks = allBooks.length;
+  const statEl = document.getElementById('stat-books');
+  if (statEl) statEl.textContent = totalBooks + '+';
+
+  /* ── Filtres ── */
+  const filterBar = document.getElementById('lib-cat-filters');
+  categories.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'lib-filter';
+    btn.dataset.cat = cat.id;
+    btn.setAttribute('role', 'tab');
+    btn.textContent = cat.label;
+    filterBar.appendChild(btn);
+  });
+
+  /* ── Rendu catalogue ── */
+  const catalogue = document.getElementById('lib-catalogue');
+
+  function renderCatalogue(filteredCats) {
+    catalogue.innerHTML = '';
+    let total = 0;
+    filteredCats.forEach(cat => {
+      const visible = cat.books.filter(b => !b._hidden);
+      if (!visible.length) return;
+      total += visible.length;
+
+      const section = document.createElement('section');
+      section.className = 'lib-category-section reveal';
+      section.id = 'cat-' + cat.id;
+      section.innerHTML = `
+        <div class="lib-cat-header">
+          <div class="lib-cat-icon" aria-hidden="true">${ic?.get('library', 28) || ''}</div>
+          <div>
+            <h2>${cat.label} <span class="lib-cat-arabic">${cat.arabic}</span></h2>
+            <p>${cat.desc}</p>
+          </div>
+        </div>
+        <div class="lib-grid">${visible.map(book => bookCard(book, cat)).join('')}</div>
+      `;
+      catalogue.appendChild(section);
+    });
+
+    /* résultats */
+    const rc = document.getElementById('lib-results-count');
+    if (rc) rc.textContent = total + ' livre' + (total > 1 ? 's' : '');
+
+    /* reveal observer */
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    /* events sur les cartes */
+    document.querySelectorAll('.lib-read-btn').forEach(btn => {
+      btn.addEventListener('click', () => openModal(btn.dataset.id, btn.dataset.title));
+    });
+  }
+
+  function bookCard(book, cat) {
+    const available = !!book.driveId;
+    return `
+      <div class="lib-card${available ? '' : ' lib-card-soon'}" data-cat="${cat.id}" data-title="${book.title.toLowerCase()}">
+        <div class="lib-card-cover" aria-hidden="true">
+          ${ic?.get('library', 22) || ''}
+        </div>
+        <div class="lib-card-body">
+          <h4>${book.title}</h4>
+          <span class="lib-card-cat">${cat.label}</span>
+        </div>
+        <div class="lib-card-actions">
+          ${available
+            ? `<button class="btn btn-sm btn-outline lib-read-btn" data-id="${book.driveId}" data-title="${book.title}">
+                 ${ic?.get('quran', 14) || ''} Lire
+               </button>
+               <a class="btn btn-sm btn-gold" href="https://drive.google.com/uc?id=${book.driveId}&export=download" download title="Télécharger ${book.title}">
+                 ${ic?.get('download', 14) || ''}
+               </a>`
+            : `<span class="lib-soon-badge">Bientôt</span>`
+          }
+        </div>
+      </div>
+    `;
+  }
+
+  /* ── Render initial ── */
+  renderCatalogue(categories);
+
+  /* ── Recherche ── */
+  const searchInput = document.getElementById('lib-search');
+  const clearBtn    = document.getElementById('lib-search-clear');
+  let activeFilter  = 'all';
+
+  function applySearch(query) {
+    const q = query.trim().toLowerCase();
+    clearBtn.style.display = q ? 'inline-flex' : 'none';
+
+    const filtered = categories
+      .filter(c => activeFilter === 'all' || c.id === activeFilter)
+      .map(c => ({
+        ...c,
+        books: c.books.map(b => ({
+          ...b,
+          _hidden: q ? !b.title.toLowerCase().includes(q) : false
+        }))
+      }));
+
+    renderCatalogue(filtered);
+  }
+
+  searchInput?.addEventListener('input', e => applySearch(e.target.value));
+  clearBtn?.addEventListener('click', () => {
+    searchInput.value = '';
+    applySearch('');
+    searchInput.focus();
+  });
+
+  /* ── Filtres catégorie ── */
+  filterBar?.addEventListener('click', e => {
+    const btn = e.target.closest('.lib-filter');
+    if (!btn) return;
+    document.querySelectorAll('.lib-filter').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.cat;
+    applySearch(searchInput?.value || '');
+  });
+
+  /* ── Modal PDF ── */
+  const modal      = document.getElementById('pdf-modal');
+  const iframe     = document.getElementById('pdf-iframe');
+  const modalTitle = document.getElementById('pdf-modal-title');
+  const dlBtn      = document.getElementById('pdf-download-btn');
+  const closeBtn   = document.getElementById('pdf-modal-close');
+  const backdrop   = document.getElementById('pdf-modal-backdrop');
+
+  function openModal(driveId, title) {
+    if (!driveId) return;
+    modalTitle.textContent = title || 'Lecture';
+    iframe.src = `https://drive.google.com/file/d/${driveId}/preview`;
+    dlBtn.href = `https://drive.google.com/uc?id=${driveId}&export=download`;
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+    iframe.src = '';
+    document.body.style.overflow = '';
+  }
+
+  closeBtn?.addEventListener('click', closeModal);
+  backdrop?.addEventListener('click', closeModal);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  /* ── Reveal observer ── */
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('visible'); revealObs.unobserve(en.target); } });
+  }, { threshold: 0.07 });
+
+})();
+</script>
+
 </body>
 </html>

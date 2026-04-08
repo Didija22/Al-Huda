@@ -353,11 +353,11 @@ function renderVerses(surahNum, arVerses, frVerses, tlVerses, container, meta) {
         <div class="verse-header">
           <div class="verse-badge">${av.numberInSurah}</div>
           <div class="verse-actions">
-            <button class="verse-action-btn" title="Copier le verset" onclick="copyVerse(${av.numberInSurah}, this)">📋</button>
-            <button class="verse-action-btn vab-bookmark" title="Marquer ce verset" onclick="bookmarkVerse(${surahNum}, ${av.numberInSurah}, '${surahNameFr.replace(/'/g,"\\'")}', this)">🔖</button>
-            <button class="verse-action-btn vab-note" title="Ajouter une note" onclick="openNoteModal(${surahNum}, ${av.numberInSurah})">📝</button>
-            <button class="verse-action-btn vab-card" title="Créer une carte partageable" onclick="openShareCard(${surahNum}, ${av.numberInSurah}, '${surahNameFr.replace(/'/g,"\\'")}')">🎨</button>
-            <button class="verse-action-btn" title="Partager" onclick="shareVerse(${surahNum}, ${av.numberInSurah})">↗</button>
+            <button class="verse-action-btn" title="Copier le verset" onclick="copyVerse(${av.numberInSurah}, this)">${window.AlHudaIcons?.get('copy',15)||'📋'}</button>
+            <button class="verse-action-btn vab-bookmark" title="Marquer ce verset" onclick="bookmarkVerse(${surahNum}, ${av.numberInSurah}, '${surahNameFr.replace(/'/g,"\\'")}', this)">${window.AlHudaIcons?.get('bookmark',15)||'🔖'}</button>
+            <button class="verse-action-btn vab-note" title="Ajouter une note" onclick="openNoteModal(${surahNum}, ${av.numberInSurah})">${window.AlHudaIcons?.get('note',15)||'📝'}</button>
+            <button class="verse-action-btn vab-card" title="Créer une carte partageable" onclick="openShareCard(${surahNum}, ${av.numberInSurah}, '${surahNameFr.replace(/'/g,"\\'")}')">  ${window.AlHudaIcons?.get('palette',15)||'🎨'}</button>
+            <button class="verse-action-btn" title="Partager" onclick="shareVerse(${surahNum}, ${av.numberInSurah})">${window.AlHudaIcons?.get('share',15)||'↗'}</button>
           </div>
         </div>
         <div class="verse-arabic-text">${av.text} ﴿${toArabicNum(av.numberInSurah)}﴾</div>
@@ -650,7 +650,10 @@ function initReaderControls(surahNum, allMeta) {
     const audio = document.getElementById('audio-element');
     if (!audio) return;
     audio.muted = !audio.muted;
-    document.getElementById('btn-mute').textContent = audio.muted ? '🔇' : '🔊';
+    const muteBtn = document.getElementById('btn-mute');
+    if (muteBtn) muteBtn.innerHTML = audio.muted
+      ? (window.AlHudaIcons?.get('volume-off',18) || '🔇')
+      : (window.AlHudaIcons?.get('volume',18) || '🔊');
   });
   document.getElementById('btn-speed')?.addEventListener('click', () => {
     const speeds = [0.75, 1, 1.25, 1.5];
@@ -1266,10 +1269,10 @@ function _immToggleSound() {
   const btn = document.getElementById('imm-sound-btn');
   if (_immSound) {
     _immStopSound();
-    if (btn) { btn.textContent = '🔇 Son'; btn.classList.remove('active'); }
+    if (btn) { btn.innerHTML = (window.AlHudaIcons?.get('volume-off',15)||'🔇') + ' Son'; btn.classList.remove('active'); }
   } else {
     _immStartSound();
-    if (btn) { btn.textContent = '🔊 Son'; btn.classList.add('active'); }
+    if (btn) { btn.innerHTML = (window.AlHudaIcons?.get('volume',15)||'🔊') + ' Son'; btn.classList.add('active'); }
   }
 }
 

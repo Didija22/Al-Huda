@@ -3,30 +3,13 @@
    ============================================================ */
 
 /* ---------- Navbar scroll ---------- */
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 30);
-});
-// Toujours opaque au chargement si déjà scrollé
-if (window.scrollY > 30) navbar.classList.add('scrolled');
-// Force la navbar opaque dès le départ (le hero a un fond sombre)
-navbar.classList.add('scrolled');
-
-/* ---------- Menu hamburger ---------- */
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobile-menu');
-
-hamburger?.addEventListener('click', () => {
-  hamburger.classList.toggle('active');
-  mobileMenu.classList.toggle('open');
-});
-
-// Fermer au clic sur un lien
-mobileMenu?.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    mobileMenu.classList.remove('open');
-  });
+/* La navbar est injectée par components.js — on attend qu'elle existe */
+document.addEventListener('DOMContentLoaded', () => {
+  const navbar = document.getElementById('navbar');
+  if (!navbar) return;
+  const onScroll = () => navbar.classList.toggle('scrolled', window.scrollY > 30);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 });
 
 /* ---------- Scroll Reveal ---------- */
@@ -351,10 +334,7 @@ if ('serviceWorker' in navigator) {
 }
 
 /* ---------- Init ---------- */
-// Thème appliqué avant DOMContentLoaded pour éviter le flash
-initTheme();
-
+/* Le thème et le hamburger sont gérés par components.js */
 document.addEventListener('DOMContentLoaded', () => {
-  setActiveNav();
   loadPrayerTimes();
 });

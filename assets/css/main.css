@@ -5,6 +5,14 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
 
+/* ── Icônes SVG globales ──────────────────────────────────── */
+.alhuda-icon {
+  display: inline-block;
+  vertical-align: -0.2em;
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
 /* ---------- Variables ---------- */
 :root {
   --green-dark:   #0F4229;
@@ -353,14 +361,21 @@ img { max-width: 100%; display: block; }
 }
 .mobile-menu.open { display: block; }
 .mobile-menu a {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   padding: 0.85rem 1rem;
   color: rgba(255,255,255,0.85);
-  font-size: 1rem;
+  font-size: 0.95rem;
   border-radius: var(--radius-sm);
   border-bottom: 1px solid rgba(255,255,255,0.07);
+  transition: background 0.15s;
 }
+.mobile-menu a .alhuda-icon { opacity: 0.75; flex-shrink: 0; }
 .mobile-menu a:hover { background: rgba(255,255,255,0.08); color: var(--white); }
+.mobile-menu a:hover .alhuda-icon { opacity: 1; }
+.mobile-menu a.active { background: rgba(255,255,255,0.12); color: var(--white); }
+.mobile-menu a.active .alhuda-icon { opacity: 1; color: var(--gold); }
 
 /* ============================================================
    HERO

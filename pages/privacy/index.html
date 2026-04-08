@@ -93,46 +93,9 @@
 <body>
 
 <!-- ====== NAVBAR ====== -->
-<nav class="navbar scrolled" id="navbar">
-  <div class="container">
-    <div class="navbar-inner">
-      <a href="../../index.html" class="logo">
-        <div class="logo-icon">ه</div>
-        <div class="logo-text">
-          <div class="name">Al-Huda</div>
-          <div class="tagline">الهُدى • Le Guide</div>
-        </div>
-      </a>
-      <ul class="nav-links">
-        <li><a href="../../index.html">Accueil</a></li>
-        <li><a href="../quran/index.html">Coran</a></li>
-        <li><a href="../azkars/index.html">Azkars</a></li>
-        <li><a href="../prayers/index.html">Prières</a></li>
-        <li><a href="../hadiths/index.html">Hadiths</a></li>
-        <li><a href="../articles/index.html">Bibliothèque</a></li>
-        <li><a href="../quiz/index.html">Quiz</a></li>
-        
-      </ul>
-      <div class="nav-cta">
-        <button class="theme-toggle" id="theme-toggle" title="Changer le thème" aria-label="Basculer thème sombre/clair">🌙</button>
-      </div>
-      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
-</nav>
-
-<div class="mobile-menu" id="mobile-menu">
-  <a href="../../index.html">🏠 Accueil</a>
-  <a href="../quran/index.html">📖 Coran</a>
-  <a href="../azkars/index.html">🤲 Azkars</a>
-  <a href="../prayers/index.html">🕌 Prières</a>
-  <a href="../hadiths/index.html">📜 Hadiths</a>
-  <a href="../articles/index.html">📚 Bibliothèque</a>
-  <a href="../quiz/index.html">🧠 Quiz</a>
-  
-</div>
+<div id="nav-placeholder"></div>
+<script src="../../assets/js/icons.js"></script>
+<script src="../../assets/js/components.js"></script>
 
 <!-- ====== HERO ====== -->
 <section class="privacy-hero">
@@ -148,66 +111,34 @@
   <div class="privacy-content">
 
     <div class="privacy-section">
-      <h2>📌 1. Présentation</h2>
-      <p>Al-Huda (الهُدى — Le Guide) est un site web islamique gratuit, à but non lucratif, conçu pour aider les musulmans à enrichir leurs connaissances religieuses. Ce site est entièrement statique : il n'a <strong>aucun serveur propre</strong>, aucune base de données, et ne collecte aucune donnée personnelle de manière automatique.</p>
+      <h2>1. Présentation</h2>
+      <p>Al-Huda est un site islamique gratuit et à but non lucratif. Il ne dispose d'aucun serveur propre, d'aucune base de données, et ne collecte aucune donnée personnelle de façon automatique.</p>
       <div class="privacy-highlight">
-        ✅ Al-Huda ne vend, ne loue et ne partage aucune donnée personnelle avec des tiers à des fins commerciales.
+        Al-Huda ne vend, ne loue et ne partage aucune donnée personnelle avec des tiers.
       </div>
     </div>
 
     <div class="privacy-section">
-      <h2>💾 2. Données stockées localement (localStorage)</h2>
-      <p>Pour améliorer ton expérience, Al-Huda utilise le <strong>localStorage</strong> de ton navigateur (stockage local, jamais envoyé à nos serveurs) pour sauvegarder :</p>
-      <ul>
-        <li>Tes <strong>marque-pages et notes</strong> sur les versets coraniques</li>
-        <li>Ton <strong>historique de conversation</strong> avec l'assistante Nour IA</li>
-        <li>Ta <strong>clé API Groq</strong> (uniquement sur ton appareil, jamais transmise)</li>
-        <li>Ta <strong>préférence de thème</strong> (clair / sombre)</li>
-        <li>Ta <strong>préférence de langue</strong> de traduction coranique (FR / EN)</li>
-      </ul>
-      <p>Ces données restent <strong>exclusivement sur ton appareil</strong>. Tu peux les supprimer à tout moment en vidant le localStorage de ton navigateur (Paramètres → Effacer les données de navigation).</p>
+      <h2>2. Données stockées sur ton appareil</h2>
+      <p>Al-Huda utilise le stockage local de ton navigateur (localStorage) pour sauvegarder tes préférences : marque-pages, notes, thème, langue de traduction. Ces données ne quittent jamais ton appareil et peuvent être supprimées à tout moment depuis les paramètres de ton navigateur.</p>
     </div>
 
     <div class="privacy-section">
-      <h2>🌐 3. APIs tierces utilisées</h2>
-      <p>Al-Huda fait appel à des services externes pour certaines fonctionnalités. Ces services ont leurs propres politiques de confidentialité :</p>
-      <ul>
-        <li><strong>AlQuran.cloud</strong> — Texte et audio du Coran</li>
-        <li><strong>Aladhan.com</strong> — Horaires de prière et calendrier islamique</li>
-        <li><strong>Groq AI</strong> (groq.com) — Moteur de l'assistante Nour IA (requiert ta clé API personnelle)</li>
-        <li><strong>Google Fonts</strong> — Polices d'écriture (Amiri, Inter)</li>
-        <li><strong>ip-api.com</strong> — Géolocalisation approximative pour les horaires de prière (aucune donnée sauvegardée)</li>
-        <li><strong>Nominatim / OpenStreetMap</strong> — Recherche de villes pour les horaires</li>
-        <li><strong>Formspree.io</strong> — Traitement des messages du formulaire de contact</li>
-      </ul>
+      <h2>3. Formulaire de contact</h2>
+      <p>Les informations saisies dans le formulaire de contact (prénom, email, message) sont utilisées uniquement pour répondre à ta demande et ne sont jamais partagées.</p>
     </div>
 
     <div class="privacy-section">
-      <h2>📨 4. Formulaire de contact</h2>
-      <p>Lorsque tu utilises le formulaire de contact, les informations que tu saisis (prénom, email, message) sont transmises via <strong>Formspree.io</strong> et nous parviennent par email. Ces données sont utilisées uniquement pour répondre à ta demande. Elles ne sont jamais partagées avec des tiers.</p>
+      <h2>4. Cookies</h2>
+      <p>Al-Huda n'utilise <strong>aucun cookie</strong> de traçage ou publicitaire.</p>
     </div>
 
     <div class="privacy-section">
-      <h2>🍪 5. Cookies</h2>
-      <p>Al-Huda <strong>n'utilise pas de cookies</strong> de traçage ou publicitaires. Certains services tiers (Google Fonts, Formspree) peuvent déposer des cookies techniques nécessaires à leur fonctionnement.</p>
+      <h2>5. Contact</h2>
+      <p>Pour toute question, utilise notre <a href="../contact/index.html" style="color:var(--green);font-weight:600;">formulaire de contact</a>.</p>
     </div>
 
-    <div class="privacy-section">
-      <h2>👶 6. Données des mineurs</h2>
-      <p>Al-Huda ne collecte intentionnellement aucune donnée personnelle concernant des enfants de moins de 13 ans. Si tu es parent et constates une collecte involontaire, contacte-nous via le formulaire de contact.</p>
-    </div>
-
-    <div class="privacy-section">
-      <h2>✏️ 7. Modifications</h2>
-      <p>Cette politique peut être mise à jour. La date de dernière modification est indiquée en haut de la page. En continuant à utiliser Al-Huda après une modification, tu acceptes la nouvelle politique.</p>
-    </div>
-
-    <div class="privacy-section">
-      <h2>📬 8. Nous contacter</h2>
-      <p>Pour toute question relative à cette politique ou à tes données, utilise notre <a href="../contact/index.html" style="color:var(--green);font-weight:600;">formulaire de contact</a>.</p>
-    </div>
-
-    <p class="last-updated">Document mis à jour en Avril 2025 · Al-Huda — الهُدى</p>
+    <p class="last-updated">Al-Huda — الهُدى · 2025</p>
 
   </div>
 </main>
