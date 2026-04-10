@@ -38,50 +38,130 @@
   --transition:   all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ---------- Mode Sombre ---------- */
+/* ---------- Emerald Night — Thème Sombre ---------- */
 [data-theme="dark"] {
-  --green-pale:   #0d2418;
-  --gold-pale:    #1c1508;
-  --white:        #121212;
-  --off-white:    #1e1e1e;
-  --text-dark:    #f0ede6;
-  --text-mid:     #b8b4ac;
-  --text-light:   #7a7672;
-  --shadow-sm:    0 2px 8px rgba(0,0,0,0.35);
-  --shadow-md:    0 4px 20px rgba(0,0,0,0.5);
-  --shadow-lg:    0 8px 40px rgba(0,0,0,0.6);
+  /* Fond & surfaces */
+  --white:        #0d1a12;
+  --off-white:    #122018;
+  --bg-card:      #1a2e22;
+  --bg-elevated:  #243d2d;
+
+  /* Palette verte ajustée pour fond sombre */
+  --green-dark:   #0a1a0f;
+  --green:        #2d9155;
+  --green-mid:    #3aab6d;
+  --green-light:  #5cc48a;
+  --green-pale:   #0f2318;
+
+  /* Or */
+  --gold:         #E8C96A;
+  --gold-light:   #f0d68a;
+  --gold-pale:    #1c160a;
+
+  /* Texte */
+  --text-dark:    #e2f0e8;
+  --text-mid:     #8fb5a0;
+  --text-light:   #587a68;
+
+  /* Ombres */
+  --shadow-sm:    0 2px 8px rgba(0,0,0,0.45);
+  --shadow-md:    0 4px 20px rgba(0,0,0,0.6);
+  --shadow-lg:    0 8px 40px rgba(0,0,0,0.7);
 }
-[data-theme="dark"] body { background-color: #121212; color: var(--text-dark); }
+
+/* Base */
+[data-theme="dark"] body {
+  background-color: #0d1a12;
+  color: var(--text-dark);
+}
+
+/* Navbar */
+[data-theme="dark"] .navbar.scrolled {
+  background: rgba(8, 18, 11, 0.97);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+}
+[data-theme="dark"] .mobile-menu {
+  background: #0d1a12;
+  border-color: rgba(255,255,255,0.06);
+}
+
+/* Cartes génériques */
 [data-theme="dark"] .surah-card,
 [data-theme="dark"] .hadith-card,
 [data-theme="dark"] .azkar-card,
-[data-theme="dark"] .lib-card,
 [data-theme="dark"] .feature-card,
-[data-theme="dark"] .hadith-card,
 [data-theme="dark"] .tasbih-widget,
 [data-theme="dark"] .surah-preview-card,
 [data-theme="dark"] .col-badge,
-[data-theme="dark"] .hdj-inner { background: #1e1e1e !important; border-color: #333 !important; }
-[data-theme="dark"] .surah-card:hover,
-[data-theme="dark"] .lib-card:hover { border-color: var(--green-light) !important; }
+[data-theme="dark"] .hdj-inner,
+[data-theme="dark"] .quiz-card,
+[data-theme="dark"] .asma-card,
+[data-theme="dark"] .dua-card,
+[data-theme="dark"] .prayer-card {
+  background: #1a2e22 !important;
+  border-color: rgba(255,255,255,0.07) !important;
+}
+[data-theme="dark"] .surah-card:hover { border-color: var(--green-light) !important; }
+
+/* Headers / footers de cartes */
 [data-theme="dark"] .hadith-card-header,
 [data-theme="dark"] .hadith-card-footer,
 [data-theme="dark"] .azkar-card-header,
-[data-theme="dark"] .azkar-card-footer { background: #282828 !important; }
-[data-theme="dark"] .search-box { background: #1e1e1e !important; border-color: #333 !important; }
+[data-theme="dark"] .azkar-card-footer {
+  background: #243d2d !important;
+  border-color: rgba(255,255,255,0.07) !important;
+}
+
+/* Sections avec fond clair */
+[data-theme="dark"] .bg-green-pale,
+[data-theme="dark"] .features-section,
+[data-theme="dark"] .stats-section,
+[data-theme="dark"] .about-section { background: #101e15 !important; }
+
+/* Recherche */
+[data-theme="dark"] .search-box { background: #1a2e22 !important; border-color: rgba(255,255,255,0.1) !important; }
 [data-theme="dark"] .search-box input { color: var(--text-dark) !important; }
-[data-theme="dark"] .reading-main,
-[data-theme="dark"] .reading-toolbar { background: #1e1e1e; border-color: #333; }
-[data-theme="dark"] .verse-block { border-color: #333; }
-[data-theme="dark"] .verse-block:hover { background: #1e1e1e; }
-[data-theme="dark"] .audio-player { background: #1e1e1e; border-color: #333; }
-[data-theme="dark"] .reciter-select { background: #1e1e1e; color: var(--text-dark); border-color: #333; }
-[data-theme="dark"] .reciter-select optgroup,
-[data-theme="dark"] .reciter-select option { background: #1e1e1e; color: var(--text-dark); }
-[data-theme="dark"] .sidebar-item { border-color: #333; }
-[data-theme="dark"] .sidebar-item:hover { background: #282828; }
-[data-theme="dark"] .sidebar-item.active { background: var(--green-pale); }
-[data-theme="dark"] input, [data-theme="dark"] select { background: #1e1e1e; color: var(--text-dark); }
+[data-theme="dark"] .search-box:focus-within { border-color: var(--green) !important; box-shadow: 0 0 0 3px rgba(45,145,85,0.2) !important; }
+
+/* Lecteur Coran */
+[data-theme="dark"] .reading-main { background: #0d1a12; }
+[data-theme="dark"] .reading-toolbar { background: #122018; border-color: rgba(255,255,255,0.07); }
+[data-theme="dark"] .verse-block { border-color: rgba(255,255,255,0.06); }
+[data-theme="dark"] .verse-block:hover { background: #1a2e22; }
+[data-theme="dark"] .audio-player { background: #122018; border-color: rgba(255,255,255,0.07); }
+[data-theme="dark"] .reciter-select { background: #1a2e22; color: var(--text-dark); border-color: rgba(255,255,255,0.1); }
+[data-theme="dark"] .reciter-select option,
+[data-theme="dark"] .reciter-select optgroup { background: #1a2e22; color: var(--text-dark); }
+
+/* Sidebar */
+[data-theme="dark"] .sidebar-item { border-color: rgba(255,255,255,0.06); }
+[data-theme="dark"] .sidebar-item:hover { background: #1a2e22; }
+[data-theme="dark"] .sidebar-item.active { background: #0f2318; border-left-color: var(--green); }
+
+/* Inputs & selects */
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea {
+  background: #1a2e22;
+  color: var(--text-dark);
+  border-color: rgba(255,255,255,0.1);
+}
+
+/* Badges */
+[data-theme="dark"] .badge-gold { background: #1c160a; border-color: rgba(232,201,106,0.3); }
+[data-theme="dark"] .badge-green { background: #0f2318; border-color: rgba(45,145,85,0.35); }
+
+/* Section headers */
+[data-theme="dark"] .section-header h2 { color: var(--text-dark); }
+
+/* Dividers */
+[data-theme="dark"] hr { border-color: rgba(255,255,255,0.07); }
+
+/* Scrollbar */
+[data-theme="dark"] ::-webkit-scrollbar { width: 8px; }
+[data-theme="dark"] ::-webkit-scrollbar-track { background: #0d1a12; }
+[data-theme="dark"] ::-webkit-scrollbar-thumb { background: #2d9155; border-radius: 4px; }
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover { background: #3aab6d; }
 
 /* Bouton mode sombre/clair */
 .theme-toggle {

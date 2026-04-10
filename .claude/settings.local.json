@@ -35,7 +35,21 @@
       "WebFetch(domain:download.quranicaudio.com)",
       "WebFetch(domain:server12.mp3quran.net)",
       "WebFetch(domain:server8.mp3quran.net)",
-      "Bash(powershell.exe -Command \":*)"
+      "Bash(powershell.exe -Command \":*)",
+      "Bash(powershell.exe -Command \"Select-String -Path ''C:\\\\Users\\\\DELL\\\\OneDrive - Université Cheikh Anta DIOP de DAKAR\\\\Al-Huda\\\\index.html'' -Pattern ''script src'' | Select-Object -ExpandProperty Line\")",
+      "Bash(powershell.exe -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\DELL\\\\fix-navbars.ps1\")",
+      "Bash(powershell.exe -Command \"Get-Item ''C:\\\\Users\\\\DELL\\\\OneDrive*'' | Select-Object FullName\")",
+      "Bash(powershell.exe -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\DELL\\\\fix-script-placement.ps1\")",
+      "Bash(powershell.exe -Command \"Remove-Item ''C:\\\\Users\\\\DELL\\\\fix-navbars.ps1'', ''C:\\\\Users\\\\DELL\\\\fix-script-placement.ps1'' -ErrorAction SilentlyContinue; Write-Host ''Cleaned''\")",
+      "Bash(for file:*)",
+      "Bash(do echo:*)",
+      "Read(//c/Users/DELL/OneDrive - Université Cheikh Anta DIOP de DAKAR/Al-Huda/**)",
+      "Bash(done)",
+      "Bash(grep -Hn \"[🏠📖🤲🕌📜📚🧠✨🤲🧭📊🌅🌙🛌🍽️✈️🔤🇫🇷🔊🔖📋📝🎨↗🔁🔇▶⏸⏳🗑✓🔄🇬🇧📿🎙️⬜📱⬇️💰🌟🎯📈🎪🔮🌈⭐🎭🎬🎸🎹🎺🎻🥁🎤🎧🎵🎶🎼🎹🎸🎺🎷🥁🎻🎹🎸🎹🎺🥁🎤🎧]\" index.html pages/*/index.html)",
+      "Bash(python3:*)",
+      "Bash(powershell.exe -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\DELL\\\\fix-all.ps1\")",
+      "Bash(powershell.exe -Command \"Remove-Item ''C:\\\\Users\\\\DELL\\\\fix-all.ps1'' -ErrorAction SilentlyContinue; Write-Host ''Done''\")",
+      "Bash(powershell.exe -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\DELL\\\\scan-navs.ps1\")"
     ]
   }
 }
