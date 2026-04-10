@@ -92,16 +92,23 @@
     <div class="pdf-modal-header">
       <h3 id="pdf-modal-title">Lecture</h3>
       <div class="pdf-modal-actions">
-        <a id="pdf-download-btn" href="#" class="btn btn-gold btn-sm" download aria-label="Télécharger le livre">
+        <a id="pdf-download-btn" href="#" class="pdf-dl-btn" download aria-label="Télécharger le livre">
           <span id="pdf-dl-icon"></span> Télécharger
         </a>
-        <button id="pdf-modal-close" class="pdf-modal-close-btn" aria-label="Fermer le lecteur">
+        <button id="pdf-modal-close" class="pdf-close-btn" aria-label="Fermer le lecteur">
           <span id="pdf-close-icon"></span>
         </button>
       </div>
     </div>
     <div class="pdf-modal-body">
-      <iframe id="pdf-iframe" src="" title="Lecteur de livre" allowfullscreen loading="lazy"></iframe>
+      <div class="pdf-loading" id="pdf-loading">
+        <div class="pdf-spinner"></div>
+        <p>Chargement du document…</p>
+      </div>
+      <iframe id="pdf-iframe" src="" title="Lecteur de livre"
+        allow="autoplay; fullscreen"
+        onload="document.getElementById('pdf-loading').classList.add('hidden')">
+      </iframe>
     </div>
   </div>
 </div>
@@ -137,20 +144,35 @@
   const closeIcon  = document.getElementById('pdf-close-icon');
   if (searchIcon) searchIcon.innerHTML = ic?.get('search', 16) || '';
   if (clearIcon)  clearIcon.innerHTML  = ic?.get('close', 14) || '✕';
-  if (dlIcon)     dlIcon.innerHTML     = ic?.get('download', 15) || '';
-  if (closeIcon)  closeIcon.innerHTML  = ic?.get('close', 18) || '✕';
+  if (dlIcon)     dlIcon.innerHTML     = ic?.get('download', 14) || '';
+  if (closeIcon)  closeIcon.innerHTML  = ic?.get('close', 16) || '✕';
+
+  /* ── Couleurs par catégorie ── */
+  const CAT_COLORS = {
+    aqidah:       ['#1B6B3A', '#0b4024'],
+    eschatologie: ['#1e3799', '#0c2461'],
+    fiqh:         ['#0f766e', '#074e49'],
+    comportement: ['#b45309', '#7c3700'],
+    famille:      ['#be185d', '#831843'],
+    spiritualite: ['#6d28d9', '#3b0764'],
+    repentir:     ['#0284c7', '#0c4a6e'],
+    vendredi:     ['#c2410c', '#7c2d12'],
+    sunna:        ['#047857', '#022c22'],
+  };
 
   /* ── Data ── */
   const data = window.LIBRARY;
-  if (!data) return;
+  if (!data) { document.getElementById('lib-catalogue').innerHTML = '<p style="text-align:center;padding:3rem;color:var(--text-light)">Erreur de chargement.</p>'; return; }
 
   const categories = data.categories;
-  const allBooks   = categories.flatMap(c => c.books.map(b => ({ ...b, catId: c.id, catLabel: c.label })));
+  const allBooks   = categories.flatMap(c => c.books.map(b => ({ ...b, catId: c.id })));
 
   /* ── Stats ── */
-  const totalBooks = allBooks.length;
-  const statEl = document.getElementById('stat-books');
-  if (statEl) statEl.textContent = totalBooks + '+';
+  const available = allBooks.filter(b => b.driveId).length;
+  const statEl    = document.getElementById('stat-books');
+  const catEl     = document.getElementById('stat-cats');
+  if (statEl) statEl.textContent = available + '+';
+  if (catEl)  catEl.textContent  = categories.length;
 
   /* ── Filtres ── */
   const filterBar = document.getElementById('lib-cat-filters');
@@ -158,80 +180,96 @@
     const btn = document.createElement('button');
     btn.className = 'lib-filter';
     btn.dataset.cat = cat.id;
-    btn.setAttribute('role', 'tab');
     btn.textContent = cat.label;
     filterBar.appendChild(btn);
   });
 
-  /* ── Rendu catalogue ── */
+  /* ── Reveal observer ── */
   const catalogue = document.getElementById('lib-catalogue');
-
-  /* ── Reveal observer (défini avant renderCatalogue pour éviter ReferenceError) ── */
   const revealObs = new IntersectionObserver(entries => {
-    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('visible'); revealObs.unobserve(en.target); } });
-  }, { threshold: 0.07 });
+    entries.forEach(en => {
+      if (en.isIntersecting) { en.target.classList.add('visible'); revealObs.unobserve(en.target); }
+    });
+  }, { threshold: 0.05 });
 
+  /* ── Rendu catalogue ── */
   function renderCatalogue(filteredCats) {
     catalogue.innerHTML = '';
     let total = 0;
+
     filteredCats.forEach(cat => {
       const visible = cat.books.filter(b => !b._hidden);
       if (!visible.length) return;
       total += visible.length;
+
+      const colors = CAT_COLORS[cat.id] || ['#1B6B3A', '#0b4024'];
+      const avail  = visible.filter(b => b.driveId).length;
 
       const section = document.createElement('section');
       section.className = 'lib-category-section reveal';
       section.id = 'cat-' + cat.id;
       section.innerHTML = `
         <div class="lib-cat-header">
-          <div class="lib-cat-icon" aria-hidden="true">${ic?.get('library', 28) || ''}</div>
-          <div>
-            <h2>${cat.label} <span class="lib-cat-arabic">${cat.arabic}</span></h2>
-            <p>${cat.desc}</p>
+          <div class="lib-cat-color-bar" style="background:${colors[0]}"></div>
+          <div class="lib-cat-texts">
+            <h2>${cat.label} <span class="lib-cat-arabic">${cat.arabic || ''}</span></h2>
+            <p>${cat.desc || ''}</p>
           </div>
+          <span class="lib-cat-count" style="background:${colors[0]}">${avail} livre${avail > 1 ? 's' : ''}</span>
         </div>
-        <div class="lib-grid">${visible.map(book => bookCard(book, cat)).join('')}</div>
+        <div class="lib-grid">${visible.map(book => bookCard(book, cat, colors)).join('')}</div>
       `;
       catalogue.appendChild(section);
     });
 
-    /* résultats */
     const rc = document.getElementById('lib-results-count');
-    if (rc) rc.textContent = total + ' livre' + (total > 1 ? 's' : '');
+    if (rc) rc.textContent = total ? total + ' livre' + (total > 1 ? 's' : '') : 'Aucun résultat';
 
-    /* reveal observer */
     document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-    /* events sur les cartes */
-    document.querySelectorAll('.lib-read-btn').forEach(btn => {
-      btn.addEventListener('click', () => openModal(btn.dataset.id, btn.dataset.title));
+    document.querySelectorAll('.lib-btn-read').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        openModal(btn.dataset.id, btn.dataset.title);
+      });
     });
   }
 
-  function bookCard(book, cat) {
-    const available = !!book.driveId;
+  /* ── Carte livre (style couverture) ── */
+  function bookCard(book, cat, colors) {
+    const ok  = !!book.driveId;
+    const esc = s => s.replace(/"/g, '&quot;');
+    const coverGrad = ok
+      ? `linear-gradient(145deg, ${colors[0]} 0%, ${colors[1]} 100%)`
+      : 'linear-gradient(145deg, #6b7280, #374151)';
+
+    const overlay = ok
+      ? `<div class="lib-card-overlay">
+           <button class="lib-btn-read" data-id="${esc(book.driveId)}" data-title="${esc(book.title)}">
+             ${ic?.get('quran', 14) || ''} Lire
+           </button>
+           <a class="lib-btn-dl"
+              href="https://drive.google.com/uc?id=${esc(book.driveId)}&export=download"
+              download="${esc(book.title)}.pdf"
+              onclick="event.stopPropagation()">
+             ${ic?.get('download', 13) || ''} Télécharger
+           </a>
+         </div>`
+      : `<div class="lib-card-overlay lib-card-soon-overlay">
+           <span class="lib-soon-text">Bientôt<br>disponible</span>
+         </div>`;
+
     return `
-      <div class="lib-card${available ? '' : ' lib-card-soon'}" data-cat="${cat.id}" data-title="${book.title.toLowerCase()}">
-        <div class="lib-card-cover" aria-hidden="true">
-          ${ic?.get('library', 22) || ''}
+      <div class="lib-card${ok ? '' : ' lib-card-soon'}" data-cat="${cat.id}">
+        <div class="lib-card-cover" style="background:${coverGrad}">
+          <div class="lib-book-spine"></div>
+          <span class="lib-cover-icon">${ic?.get('library', 36) || ''}</span>
+          ${overlay}
         </div>
-        <div class="lib-card-body">
+        <div class="lib-card-info">
           <h4>${book.title}</h4>
-          <span class="lib-card-cat">${cat.label}</span>
         </div>
-        <div class="lib-card-actions">
-          ${available
-            ? `<button class="btn btn-sm btn-outline lib-read-btn" data-id="${book.driveId}" data-title="${book.title}">
-                 ${ic?.get('quran', 14) || ''} Lire
-               </button>
-               <a class="btn btn-sm btn-gold" href="https://drive.google.com/uc?id=${book.driveId}&export=download" download title="Télécharger ${book.title}">
-                 ${ic?.get('download', 14) || ''}
-               </a>`
-            : `<span class="lib-soon-badge">Bientôt</span>`
-          }
-        </div>
-      </div>
-    `;
+      </div>`;
   }
 
   /* ── Render initial ── */
@@ -244,29 +282,16 @@
 
   function applySearch(query) {
     const q = query.trim().toLowerCase();
-    clearBtn.style.display = q ? 'inline-flex' : 'none';
-
+    if (clearBtn) clearBtn.style.display = q ? 'inline-flex' : 'none';
     const filtered = categories
       .filter(c => activeFilter === 'all' || c.id === activeFilter)
-      .map(c => ({
-        ...c,
-        books: c.books.map(b => ({
-          ...b,
-          _hidden: q ? !b.title.toLowerCase().includes(q) : false
-        }))
-      }));
-
+      .map(c => ({ ...c, books: c.books.map(b => ({ ...b, _hidden: q ? !b.title.toLowerCase().includes(q) : false })) }));
     renderCatalogue(filtered);
   }
 
   searchInput?.addEventListener('input', e => applySearch(e.target.value));
-  clearBtn?.addEventListener('click', () => {
-    searchInput.value = '';
-    applySearch('');
-    searchInput.focus();
-  });
+  clearBtn?.addEventListener('click', () => { searchInput.value = ''; applySearch(''); searchInput.focus(); });
 
-  /* ── Filtres catégorie ── */
   filterBar?.addEventListener('click', e => {
     const btn = e.target.closest('.lib-filter');
     if (!btn) return;
@@ -283,20 +308,23 @@
   const dlBtn      = document.getElementById('pdf-download-btn');
   const closeBtn   = document.getElementById('pdf-modal-close');
   const backdrop   = document.getElementById('pdf-modal-backdrop');
+  const loading    = document.getElementById('pdf-loading');
 
   function openModal(driveId, title) {
     if (!driveId) return;
     modalTitle.textContent = title || 'Lecture';
+    if (loading) loading.classList.remove('hidden');
     iframe.src = `https://drive.google.com/file/d/${driveId}/preview`;
     dlBtn.href = `https://drive.google.com/uc?id=${driveId}&export=download`;
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
-    closeBtn.focus();
+    setTimeout(() => closeBtn?.focus(), 50);
   }
 
   function closeModal() {
     modal.style.display = 'none';
     iframe.src = '';
+    if (loading) loading.classList.remove('hidden');
     document.body.style.overflow = '';
   }
 
