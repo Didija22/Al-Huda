@@ -4,7 +4,7 @@
    Network-first pour les API
    ============================================================ */
 
-const CACHE_NAME = 'al-huda-v11';
+const CACHE_NAME = 'al-huda-v12';
 
 /* Ressources à mettre en cache immédiatement à l'installation */
 const STATIC_ASSETS = [

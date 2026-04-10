@@ -13,24 +13,34 @@
   pointer-events: none;
 }
 
-/* ---------- Variables ---------- */
+/* ---------- Variables — Lumière Islamique ---------- */
 :root {
+  /* Vert islamique */
   --green-dark:   #0F4229;
   --green:        #1B6B3A;
   --green-mid:    #2D8653;
   --green-light:  #4CAF7D;
-  --green-pale:   #E8F5EE;
-  --gold:         #C9A84C;
-  --gold-light:   #E8C96A;
-  --gold-pale:    #FDF6E3;
-  --white:        #FAFAF8;
-  --off-white:    #F4F1EC;
-  --text-dark:    #1A1A1A;
-  --text-mid:     #4A4A4A;
-  --text-light:   #8A8A8A;
-  --shadow-sm:    0 2px 8px rgba(0,0,0,0.08);
-  --shadow-md:    0 4px 20px rgba(0,0,0,0.12);
-  --shadow-lg:    0 8px 40px rgba(0,0,0,0.16);
+  --green-pale:   #EAF5EE;
+
+  /* Or riche — comme l'or des mosquées */
+  --gold:         #B8860B;
+  --gold-light:   #C9A84C;
+  --gold-pale:    #FBF3DC;
+
+  /* Fond parchemin chaud */
+  --white:        #F8F4ED;
+  --off-white:    #F0EAD8;
+
+  /* Texte brun chaud */
+  --text-dark:    #2C1A0E;
+  --text-mid:     #5C3D20;
+  --text-light:   #9A7A5A;
+
+  /* Ombres chaudes */
+  --shadow-sm:    0 2px 8px rgba(44,26,14,0.09);
+  --shadow-md:    0 4px 20px rgba(44,26,14,0.13);
+  --shadow-lg:    0 8px 40px rgba(44,26,14,0.18);
+
   --radius-sm:    8px;
   --radius-md:    16px;
   --radius-lg:    24px;
