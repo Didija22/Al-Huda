@@ -92,8 +92,13 @@
 .filter-row {
   display: flex;
   gap: 0.4rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 4px;
 }
+.filter-row::-webkit-scrollbar { display: none; }
 .hfilter {
   padding: 0.35rem 0.85rem;
   border-radius: 50px;

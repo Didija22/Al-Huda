@@ -24,6 +24,7 @@ async function initAzkars() {
   renderSection('azkars-salat',      data.azkars.salat);
   renderSection('azkars-coucher',    data.azkars.coucher);
   renderSection('azkars-protection', data.azkars.protection);
+  renderSection('azkars-adhan',      data.azkars.adhan);
 
   setMomentBanner();
   initGlobalTasbih();
@@ -193,6 +194,11 @@ function initGlobalTasbih() {
       tsbMax   = parseInt(btn.dataset.max) || 33;
       const arabic = document.getElementById('tsb-arabic');
       if (arabic) arabic.textContent = btn.dataset.text;
+      // Mise à jour référence
+      const refSource  = document.getElementById('tsb-ref-source');
+      const refBenefit = document.getElementById('tsb-ref-benefit');
+      if (refSource)  refSource.textContent  = btn.dataset.source  || '';
+      if (refBenefit) refBenefit.textContent = btn.dataset.benefit || '';
       updateTsbDisplay();
     });
   });

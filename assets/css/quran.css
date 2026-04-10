@@ -29,11 +29,14 @@
 }
 .quran-hero-text p { color: rgba(255,255,255,0.75); font-size: 1rem; }
 .quran-hero-bismillah {
-  font-family: 'Noto Naskh Arabic', serif;
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-family: 'Amiri', 'Noto Naskh Arabic', 'Traditional Arabic', serif;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
   color: var(--gold-light);
   direction: rtl;
-  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  text-shadow: 0 2px 30px rgba(0,0,0,0.5), 0 0 60px rgba(201,168,76,0.3);
+  letter-spacing: 0.05em;
+  line-height: 1.6;
+  font-weight: 400;
 }
 
 /* ---------- Contrôles ---------- */
@@ -145,40 +148,80 @@
 .results-count span { font-weight: 600; color: var(--green); }
 
 /* ---------- Populaires ---------- */
-.quran-popular { padding: 1.5rem 0; background: var(--off-white); }
-.popular-title {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text-mid);
-  margin-bottom: 0.75rem;
+.quran-popular {
+  padding: 1.25rem 0;
+  background: var(--white);
+  border-bottom: 1px solid var(--off-white);
+}
+.popular-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.8rem;
+}
+.popular-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--green);
+}
+.popular-sub {
+  font-size: 0.72rem;
+  color: var(--text-light);
+}
+.popular-header::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--off-white);
 }
 .popular-grid {
   display: flex;
-  flex-wrap: wrap;
   gap: 0.5rem;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  scrollbar-width: none;
+  padding-bottom: 4px;
 }
+.popular-grid::-webkit-scrollbar { display: none; }
 .popular-chip {
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 1rem;
-  background: var(--white);
-  border: 1px solid rgba(27,107,58,0.15);
-  border-radius: 50px;
-  font-size: 0.82rem;
-  color: var(--text-dark);
+  gap: 0.15rem;
+  padding: 0.55rem 0.9rem;
+  background: var(--off-white);
+  border: 1.5px solid transparent;
+  border-radius: 12px;
+  flex-shrink: 0;
   transition: var(--transition);
+  text-align: center;
+  min-width: 72px;
 }
-.popular-chip span {
-  font-family: 'Amiri', serif;
+.popular-chip .pop-num {
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--text-light);
+  line-height: 1;
+}
+.popular-chip .pop-ar {
+  font-family: 'Amiri', 'Noto Naskh Arabic', serif;
   color: var(--green);
-  font-size: 1rem;
+  font-size: 1.05rem;
+  line-height: 1.3;
+  direction: rtl;
+}
+.popular-chip .pop-fr {
+  font-size: 0.68rem;
+  color: var(--text-mid);
+  font-weight: 500;
 }
 .popular-chip:hover {
   background: var(--green-pale);
   border-color: var(--green);
-  color: var(--green-dark);
 }
+.popular-chip:hover .pop-fr { color: var(--green); }
 
 /* ---------- Grille des sourates ---------- */
 .surahs-section { padding: 2rem 0 4rem; }
@@ -388,7 +431,40 @@
   line-height: 1.2;
 }
 
-/* Contrôles sourate */
+/* ---- Barre de lecture sticky ---- */
+.reading-bar {
+  position: sticky;
+  top: 72px;
+  z-index: 200;
+  background: var(--green-dark);
+  border-bottom: 2px solid rgba(201,168,76,0.3);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+}
+.reading-bar-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  flex-wrap: nowrap;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.reading-bar-inner::-webkit-scrollbar { display: none; }
+.reading-bar-sep {
+  width: 1px;
+  height: 22px;
+  background: rgba(255,255,255,0.15);
+  flex-shrink: 0;
+  margin: 0 0.2rem;
+}
+.reading-bar.scrolled {
+  box-shadow: 0 6px 30px rgba(0,0,0,0.3);
+  border-bottom-color: rgba(201,168,76,0.5);
+}
+
+/* Contrôles sourate (legacy, conservé) */
 .surah-controls {
   display: flex;
   align-items: center;
@@ -436,9 +512,9 @@
   flex-shrink: 0;
   background: var(--white);
   border-right: 1px solid rgba(0,0,0,0.07);
-  height: calc(100vh - 72px);
+  height: calc(100vh - 124px);
   position: sticky;
-  top: 72px;
+  top: 124px;
   overflow-y: auto;
   transition: var(--transition);
 }
@@ -1253,6 +1329,8 @@ body.french-only .verse-translit-text { display: none !important; }
   .surah-info { flex-direction: column; text-align: center; }
   .surah-name-ar { margin-left: 0; }
   .surah-controls { justify-content: center; }
+  .reading-bar-inner { padding: 0.5rem 1rem; gap: 0.4rem; }
+  .reading-bar .fs-label { display: none; }
   .surahs-grid { grid-template-columns: 1fr; }
   .quran-controls-inner { flex-direction: column; align-items: stretch; }
   .search-box { min-width: unset; }

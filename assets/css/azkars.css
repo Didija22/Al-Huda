@@ -2,6 +2,33 @@
    AL-HUDA — Styles Azkars
    ============================================================ */
 
+/* ---------- Toast ---------- */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(1.5rem);
+  background: var(--green-dark);
+  color: #fff;
+  padding: 0.7rem 1.4rem;
+  border-radius: 50px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.22);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 /* ---------- Hero ---------- */
 .azkars-hero {
   background: linear-gradient(160deg, var(--green-dark) 0%, var(--green) 60%, var(--green-mid) 100%);
@@ -388,6 +415,32 @@
   font-family: 'Poppins', sans-serif;
 }
 .tsb-reset-btn:hover { background: rgba(255,255,255,0.2); color: var(--white); }
+.tasbih-ref {
+  background: rgba(0,0,0,0.18);
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  margin: 0.75rem 0 0.5rem;
+  text-align: center;
+}
+.tsb-ref-source {
+  display: inline-block;
+  background: var(--gold);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.15rem 0.55rem;
+  border-radius: 50px;
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.04em;
+}
+.tsb-ref-benefit {
+  display: block;
+  font-size: 0.79rem;
+  color: rgba(255,255,255,0.75);
+  font-style: italic;
+  line-height: 1.5;
+  margin-top: 0.3rem;
+}
 .tasbih-total { font-size: 0.82rem; color: rgba(255,255,255,0.5); }
 .tasbih-total strong { color: var(--gold-light); }
 

@@ -305,7 +305,7 @@ window.QUIZ_DATA = {
       category: 'prophetes',
       difficulty: 'facile',
       question: 'Quel prophète a survécu dans le ventre d\'une baleine ?',
-      options: ['Moussa (as)', 'Ibrahim (as)', 'Yunus (as)', 'Idris (as)'],
+      options: ['Moussa عليه السلام', 'Ibrahim عليه السلام', 'Yunus عليه السلام', 'Idris عليه السلام'],
       answer: 2,
       explanation: 'Yunus (Jonas, as) est le prophète qui fut avalé par une grande baleine après avoir quitté son peuple sans permission divine. Il invoqua Allah depuis les profondeurs : "Il n\'y a de divinité que Toi ! Gloire à Toi ! J\'ai vraiment été du nombre des injustes." (21:87). Allah le sauva.'
     },
@@ -314,7 +314,7 @@ window.QUIZ_DATA = {
       category: 'prophetes',
       difficulty: 'facile',
       question: 'Quel est le seul prophète mentionné dans le Coran comme étant né sans père ?',
-      options: ['Muhammad ﷺ', 'Ibrahim (as)', 'Adam (as)', 'Issa (as)'],
+      options: ['Muhammad ﷺ', 'Ibrahim عليه السلام', 'Adam عليه السلام', 'Issa عليه السلام'],
       answer: 3,
       explanation: 'Issa (Jésus, as) est né d\'une mère vierge, Maryam (Marie), sans père. Allah a dit : "Le cas de Issa est comme celui d\'Adam : Il l\'a créé de terre et lui a dit : \'Sois!\' et il fut." (3:59). Bien qu\'Adam soit né sans père ni mère, le Coran mentionne explicitement la naissance miraculeuse d\'Issa.'
     },
@@ -332,7 +332,7 @@ window.QUIZ_DATA = {
       category: 'prophetes',
       difficulty: 'moyen',
       question: 'Quel prophète est surnommé "Khalil Allah" (l\'ami intime d\'Allah) ?',
-      options: ['Moussa (as)', 'Ibrahim (as)', 'Dawud (as)', 'Soulayman (as)'],
+      options: ['Moussa عليه السلام', 'Ibrahim عليه السلام', 'Dawud عليه السلام', 'Soulayman عليه السلام'],
       answer: 1,
       explanation: 'Ibrahim (Abraham, as) est surnommé "Khalil Allah" (l\'ami intime d\'Allah), comme mentionné dans le Coran (4:125) : "Allah a pris Ibrahim comme ami intime." Il est aussi le père de l\'Islam, car il a reconstruit la Ka\'ba avec son fils Isma\'il et institué le Hajj.'
     },
@@ -341,7 +341,7 @@ window.QUIZ_DATA = {
       category: 'prophetes',
       difficulty: 'facile',
       question: 'Quel prophète a reçu la Torah ?',
-      options: ['Ibrahim (as)', 'Dawud (as)', 'Moussa (as)', 'Issa (as)'],
+      options: ['Ibrahim عليه السلام', 'Dawud عليه السلام', 'Moussa عليه السلام', 'Issa عليه السلام'],
       answer: 2,
       explanation: 'Moussa (Moïse, as) est le prophète à qui Allah a révélé la Torah (Tawrat). Il est le prophète le plus souvent mentionné dans le Coran. Il fut envoyé aux Enfants d\'Israël et confronta le Pharaon d\'Égypte.'
     },
@@ -350,7 +350,7 @@ window.QUIZ_DATA = {
       category: 'prophetes',
       difficulty: 'moyen',
       question: 'Quel prophète était charpentier et construisit une arche pour survivre au déluge ?',
-      options: ['Ibrahim (as)', 'Nuh (as)', 'Lut (as)', 'Salih (as)'],
+      options: ['Ibrahim عليه السلام', 'Nuh عليه السلام', 'Lut عليه السلام', 'Salih عليه السلام'],
       answer: 1,
       explanation: 'Nuh (Noé, as) construisit l\'Arche par ordre divin pour sauver les croyants et les animaux du grand déluge qui punit son peuple pour son incroyance. Il prêcha pendant 950 ans mais seuls quelques-uns le crurent. Le Coran lui consacre la sourate 71 (Nuh).'
     },
@@ -359,16 +359,16 @@ window.QUIZ_DATA = {
       category: 'prophetes',
       difficulty: 'difficile',
       question: 'Quel prophète fut élevé vivant vers les cieux selon l\'enseignement islamique ?',
-      options: ['Idris (as) seulement', 'Issa (as) seulement', 'Idris (as) et Issa (as) tous les deux', 'Muhammad ﷺ lors du Mi\'raj'],
+      options: ['Idris عليه السلام seulement', 'Issa عليه السلام seulement', 'Idris عليه السلام et Issa عليه السلام tous les deux', 'Muhammad ﷺ lors du Mi\'raj'],
       answer: 2,
-      explanation: 'Selon l\'enseignement islamique, deux prophètes furent élevés vivants : Idris (as) — "Nous l\'élevâmes à un rang sublime" (19:57) — et Issa (as) que Allah éleva vers Lui pour le protéger de ceux qui voulaient le tuer (4:158). Issa redescendra avant le Jour du Jugement.'
+      explanation: 'Selon l\'enseignement islamique, deux prophètes furent élevés vivants : Idris عليه السلام — "Nous l\'élevâmes à un rang sublime" (19:57) — et Issa عليه السلام que Allah éleva vers Lui pour le protéger de ceux qui voulaient le tuer (4:158). Issa redescendra avant le Jour du Jugement.'
     },
     {
       id: 38,
       category: 'prophetes',
       difficulty: 'moyen',
       question: 'Quel prophète régnait sur les humains, les djinns et les animaux et dont le vent était soumis ?',
-      options: ['Dawud (as)', 'Soulayman (as)', 'Ibrahim (as)', 'Yusuf (as)'],
+      options: ['Dawud عليه السلام', 'Soulayman عليه السلام', 'Ibrahim عليه السلام', 'Yusuf عليه السلام'],
       answer: 1,
       explanation: 'Soulayman (Salomon, as) est le prophète-roi à qui Allah donna une autorité exceptionnelle sur les humains, les djinns, les animaux et le vent. Il connaissait le langage des oiseaux (27:16). Il construisit le premier Temple de Jérusalem.'
     },
@@ -377,16 +377,16 @@ window.QUIZ_DATA = {
       category: 'prophetes',
       difficulty: 'facile',
       question: 'Quel prophète est considéré comme le premier homme et premier prophète ?',
-      options: ['Ibrahim (as)', 'Nuh (as)', 'Idris (as)', 'Adam (as)'],
+      options: ['Ibrahim عليه السلام', 'Nuh عليه السلام', 'Idris عليه السلام', 'Adam عليه السلام'],
       answer: 3,
-      explanation: 'Adam (as) est le premier homme créé par Allah et le premier prophète. Allah le créa de terre argile, lui insuffla Son esprit, lui apprit les noms de toutes choses et ordonna aux anges de se prosterner devant lui. Il est le père de l\'humanité.'
+      explanation: 'Adam عليه السلام est le premier homme créé par Allah et le premier prophète. Allah le créa de terre argile, lui insuffla Son esprit, lui apprit les noms de toutes choses et ordonna aux anges de se prosterner devant lui. Il est le père de l\'humanité.'
     },
     {
       id: 40,
       category: 'prophetes',
       difficulty: 'difficile',
       question: 'La sourate Yusuf est surnommée "la plus belle des histoires" (ahsan al-qasas). Quel prophet était le père de Yusuf ?',
-      options: ['Ibrahim (as)', 'Ishaq (as)', 'Ya\'qub (as)', 'Isma\'il (as)'],
+      options: ['Ibrahim عليه السلام', 'Ishaq عليه السلام', 'Ya\'qub عليه السلام', 'Isma\'il عليه السلام'],
       answer: 2,
       explanation: 'Ya\'qub (Jacob, as) est le père de Yusuf (Joseph, as). Ya\'qub était lui-même prophète, fils d\'Ishaq (Isaac) et petit-fils d\'Ibrahim (Abraham). Ses douze fils sont à l\'origine des douze tribus d\'Israël. Ya\'qub perdit la vue de chagrin pour Yusuf puis recouvra la vue miraculeusement.'
     },

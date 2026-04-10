@@ -3,9 +3,10 @@ window.AZKARS_DATA = {
   "categories": [
     {"id":"matin","name":"Azkars du Matin","nameAr":"أذكار الصباح","emoji":"🌅","description":"À réciter après Fajr jusqu'au lever du soleil","color":"#e8f5ee"},
     {"id":"soir","name":"Azkars du Soir","nameAr":"أذكار المساء","emoji":"🌙","description":"À réciter après Asr jusqu'au coucher du soleil","color":"#e8eaf6"},
-    {"id":"salat","name":"Après la Prière","nameAr":"أذكار بعد الصلاة","emoji":"🕌","description":"À réciter après chaque prière obligatoire","color":"#fff3e0"},
-    {"id":"coucher","name":"Avant le Coucher","nameAr":"أذكار النوم","emoji":"🛌","description":"À réciter avant de dormir","color":"#fce4ec"},
-    {"id":"protection","name":"Invocations de Protection","nameAr":"أذكار الحماية","emoji":"🛡️","description":"Pour se protéger des maux","color":"#e8f5ee"}
+    {"id":"salat","name":"Azkars après la Prière","nameAr":"أذكار بعد الصلاة","emoji":"🕌","description":"À réciter après chaque prière obligatoire","color":"#fff3e0"},
+    {"id":"coucher","name":"Azkars avant le Coucher","nameAr":"أذكار النوم","emoji":"🛌","description":"À réciter avant de dormir","color":"#fce4ec"},
+    {"id":"protection","name":"Azkars de Protection","nameAr":"أذكار الحماية","emoji":"🛡️","description":"Pour se protéger des maux","color":"#e8f5ee"},
+    {"id":"adhan","name":"Invocation après l'Adhan","nameAr":"دعاء بعد الأذان","emoji":"📣","description":"À réciter après avoir entendu l'appel à la prière","color":"#e8f0fe"}
   ],
   "azkars": {
     "matin": [
@@ -212,6 +213,50 @@ window.AZKARS_DATA = {
         "transliteration":"Allahumma inni a'udhu bika minal-hammi wal-hazan, wa a'udhu bika minal-'ajzi wal-kasal, wa a'udhu bika minal-jubni wal-bukhl, wa a'udhu bika min ghalabatid-dayni wa qahrir-rijal",
         "translation":"Ô Allah, je me réfugie en Toi contre l'inquiétude et la tristesse, contre la faiblesse et la paresse, contre la lâcheté et l'avarice, contre le poids des dettes et la domination des hommes.",
         "repetitions":1,"source":"Bukhari 6369","benefit":"Protection contre les maux spirituels et matériels"
+      },
+      {
+        "id":"pr4",
+        "arabic":"اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ وَلَا يَئُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ",
+        "transliteration":"Allahu la ilaha illa huwal-hayyul-qayyum, la ta'khudhuhu sinatun wa la nawm, lahu ma fis-samawati wa ma fil-ard, man dhal-ladhi yashfa'u 'indahu illa bi-idhnih, ya'lamu ma bayna aydihim wa ma khalfahum, wa la yuhituna bishay'in min 'ilmihi illa bima sha', wasi'a kursiyyuhus-samawati wal-ard, wa la ya'uduhu hifzuhuma, wa huwal-'aliyyul-'azim",
+        "translation":"Allah ! Point de divinité à part Lui, le Vivant, Celui qui subsiste par Lui-même. Ni somnolence ni sommeil ne Le saisissent. À Lui appartient tout ce qui est dans les cieux et sur la terre. Qui peut intercéder auprès de Lui sans Sa permission ? Il sait ce qui est devant eux et ce qui est derrière eux, tandis qu'ils n'embrassent de Sa science que ce qu'Il veut. Son Trône déborde les cieux et la terre, dont la garde ne Lui coûte aucune peine. C'est Lui le Très Haut, le Très Grand.",
+        "repetitions":1,"source":"Al-Baqara 2:255","benefit":"Ayatoul Kursi — Quiconque la récite après chaque prière obligatoire, rien ne l'empêchera d'entrer au Paradis (An-Nasa'i). Protection absolue."
+      },
+      {
+        "id":"pr5",
+        "arabic":"قُلْ هُوَ اللَّهُ أَحَدٌ ۝ اللَّهُ الصَّمَدُ ۝ لَمْ يَلِدْ وَلَمْ يُولَدْ ۝ وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ",
+        "transliteration":"Qul huwallahu ahad. Allahus-samad. Lam yalid wa lam yulad. Wa lam yakun lahu kufuwan ahad",
+        "translation":"Dis : « Il est Allah, Unique. Allah, le Soutien de tous. Il n'a pas engendré, et n'a pas été engendré. Et nul n'est égal à Lui. »",
+        "repetitions":3,"source":"Al-Ikhlas 112 — Bukhari 5013","benefit":"Équivaut au tiers du Coran. Récitée 3 fois le matin et le soir, elle suffit pour tout."
+      },
+      {
+        "id":"pr6",
+        "arabic":"قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ۝ مِن شَرِّ مَا خَلَقَ ۝ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ ۝ وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ ۝ وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ",
+        "transliteration":"Qul a'udhu birabbil-falaq. Min sharri ma khalaq. Wa min sharri ghasiqin idha waqab. Wa min sharrin-naffathati fil-'uqad. Wa min sharri hasidin idha hasad",
+        "translation":"Dis : « Je cherche refuge auprès du Seigneur de l'Aube naissante, contre le mal de ce qu'Il a créé, contre le mal de l'obscurité quand elle s'étend, contre le mal des souffleuses sur les nœuds, contre le mal de l'envieux quand il envie. »",
+        "repetitions":3,"source":"Al-Falaq 113 — Abu Dawud 1463","benefit":"Protection contre le mauvais œil, la sorcellerie et la jalousie. À réciter matin et soir."
+      },
+      {
+        "id":"pr7",
+        "arabic":"قُلْ أَعُوذُ بِرَبِّ النَّاسِ ۝ مَلِكِ النَّاسِ ۝ إِلَٰهِ النَّاسِ ۝ مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۝ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ۝ مِنَ الْجِنَّةِ وَالنَّاسِ",
+        "transliteration":"Qul a'udhu birabbin-nas. Malikin-nas. Ilahin-nas. Min sharril-waswasil-khannas. Al-ladhi yuwaswisu fi sudürin-nas. Minal-jinnati wan-nas",
+        "translation":"Dis : « Je cherche refuge auprès du Seigneur des hommes, du Roi des hommes, du Dieu des hommes, contre le mal du tentateur sournois qui souffle le mal dans les poitrines des hommes, qu'il soit djinn ou humain. »",
+        "repetitions":3,"source":"An-Nas 114 — Abu Dawud 1463","benefit":"Protection contre les mauvaises pensées et les tentations de Satan. À réciter matin et soir."
+      }
+    ],
+    "adhan": [
+      {
+        "id":"ad1",
+        "arabic":"اللَّهُمَّ رَبَّ هَذِهِ الدَّعْوَةِ التَّامَّةِ وَالصَّلَاةِ الْقَائِمَةِ آتِ مُحَمَّدًا الْوَسِيلَةَ وَالْفَضِيلَةَ وَابْعَثْهُ مَقَامًا مَحْمُودًا الَّذِي وَعَدْتَهُ",
+        "transliteration":"Allahumma rabba hadhihid-da'watit-tammati was-salatil-qa'imati, ati Muhammadanil-wasilata wal-fadilata, wab'athu maqamam-mahmudanil-ladhi wa'adtah",
+        "translation":"Ô Allah, Seigneur de cet appel parfait et de cette prière imminente, accorde à Muhammad la Wasila (la place la plus haute au Paradis) et la Fadila (un rang éminent). Et élève-le à la station louée que Tu lui as promise.",
+        "repetitions":1,"source":"Bukhari 614","benefit":"Quiconque dit cette invocation après l'adhan, l'intercession du Prophète ﷺ lui sera accordée le Jour du Jugement."
+      },
+      {
+        "id":"ad2",
+        "arabic":"أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ رَضِيتُ بِاللَّهِ رَبًّا وَبِمُحَمَّدٍ رَسُولًا وَبِالْإِسْلَامِ دِينًا",
+        "transliteration":"Ashhadu an la ilaha illallahu wahdahu la sharika lahu, wa ashhadu anna Muhammadan 'abduhu wa rasuluh. Raditu billahi rabban, wa bi-Muhammadin rasulan, wa bil-islami dinan",
+        "translation":"J'atteste qu'il n'y a de divinité qu'Allah, seul, sans associé, et que Muhammad est Son serviteur et Son messager. Je suis satisfait d'Allah comme Seigneur, de Muhammad comme Messager, et de l'Islam comme religion.",
+        "repetitions":1,"source":"Muslim 386","benefit":"Ses péchés lui seront pardonnés."
       }
     ]
   }

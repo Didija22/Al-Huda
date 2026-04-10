@@ -54,43 +54,49 @@
           <div class="surah-name-ar" id="surah-name-ar">الفاتحة</div>
         </div>
 
-        <!-- Contrôles -->
-        <div class="surah-controls">
-          <!-- Navigation -->
-          <div class="surah-nav-btns">
-            <a href="#" id="prev-surah" class="surah-nav-btn" title="Sourate précédente">‹ Précédente</a>
-            <a href="index.html" class="surah-nav-btn surah-nav-btn-mid" title="Toutes les sourates">☰ Liste</a>
-            <a href="#" id="next-surah" class="surah-nav-btn" title="Sourate suivante">Suivante ›</a>
-          </div>
-
-          <!-- Options lecture -->
-          <div class="reading-options">
-            <button class="option-btn active" id="opt-both" title="Arabe + Traduction">AR + Trad</button>
-            <button class="option-btn" id="opt-arabic" title="Arabe uniquement">AR</button>
-            <button class="option-btn" id="opt-french" title="Traduction uniquement">Trad</button>
-          </div>
-          <!-- Langue traduction -->
-          <div class="lang-toggle">
-            <button class="lang-btn active" id="lang-fr" title="Traduction française">🇫🇷 FR</button>
-            <button class="lang-btn" id="lang-en" title="English translation">🇬🇧 EN</button>
-          </div>
-
-          <!-- Translittération -->
-          <div class="translit-toggle">
-            <button class="translit-btn" id="btn-translit" title="Afficher/masquer la translittération phonétique">🔤 Translit</button>
-          </div>
-
-          <!-- Taille police -->
-          <div class="font-size-control">
-            <button class="fs-btn" id="fs-down" title="Réduire">A-</button>
-            <span class="fs-label" id="fs-label">Taille</span>
-            <button class="fs-btn" id="fs-up" title="Agrandir">A+</button>
-          </div>
-        </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- BARRE DE LECTURE STICKY -->
+<div class="reading-bar" id="reading-bar">
+  <div class="reading-bar-inner">
+    <!-- Navigation -->
+    <div class="surah-nav-btns">
+      <a href="#" id="prev-surah" class="surah-nav-btn" title="Sourate précédente">‹ Précédente</a>
+      <a href="index.html" class="surah-nav-btn surah-nav-btn-mid" title="Toutes les sourates">☰ Liste</a>
+      <a href="#" id="next-surah" class="surah-nav-btn" title="Sourate suivante">Suivante ›</a>
+    </div>
+
+    <div class="reading-bar-sep"></div>
+
+    <!-- Options lecture -->
+    <div class="reading-options">
+      <button class="option-btn active" id="opt-both" title="Arabe + Traduction">AR + Trad</button>
+      <button class="option-btn" id="opt-arabic" title="Arabe uniquement">AR</button>
+      <button class="option-btn" id="opt-french" title="Traduction uniquement">Trad</button>
+    </div>
+
+    <!-- Langue traduction -->
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="lang-fr" title="Traduction française">🇫🇷 FR</button>
+      <button class="lang-btn" id="lang-en" title="English translation">🇬🇧 EN</button>
+    </div>
+
+    <!-- Translittération -->
+    <div class="translit-toggle">
+      <button class="translit-btn" id="btn-translit" title="Afficher/masquer la translittération phonétique">🔤 Translit</button>
+    </div>
+
+    <!-- Taille police -->
+    <div class="font-size-control">
+      <button class="fs-btn" id="fs-down" title="Réduire">A-</button>
+      <span class="fs-label" id="fs-label">Taille</span>
+      <button class="fs-btn" id="fs-up" title="Agrandir">A+</button>
+    </div>
+  </div>
+</div>
 
 <!-- ZONE DE LECTURE -->
 <section class="reading-section">
@@ -390,5 +396,19 @@
 <script src="../../assets/js/main.js"></script>
 <script src="../../assets/js/sharecard.js"></script>
 <script src="../../assets/js/quran.js"></script>
+<script>
+  /* Barre sticky — ombre renforcée au scroll */
+  (function() {
+    const bar = document.getElementById('reading-bar');
+    if (!bar) return;
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 60) {
+        bar.classList.add('scrolled');
+      } else {
+        bar.classList.remove('scrolled');
+      }
+    }, { passive: true });
+  })();
+</script>
 </body>
 </html>

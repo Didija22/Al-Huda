@@ -36,6 +36,7 @@
         <a href="#salat" class="hero-cat">🕌 Après la prière</a>
         <a href="#coucher" class="hero-cat">🛌 Coucher</a>
         <a href="#protection" class="hero-cat">🛡️ Protection</a>
+        <a href="#adhan" class="hero-cat">📣 Adhan</a>
       </div>
     </div>
   </div>
@@ -99,7 +100,7 @@
   <div class="container">
     <div class="section-header reveal">
       <span class="badge badge-green">🕌 Prière</span>
-      <h2>Après la Prière</h2>
+      <h2>Azkars après la Prière</h2>
       <div class="divider-gold"></div>
       <p class="arabic" style="font-size:1rem;color:var(--text-mid)">أذكار بعد الصلاة</p>
       <p>À réciter après chaque prière obligatoire</p>
@@ -113,7 +114,7 @@
   <div class="container">
     <div class="section-header reveal">
       <span class="badge badge-gold">🛌 Coucher</span>
-      <h2>Avant le Coucher</h2>
+      <h2>Azkars avant le Coucher</h2>
       <div class="divider-gold"></div>
       <p class="arabic" style="font-size:1rem;color:var(--text-mid)">أذكار النوم</p>
     </div>
@@ -126,15 +127,30 @@
   <div class="container">
     <div class="section-header reveal">
       <span class="badge badge-green">🛡️ Protection</span>
-      <h2>Invocations de Protection</h2>
+      <h2>Azkars de Protection</h2>
       <div class="divider-gold"></div>
+      <p>Ayatoul Kursi, Al-Ikhlas, Al-Falaq, An-Nas et autres invocations de protection</p>
     </div>
     <div class="azkars-grid" id="azkars-protection"></div>
   </div>
 </section>
 
+<!-- SECTION ADHAN -->
+<section class="azkars-list-section bg-green-pale" id="adhan">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="badge badge-gold">📣 Adhan</span>
+      <h2>Invocation après l'Adhan</h2>
+      <div class="divider-gold"></div>
+      <p class="arabic" style="font-size:1rem;color:var(--text-mid)">دعاء بعد الأذان</p>
+      <p>À réciter après avoir entendu l'appel à la prière</p>
+    </div>
+    <div class="azkars-grid" id="azkars-adhan"></div>
+  </div>
+</section>
+
 <!-- TASBIH GLOBAL -->
-<section class="tasbih-section">
+<section class="tasbih-section" id="tasbih">
   <div class="container">
     <div class="tasbih-widget reveal">
       <div class="tasbih-header">
@@ -142,11 +158,11 @@
         <p>Comptez votre dhikr facilement</p>
       </div>
       <div class="tasbih-selector">
-        <button class="tsb-select active" data-text="سُبْحَانَ اللَّهِ" data-fr="SubhanAllah" data-max="33">SubhanAllah</button>
-        <button class="tsb-select" data-text="الْحَمْدُ لِلَّهِ" data-fr="Alhamdulillah" data-max="33">Alhamdulillah</button>
-        <button class="tsb-select" data-text="اللَّهُ أَكْبَرُ" data-fr="Allahu Akbar" data-max="34">Allahu Akbar</button>
-        <button class="tsb-select" data-text="لَا إِلَهَ إِلَّا اللَّهُ" data-fr="La ilaha illallah" data-max="100">La ilaha illallah</button>
-        <button class="tsb-select" data-text="أَسْتَغْفِرُ اللَّهَ" data-fr="Astaghfirullah" data-max="100">Astaghfirullah</button>
+        <button class="tsb-select active" data-text="سُبْحَانَ اللَّهِ" data-fr="SubhanAllah" data-max="33" data-source="Muslim 2692" data-benefit="Efface les péchés même s'ils étaient aussi nombreux que l'écume de la mer.">SubhanAllah</button>
+        <button class="tsb-select" data-text="الْحَمْدُ لِلَّهِ" data-fr="Alhamdulillah" data-max="33" data-source="Tirmidhi 3375" data-benefit="Remplit la balance des bonnes actions le Jour du Jugement.">Alhamdulillah</button>
+        <button class="tsb-select" data-text="اللَّهُ أَكْبَرُ" data-fr="Allahu Akbar" data-max="34" data-source="Muslim 595" data-benefit="Tasbih de Fatima — 33×SubhanAllah, 33×Alhamdulillah, 34×Allahu Akbar après chaque prière.">Allahu Akbar</button>
+        <button class="tsb-select" data-text="لَا إِلَهَ إِلَّا اللَّهُ" data-fr="La ilaha illallah" data-max="100" data-source="Bukhari 3293, Muslim 2691" data-benefit="Équivaut à l'affranchissement de 10 esclaves. 100 bonnes actions inscrites, 100 mauvaises effacées.">La ilaha illallah</button>
+        <button class="tsb-select" data-text="أَسْتَغْفِرُ اللَّهَ" data-fr="Astaghfirullah" data-max="100" data-source="Muslim 2702" data-benefit="Le Prophète ﷺ demandait pardon plus de 70 fois par jour. Ouvre les portes de la miséricorde.">Astaghfirullah</button>
       </div>
       <div class="tasbih-display">
         <div class="tasbih-arabic" id="tsb-arabic">سُبْحَانَ اللَّهِ</div>
@@ -159,6 +175,10 @@
       <div class="tasbih-actions">
         <button class="tsb-reset-btn" id="tsb-reset">↺ Réinitialiser</button>
         <button class="tsb-main-btn" id="tsb-main" onclick="globalTasbih()">تسبيح</button>
+      </div>
+      <div class="tasbih-ref" id="tsb-ref">
+        <span class="tsb-ref-source" id="tsb-ref-source">Muslim 2692</span>
+        <span class="tsb-ref-benefit" id="tsb-ref-benefit">Efface les péchés même s'ils étaient aussi nombreux que l'écume de la mer.</span>
       </div>
       <div class="tasbih-total">Total de la session : <strong id="tsb-total">0</strong></div>
     </div>
